@@ -1,0 +1,334 @@
+{
+  "attributes": {
+    "service_tags": {
+      "type": "dictionary",
+      "is_multiple": true,
+      "name": {
+        "ru": "Где применяется (Теги)",
+        "en": "Application Tags"
+      }
+    }
+  },
+  "categories": {
+    "cutouts": {
+      "name": {
+        "ru": "Вырезы и отверстия",
+        "en": "Cutouts & Holes"
+      }
+    },
+    "surface_sinks": {
+      "name": {
+        "ru": "Интеграция моек и поверхности",
+        "en": "Sinks & Surface"
+      }
+    },
+    "logistics": {
+      "name": {
+        "ru": "Замер и Доставка",
+        "en": "Measurement & Delivery"
+      }
+    },
+    "installation": {
+      "name": {
+        "ru": "Монтаж и Демонтаж",
+        "en": "Installation & Dismantling"
+      }
+    },
+    "extra": {
+      "name": {
+        "ru": "Прочие работы",
+        "en": "Extra works"
+      }
+    }
+  },
+  "services": [
+    {
+      "slug": "cutout_price",
+      "category": "cutouts",
+      "unit": "pcs",
+      "name": {
+        "ru": "Стоимость выреза под мойку",
+        "en": "Sink cutout price"
+      },
+      "eav": {
+        "service_tags": ["kitchen", "bathroom"]
+      },
+      "prices": {
+        "acrylic_stone": 1500,
+        "quartz_stone": 1650
+      }
+    },
+    {
+      "slug": "cutout_hob_price",
+      "category": "cutouts",
+      "unit": "pcs",
+      "name": {
+        "ru": "Стоимость выреза для варочной панели",
+        "en": "Hob cutout price"
+      },
+      "eav": {
+        "service_tags": ["kitchen"]
+      },
+      "prices": {
+        "acrylic_stone": 1200,
+        "quartz_stone": 1650
+      }
+    },
+    {
+      "slug": "point_cutout_price",
+      "category": "cutouts",
+      "unit": "pcs",
+      "name": {
+        "ru": "Стоимость точечного выреза (под смеситель/фильтр)",
+        "en": "Point cutout price"
+      },
+      "eav": {
+        "service_tags": ["kitchen", "bathroom"]
+      },
+      "prices": {
+        "acrylic_stone": 400,
+        "quartz_stone": 870
+      }
+    },
+    {
+      "slug": "socket_cutout_price",
+      "category": "cutouts",
+      "unit": "pcs",
+      "name": {
+        "ru": "Цена за вырез под розетку",
+        "en": "Socket cutout price"
+      },
+      "eav": {
+        "service_tags": ["kitchen", "bathroom", "windowsill", "addon"]
+      },
+      "prices": {
+        "acrylic_stone": 400,
+        "quartz_stone": 870
+      }
+    },
+    {
+      "slug": "radiator_grooves_price",
+      "category": "cutouts",
+      "unit": "pcs",
+      "name": {
+        "ru": "Стоимость прорезей под радиаторы",
+        "en": "Radiator grooves price"
+      },
+      "eav": {
+        "service_tags": ["windowsill", "addon"]
+      },
+      "prices": {
+        "acrylic_stone": 1250,
+        "quartz_stone": 1700
+      }
+    },
+    {
+      "slug": "bevel_price",
+      "category": "extra",
+      "unit": "m",
+      "name": {
+        "ru": "Цена скоса (фаски)",
+        "en": "Bevel price"
+      },
+      "eav": {
+        "service_tags": ["kitchen", "bathroom", "windowsill", "addon"]
+      },
+      "prices": {
+        "acrylic_stone": 500,
+        "quartz_stone": 800
+      }
+    },
+    {
+      "slug": "round_price",
+      "category": "extra",
+      "unit": "pcs",
+      "name": {
+        "ru": "Наценка за радиус (скругление)",
+        "en": "Radius surcharge"
+      },
+      "eav": {
+        "service_tags": ["kitchen", "bathroom", "windowsill", "addon"]
+      },
+      "prices": {
+        "acrylic_stone": 1200,
+        "quartz_stone": 1800
+      }
+    },
+    {
+      "slug": "gluing_price",
+      "category": "surface_sinks",
+      "unit": "pcs",
+      "name": {
+        "ru": "Цена подклейки (склейки) мойки",
+        "en": "Sink gluing price"
+      },
+      "eav": {
+        "service_tags": ["kitchen", "bathroom"]
+      },
+      "prices": {
+        "acrylic_stone": 3000,
+        "quartz_stone": 4350
+      }
+    },
+    {
+      "slug": "grooves_sink_drain_price",
+      "category": "surface_sinks",
+      "unit": "set",
+      "name": {
+        "ru": "Цена за фрезеровку канавок под слив воды",
+        "en": "Drain grooves milling price"
+      },
+      "eav": {
+        "service_tags": ["kitchen", "addon"]
+      },
+      "prices": {
+        "acrylic_stone": 4600,
+        "quartz_stone": 7700
+      }
+    },
+    {
+      "slug": "lowering_wing_price",
+      "category": "surface_sinks",
+      "unit": "srv",
+      "name": {
+        "ru": "Стоимость опускания крыла столешницы",
+        "en": "Countertop wing lowering price"
+      },
+      "eav": {
+        "service_tags": ["kitchen", "addon"]
+      },
+      "prices": {
+        "acrylic_stone": 4000,
+        "quartz_stone": 15000
+      }
+    },
+    {
+      "slug": "measure_price",
+      "category": "logistics",
+      "unit": "srv",
+      "name": {
+        "ru": "Базовая стоимость замера",
+        "en": "Base measure price"
+      },
+      "eav": {
+        "service_tags": ["kitchen", "bathroom", "windowsill"]
+      },
+      "prices": {
+        "acrylic_stone": 0,
+        "quartz_stone": 0
+      }
+    },
+    {
+      "slug": "measure_per_km_price",
+      "category": "logistics",
+      "unit": "km",
+      "name": {
+        "ru": "Доплата за замер за каждый километр",
+        "en": "Measure per km surcharge"
+      },
+      "eav": {
+        "service_tags": ["kitchen", "bathroom", "windowsill"]
+      },
+      "prices": {
+        "acrylic_stone": 80,
+        "quartz_stone": 80
+      }
+    },
+    {
+      "slug": "delivery",
+      "category": "logistics",
+      "unit": "srv",
+      "name": {
+        "ru": "Базовая стоимость доставки",
+        "en": "Base delivery price"
+      },
+      "eav": {
+        "service_tags": ["kitchen", "bathroom", "windowsill"]
+      },
+      "prices": {
+        "acrylic_stone": 3200,
+        "quartz_stone": 5200
+      }
+    },
+    {
+      "slug": "delivery_per_km_price",
+      "category": "logistics",
+      "unit": "km",
+      "name": {
+        "ru": "Доплата за доставку за каждый километр",
+        "en": "Delivery per km surcharge"
+      },
+      "eav": {
+        "service_tags": ["kitchen", "bathroom", "windowsill"]
+      },
+      "prices": {
+        "acrylic_stone": 120,
+        "quartz_stone": 120
+      }
+    },
+    {
+      "slug": "lift_elevator_price",
+      "category": "installation",
+      "unit": "srv",
+      "name": {
+        "ru": "Стоимость подъема на лифте",
+        "en": "Elevator lift price"
+      },
+      "eav": {
+        "service_tags": ["kitchen", "bathroom", "windowsill"]
+      },
+      "prices": {
+        "acrylic_stone": 0,
+        "quartz_stone": 0
+      }
+    },
+    {
+      "slug": "lift_per_level_price",
+      "category": "installation",
+      "unit": "floor",
+      "name": {
+        "ru": "Цена за подъем на каждый этаж (пешком)",
+        "en": "Manual lift per floor price"
+      },
+      "eav": {
+        "service_tags": ["kitchen", "bathroom", "windowsill"]
+      },
+      "prices": {
+        "acrylic_stone": 1600,
+        "quartz_stone": 2350
+      }
+    },
+    {
+      "slug": "montage_price",
+      "category": "installation",
+      "unit": "srv",
+      "name": {
+        "ru": "Цена за установку (монтаж)",
+        "en": "Installation price"
+      },
+      "eav": {
+        "service_tags": ["kitchen", "bathroom", "windowsill"]
+      },
+      "prices": {
+        "acrylic_stone": 5500,
+        "quartz_stone": 8000
+      }
+    },
+    {
+      "slug": "dismantling_price",
+      "category": "installation",
+      "unit": "srv",
+      "name": {
+        "ru": "Цена демонтажа старой столешницы",
+        "en": "Dismantling price"
+      },
+      "eav": {
+        "service_tags": ["kitchen", "bathroom", "windowsill", "addon"]
+      },
+      "prices": {
+        "acrylic_stone": 8000,
+        "quartz_stone": 8000
+      }
+    }
+  ]
+}

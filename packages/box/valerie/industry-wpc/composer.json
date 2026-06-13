@@ -1,0 +1,22 @@
+{
+  "name": "valerie/box-industry-wpc",
+  "description": "On-Premise (Box) WPC Industry module for VMS",
+  "type": "library",
+  "license": "proprietary",
+  "autoload": {
+    "psr-4": {
+      "Valerie\\Box\\IndustryWpc\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "ValerieWpcServiceProvider"
+      ]
+    }
+  },
+  "require": {
+    "php": "^8.5",
+    "nicole/box-core": "@dev"
+  }
+}
