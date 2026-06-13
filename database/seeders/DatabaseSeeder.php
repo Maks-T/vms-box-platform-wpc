@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Nicole\Box\Core\Models\Warehouse;
-use Valerie\Box\IndustryStone\Database\Seeders\StoneIndustryServicesSeeder;
+use Valerie\Box\IndustryWpc\Database\Seeders\StoneIndustryServicesSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,10 +18,10 @@ class DatabaseSeeder extends Seeder
 
     // 2. Уровень Индустрии
     $this->call([
-      /*\Valerie\Box\IndustryStone\Database\Seeders\StoneIndustryDictionariesSeeder::class,
-      \Valerie\Box\IndustryStone\Database\Seeders\StoneIndustryDataImportSeeder::class,
-      \Valerie\Box\IndustryStone\Database\Seeders\StoneIndustryServicesSeeder::class,
-      \Valerie\Box\IndustryStone\Database\Seeders\StoneIndustryImagesSeeder::class,*/
+      /*\Valerie\Box\IndustryWpc\Database\Seeders\StoneIndustryDictionariesSeeder::class,
+      \Valerie\Box\IndustryWpc\Database\Seeders\StoneIndustryDataImportSeeder::class,
+      \Valerie\Box\IndustryWpc\Database\Seeders\StoneIndustryServicesSeeder::class,
+      \Valerie\Box\IndustryWpc\Database\Seeders\StoneIndustryImagesSeeder::class,*/
     ]);
 
     $this->command->info('Database seeding completed successfully!');

@@ -24,7 +24,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 use Nicole\Box\Core\NicoleCorePlugin;
-use Valerie\Box\IndustryStone\ValerieWpcPlugin;
+use Valerie\Box\IndustryWpc\ValerieWpcPlugin;
 use Outerweb\FilamentTranslatableFields\TranslatableFieldsPlugin;
 
 class AdminPanelProvider extends PanelProvider

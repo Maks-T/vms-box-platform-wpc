@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Valerie\Box\IndustryStone;
+namespace Valerie\Box\IndustryWpc;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;

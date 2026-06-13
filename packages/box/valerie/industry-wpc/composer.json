@@ -11,7 +11,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "ValerieWpcServiceProvider"
+        "Valerie\\Box\\IndustryWpc\\ValerieWpcServiceProvider"
       ]
     }
   },
