@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d4b3665d23e6cb014ac63b9376b1b6f",
+    "content-hash": "0aa1e52791eea35b7c688d9b2da54c30",
     "packages": [
         {
             "name": "bezhansalleh/filament-language-switch",
@@ -4541,7 +4541,7 @@
         },
         {
             "name": "nicole/box-core",
-            "version": "dev-dev",
+            "version": "dev-main",
             "dist": {
                 "type": "path",
                 "url": "packages/box/nicole/core",
@@ -9424,12 +9424,12 @@
             "time": "2026-01-10T16:40:02+00:00"
         },
         {
-            "name": "valerie/box-industry-stone",
-            "version": "dev-dev",
+            "name": "valerie/box-industry-wpc",
+            "version": "dev-main",
             "dist": {
                 "type": "path",
-                "url": "packages/box/valerie/industry-stone",
-                "reference": "89e58614117f3d102a08c7c33cddf0d9f530f6f6"
+                "url": "packages/box/valerie/industry-wpc",
+                "reference": "fb1719ed5401f2c13c84ea92e851ad1a28858aed"
             },
             "require": {
                 "nicole/box-core": "@dev",
@@ -9439,19 +9439,19 @@
             "extra": {
                 "laravel": {
                     "providers": [
-                        "Valerie\\Box\\IndustryStone\\ValerieStoneServiceProvider"
+                        "ValerieWpcServiceProvider"
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Valerie\\Box\\IndustryStone\\": "src/"
+                    "Valerie\\Box\\IndustryWpc\\": "src/"
                 }
             },
             "license": [
                 "proprietary"
             ],
-            "description": "On-Premise (Box) Stone Industry module for VMS",
+            "description": "On-Premise (Box) WPC Industry module for VMS",
             "transport-options": {
                 "symlink": true,
                 "relative": true
@@ -11686,7 +11686,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "nicole/box-core": 20,
-        "valerie/box-industry-stone": 20
+        "valerie/box-industry-wpc": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
