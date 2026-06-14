@@ -18,7 +18,7 @@ class ValerieWpcServiceProvider extends ServiceProvider
   {
     $this->loadJsonTranslationsFrom(__DIR__ . '/../lang');
     $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-    $this->loadViewsFrom(__DIR__ . '/../resources/views', 'valerie-stone');
+    $this->loadViewsFrom(__DIR__ . '/../resources/views', 'valerie-wpc');
 
     $this->registerApiRoutes();
   }
@@ -30,5 +30,12 @@ class ValerieWpcServiceProvider extends ServiceProvider
         ->middleware(['api', \Nicole\Box\Core\Http\Middleware\EnforceChannelContext::class])
         ->group(__DIR__ . '/../routes/api.php');
     }
+
+    if ($this->app->runningInConsole()) {
+      $modules = config('nicole.import_modules', []);
+      $modules[] = \Valerie\Box\IndustryWpc\Importers\WpcPipelineImporter::class;
+      config(['nicole.import_modules' => $modules]);
+    }
+
   }
 }
