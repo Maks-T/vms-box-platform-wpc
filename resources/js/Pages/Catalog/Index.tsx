@@ -78,7 +78,7 @@ export default function CatalogIndex() {
             </div>
           </aside>
 
-          <div className="lg:col-span-9 flex-1 relative flex flex-col pt-2 md:pt-4">
+          <div className="lg:col-span-9 flex-1 min-w-0 relative flex flex-col pt-2 md:pt-4">
 
             <div className="relative flex-1 mb-16">
               <ProductGridBlock

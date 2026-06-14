@@ -56,7 +56,6 @@ class ProductImporter implements ImportModuleInterface
       $typeId = $this->mapTypes[$item['product_type_external_code'] ?? ''] ?? null;
       $categoryId = $this->mapCategories[$item['category_external_code'] ?? ''] ?? null;
 
-      
       $unitCode = $item['unit_code'] ?? 'pcs';
       if (!isset($this->mapUnits[$unitCode])) {
         $unitName = match($unitCode) {
@@ -74,7 +73,6 @@ class ProductImporter implements ImportModuleInterface
         $this->mapUnits[$unitCode] = $newUnit->id;
       }
       $unitId = $this->mapUnits[$unitCode];
-      
 
       $product = Product::updateOrCreate(
         ['external_code' => $item['external_code']],
@@ -136,7 +134,6 @@ class ProductImporter implements ImportModuleInterface
    */
   private function saveEav($model, array $eavData): void
   {
-    
     ProductAttributeValue::where('attributable_id', $model->id)
       ->where('attributable_type', $model->getMorphClass())
       ->delete();
@@ -148,7 +145,6 @@ class ProductImporter implements ImportModuleInterface
         continue;
       }
 
-      
       $values = is_array($valueOrValues) ? $valueOrValues : [$valueOrValues];
 
       foreach ($values as $value) {
@@ -165,6 +161,7 @@ class ProductImporter implements ImportModuleInterface
           'value_boolean' => null,
           'value_option_id' => null,
           'value_complex_id' => null,
+          'value_entity_id' => null,
         ];
 
         // Маппинг значений согласно типу атрибута
@@ -193,9 +190,9 @@ class ProductImporter implements ImportModuleInterface
    */
   private function attachMedia($model, ?string $previewPath, ?string $detailPath, Command $command): void
   {
-    $baseDir = base_path('import/export_images/');
+    $baseDir = storage_path('app/private/import/export_images/');
 
-    // 1. Прикрепляем превью
+    // Прикрепляем превью
     if ($previewPath) {
       $fullPath = $baseDir . ltrim($previewPath, '/');
       if (File::exists($fullPath)) {
@@ -214,7 +211,7 @@ class ProductImporter implements ImportModuleInterface
       }
     }
 
-    // 2. Прикрепляем основное фото (main)
+    // Прикрепляем основное фото (main)
     if ($detailPath) {
       $fullPath = $baseDir . ltrim($detailPath, '/');
       if (File::exists($fullPath)) {
@@ -225,8 +222,6 @@ class ProductImporter implements ImportModuleInterface
           $model->clearMediaCollection('main');
           $media = $model->addMedia($fullPath)->preservingOriginal();
 
-          
-          
           if ($previewPath) {
             $media->withCustomProperties(['skip_conversions' => true]);
           }
@@ -239,18 +234,13 @@ class ProductImporter implements ImportModuleInterface
     }
   }
 
-  
   private function warmUpCache(): void
   {
     $this->mapTypes = ProductType::pluck('id', 'external_code')->toArray();
     $this->mapCategories = Category::pluck('id', 'external_code')->toArray();
     $this->mapOptions = AttributeOption::pluck('id', 'external_code')->toArray();
     $this->mapComplexRecords = ComplexDictionaryRecord::pluck('id', 'external_code')->toArray();
-
-    
     $this->mapUnits = Unit::pluck('id', 'slug')->toArray();
-
-    
     $this->mapAttributes = Attribute::all()->keyBy('code')->all();
   }
 }

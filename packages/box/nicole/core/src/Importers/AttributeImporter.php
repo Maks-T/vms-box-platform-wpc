@@ -26,8 +26,6 @@ class AttributeImporter implements ImportModuleInterface
     }
 
     $bar = $command->getOutput()->createProgressBar(count($attributes));
-
-    
     $complexDictMap = ComplexDictionary::pluck('id', 'code')->toArray();
 
     foreach ($attributes as $attrData) {
@@ -61,30 +59,26 @@ class AttributeImporter implements ImportModuleInterface
             'attribute_id' => $attribute->id,
             'slug' => $optData['slug'],
             'value' => $optData['value'],
-            
+
             'meta' => $optData['meta'] ?? null,
             'sort_order' => $sortOrder,
           ]
         );
 
-        
+
         $imagePath = $optData['meta']['image'] ?? null;
 
         if ($imagePath) {
-          
-          $fullPath = base_path('import/export_images/' . ltrim($imagePath, '/'));
+          $fullPath = storage_path('app/private/import/export_images/' . ltrim($imagePath, '/'));
 
           if (File::exists($fullPath)) {
-            
             $existingMedia = $option->getFirstMedia('main');
             $fileName = basename($fullPath);
 
             if (!$existingMedia || $existingMedia->file_name !== $fileName) {
-              
               $option->clearMediaCollection('main');
               $option->addMedia($fullPath)
                 ->preservingOriginal()
-                
                 ->withCustomProperties(['skip_conversions' => true])
                 ->toMediaCollection('main');
             }

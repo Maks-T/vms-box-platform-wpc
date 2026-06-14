@@ -29,6 +29,14 @@ export default function ProductShow({ product, familyCode }: Props) {
     }
   ];
 
+  const defaultVariant = product.variants?.find(v => v.is_default);
+
+  const resolvedDetailImage = product.detail_picture
+    || product.preview_picture
+    || defaultVariant?.detail_picture
+    || defaultVariant?.preview_picture
+    || null;
+
   return (
     <MainLayout headerOverlaps={false}>
       <Head title={`${product.name} - API Sandbox`} />
@@ -40,8 +48,9 @@ export default function ProductShow({ product, familyCode }: Props) {
           <GlassPanel variant="light" className="mb-8 p-6 md:p-10 lg:p-12 bg-card border-border">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
               <div className="lg:col-span-5">
+
                 <ProductImagePreview
-                  image={product.preview_picture}
+                  image={resolvedDetailImage}
                   name={product.name}
                   externalCode={product.external_code}
                   id={product.id}
@@ -62,5 +71,4 @@ export default function ProductShow({ product, familyCode }: Props) {
     </MainLayout>
   );
 }
-
 ProductShow.layout = (page: any) => page;

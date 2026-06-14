@@ -8,12 +8,17 @@ import Badge from '@/shared/components/ui/Badge';
 export const ProductCard = (product: StoneProduct) => {
   const {id, name, slug, price_from, preview_picture, unit, attributes, variants} = product;
 
+  // Находим дефолтное торговое предложение (SKU)
+  const defaultVariant = variants?.find(v => v.is_default);
+
+  // Если у базового товара нет картинки, берем превью из дефолтной модификации
+  const resolvedImage = preview_picture || defaultVariant?.preview_picture || null;
+
   const formattedPrice = new Intl.NumberFormat('ru-RU', {
     style: 'currency',
     currency: 'RUB',
     minimumFractionDigits: 0
   }).format(price_from);
-
 
   const collection = attributes?.collection?.value as EavValueOption | undefined;
   const brand = attributes?.brand?.value as EavValueOption | undefined;
@@ -60,8 +65,9 @@ export const ProductCard = (product: StoneProduct) => {
       className="group flex flex-col h-full bg-card rounded-2xl overflow-hidden border border-border hover:shadow-lg transition-all duration-300">
       <div className="relative aspect-square bg-slate-50 overflow-hidden mb-5 border-b border-border">
         <Link href={route('product.show', slug)} className="block w-full h-full p-6">
-          {preview_picture ? (
-            <img src={preview_picture} alt={name}
+
+          {resolvedImage ? (
+            <img src={resolvedImage} alt={name}
                  className="w-full h-full object-contain mix-blend-multiply transition-transform duration-700 group-hover:scale-105"/>
           ) : (
             <div className="flex items-center justify-center w-full h-full opacity-20 text-muted-foreground">
