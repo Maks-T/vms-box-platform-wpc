@@ -26,6 +26,7 @@
     "spatie/laravel-medialibrary": "^11.0",
     "spatie/laravel-translatable": "^6.14",
     "tightenco/ziggy": "^2.6",
+    "njxqlus/filament-relation-manager-component": "^2.2",
     "valerie/box-industry-wpc": "@dev"
   },
   "require-dev": {

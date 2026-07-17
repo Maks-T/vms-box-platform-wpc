@@ -30,14 +30,12 @@ class BuilderPipelinePage extends Page implements HasForms
 {
   use InteractsWithForms;
 
-  // Подключаем Blade-шаблон, перенесенный в ресурсы плагина ДПК
   protected string $view = 'valerie-wpc::filament.pages.builder-pipeline-page';
   protected static bool $shouldRegisterNavigation = false;
 
   #[Url]
   public ?int $base_variant_id = null;
 
-  // Может принимать значения: terrace (настил), joist (лаги) или fence (ограждения)
   #[Url]
   public string $type = 'terrace';
 
@@ -53,7 +51,6 @@ class BuilderPipelinePage extends Page implements HasForms
     ]);
   }
 
-  // Конфигурационный маппинг параметров в зависимости от типа
   protected function getPipelineConfig(): array
   {
     return match ($this->type) {
@@ -98,14 +95,12 @@ class BuilderPipelinePage extends Page implements HasForms
             ->live()
             ->allowHtml()
             ->options(function () use ($config) {
-              // Ищем только те SKU, которые принадлежат выбранному типу ДПК-товаров
               return ProductVariant::query()
                 ->whereHas('product.type', fn(Builder $q) => $q->where('code', $config['root_type_code']))
                 ->get()
                 ->mapWithKeys(function (ProductVariant $record) {
                   $imageUrl = $record->getPreviewUrl();
 
-                  // Используем красивый Blade-опшен с фото товара из ресурсов плагина ДПК
                   $html = view('valerie-wpc::filament.components.select-variant-option', [
                     'name' => $record->name,
                     'id' => $record->id,
@@ -134,13 +129,14 @@ class BuilderPipelinePage extends Page implements HasForms
               $rootVariant = ProductVariant::find($variantId);
               $isRootActive = $rootVariant?->is_active ?? false;
 
-              $buttonsHtml = view('valerie-wpc::filament.clusters.calculator-pipeline.components.tree-status-panel', [
+              // ИСПРАВЛЕНО: пути ведут на консолидированные пакетные вью
+              $buttonsHtml = view('valerie-wpc::filament.components.tree-status-panel', [
                 'variantId' => $variantId,
                 'isValid' => $report['is_valid'],
                 'isRootActive' => $isRootActive,
               ])->render();
 
-              $treeHtml = view('valerie-wpc::filament.clusters.calculator-pipeline.components.tree-node', [
+              $treeHtml = view('valerie-wpc::filament.components.tree-node', [
                 'node' => $report,
                 'isRoot' => true
               ])->render();
@@ -151,7 +147,6 @@ class BuilderPipelinePage extends Page implements HasForms
     ]);
   }
 
-  // Экшен настройки конкретного слота (открывает модалку при клике на «Настроить»)
   public function configureNodeAction(): Action
   {
     return Action::make('configureNode')
@@ -164,7 +159,6 @@ class BuilderPipelinePage extends Page implements HasForms
         $pipelineCode = $this->getPipelineConfig()['pipeline_code'];
         $pipeline = Pipeline::where('external_code', $pipelineCode)->first();
 
-        // Считываем текущие настроенные связи из базы данных
         $rules = BindingRule::where('pipeline_id', $pipeline?->id)
           ->where('parent_type', (new ProductVariant())->getMorphClass())
           ->where('parent_id', $arguments['variant_id'])
@@ -190,7 +184,6 @@ class BuilderPipelinePage extends Page implements HasForms
         foreach ($slots as $slot) {
           $statePath = "values.{$slot['role']}";
 
-          // Строим селект выбора SKU на основе типа сопутствующих товаров
           $component = Select::make($statePath)
             ->label($slot['label'])
             ->searchable()
@@ -226,7 +219,6 @@ class BuilderPipelinePage extends Page implements HasForms
         $pipeline = Pipeline::where('external_code', $pipelineCode)->first();
         $morphClass = (new ProductVariant())->getMorphClass();
 
-        // Сохраняем связи в универсальную системную таблицу binding_rules ядра VMS-NC
         foreach ($data['values'] ?? [] as $role => $childId) {
           if (empty($childId)) {
             BindingRule::where('pipeline_id', $pipeline?->id)
@@ -255,7 +247,6 @@ class BuilderPipelinePage extends Page implements HasForms
       });
   }
 
-  // Экшен публикации/скрытия всей цепочки
   public function activateTreeAction(): Action
   {
     return Action::make('activateTree')

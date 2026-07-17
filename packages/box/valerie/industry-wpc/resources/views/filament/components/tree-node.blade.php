@@ -86,7 +86,7 @@
                 <span class="text-sm font-bold leading-tight text-gray-900">{{ $name }}</span>
 
                 @if($slug)
-                  <a href="{{ route('product.show', $slug) }}" target="_blank"
+                  <a href="{{ route('calculator.show', ['order' => $slug]) }}" target="_blank"
                      class="shrink-0 text-gray-400 hover:text-primary-600 transition"
                      title="Открыть товар на сайте">
                     <x-filament::icon icon="heroicon-m-arrow-top-right-on-square"
@@ -100,7 +100,7 @@
           <div class="shrink-0 mt-2 sm:mt-0">
             @if($hasFields || !$hasConfig)
               <x-filament::button
-                wire:click="mountAction('configureNode', { variant_id: {{ $node['variant_id'] }}, group_id: {{ $node['group_id'] }} })"
+                wire:click="mountAction('configureNode', { variant_id: {{ $node['variant_id'] }} })"
                 size="sm" :color="$status['btnColor']" :outlined="$status['btnColor'] === 'gray'">
                 {{ $status['btnLabel'] }}
               </x-filament::button>

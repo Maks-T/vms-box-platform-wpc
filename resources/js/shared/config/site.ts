@@ -16,13 +16,13 @@ export interface SocialItem {
 
 export const siteConfig = {
   company: {
-    name: "VMS-NC Box (On-Premise)",
+    name: "VMS-NC Box (Cloud SaaS)",
     status: "Тестовая среда",
     copyright: `© ${new Date().getFullYear()} VMS-NC. Все права защищены.`,
   },
 
   contacts: {
-    phone: { label: "+375 29 743 43 17", href: "tel:+375297434317" },
+    phone: { label: "+375 29 189-83-22", href: "tel:++375291898322" },
     email: { label: "info@vistegra.by", href: "mailto:info@vistegra.by" },
   },
 
@@ -40,10 +40,11 @@ export const siteConfig = {
   ] as SocialItem[],
 
   headerNav: [
+    { label: 'Калькулятор', href: route('calculator.show'), disabled: false, forceRefresh: true },
     { label: 'Конфигурация', href: route('bootstrap'), disabled: false },
     { label: 'Каталог', href: route('catalog'), disabled: false },
     { label: 'Услуги (Матрица)', href: route('services'), disabled: false },
     { label: 'О компании', href: '#', disabled: true },
-  ] as NavItem[],
+  ] as (NavItem & { forceRefresh?: boolean })[],
 
 };
