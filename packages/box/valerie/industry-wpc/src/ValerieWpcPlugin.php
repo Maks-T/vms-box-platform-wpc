@@ -9,31 +9,36 @@ use Filament\Panel;
 
 class ValerieWpcPlugin implements Plugin
 {
-    public function getId(): string
-    {
-        return 'valerie-box-industry-stone';
-    }
+  public function getId(): string
+  {
+    return 'valerie-box-industry-wpc';
+  }
 
-    public function register(Panel $panel): void
-    {
-        $panel->discoverResources(
-            in: __DIR__.'/Filament/Resources',
-            for: 'Valerie\\Box\\IndustryWpc\\Filament\\Resources',
-        );
+  public function register(Panel $panel): void
+  {
+    $panel->discoverResources(
+      in: __DIR__.'/Filament/Resources',
+      for: 'Valerie\\Box\\IndustryWpc\\Filament\\Resources',
+    );
 
-        $panel->discoverPages(
-            in: __DIR__.'/Filament/Pages',
-            for: 'Valerie\\Box\\IndustryWpc\\Filament\\Pages',
-        );
-    }
+    $panel->discoverPages(
+      in: __DIR__.'/Filament/Pages',
+      for: 'Valerie\\Box\\IndustryWpc\\Filament\\Pages',
+    );
 
-    public function boot(Panel $panel): void
-    {
-        //
-    }
+    $panel->discoverClusters(
+      in: __DIR__.'/Filament/Clusters',
+      for: 'Valerie\\Box\\IndustryWpc\\Filament\\Clusters',
+    );
+  }
 
-    public static function make(): static
-    {
-        return new static;
-    }
+  public function boot(Panel $panel): void
+  {
+    //
+  }
+
+  public static function make(): static
+  {
+    return new static;
+  }
 }

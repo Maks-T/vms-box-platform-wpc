@@ -34,3 +34,6 @@ git_diff
 root
 home
 etc
+/public/widget
+/public/calculator-app
+import/export_images.tar.gz

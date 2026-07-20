@@ -24,8 +24,9 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 use Nicole\Box\Core\NicoleCorePlugin;
-use Valerie\Box\IndustryWpc\ValerieWpcPlugin;
+
 use Outerweb\FilamentTranslatableFields\TranslatableFieldsPlugin;
+use Valerie\Box\IndustryWpc\ValerieWpcPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -39,6 +40,7 @@ class AdminPanelProvider extends PanelProvider
       ->colors([
         'primary' => Color::Blue,
       ])
+      ->viteTheme('resources/css/filament/admin/theme.css')
       ->maxContentWidth(Width::Full)
       ->brandLogo(asset('images/logo.svg'))
       ->brandLogoHeight('3rem')
@@ -48,8 +50,7 @@ class AdminPanelProvider extends PanelProvider
       ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
       ->discoverClusters(in: app_path('Filament/Clusters'), for: 'App\\Filament\\Clusters')
       ->widgets([
-        Widgets\AccountWidget::class,
-        Widgets\FilamentInfoWidget::class,
+        Widgets\AccountWidget::class
       ])
       ->middleware([
         EncryptCookies::class,
@@ -90,12 +91,12 @@ class AdminPanelProvider extends PanelProvider
         ValerieWpcPlugin::make(),
 
         SpatieTranslatablePlugin::make()
-          ->defaultLocales(['ru', 'en']),
+          ->defaultLocales(config('nicole.locales', ['ru', 'en'])),
 
         TranslatableFieldsPlugin::make()
-          ->supportedLocales(['ru', 'en']),
+          ->supportedLocales(config('nicole.locales', ['ru', 'en'])),
 
-        FilamentShieldPlugin::make(),
+        FilamentShieldPlugin::make()->navigationGroup('Контроль доступа'),
       ]);
   }
 }

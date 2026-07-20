@@ -9,9 +9,13 @@
 /* Сканирование PHP и Blade файлов пакетов /box/ */
 @source "../../packages/box/nicole/core/resources/views/**/*.blade.php";
 @source "../../packages/box/nicole/core/src/**/*.php";
-@source "../../packages/box/valerie/industry-cctv/resources/views/**/*.blade.php";
-@source "../../packages/box/valerie/industry-cctv/src/**/*.php";
 
+@source "../../packages/box/valerie/industry-wpc/resources/views/filament/clusters/calculator-pipeline/**/*.blade.php";
+@source "../../packages/box/valerie/industry-wpc/resources/views/**/*.blade.php";
+@source "../../packages/box/valerie/industry-wpc/src/**/*.php";
+/*packages/box/valerie/industry-wpc/resources/views/filament/clusters/calculator-pipeline/components/tree-status-panel.blade.php*/
+
+/* Строго такой порядок чтобы не сломались стили калькулятора */
 @import "tailwindcss";
 @import "tw-animate-css";
 

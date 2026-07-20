@@ -29,7 +29,7 @@ class MatrixPriceEditor extends Page implements HasForms, HasTable
 
   protected static string|null|\BackedEnum $navigationIcon = 'heroicon-o-table-cells';
 
-  protected string $view = 'valerie-stone::filament.pages.matrix-price-editor';
+  protected string $view = 'valerie-wpc::filament.pages.matrix-price-editor';
 
   protected static ?string $slug = 'services-matrix';
 
@@ -54,7 +54,6 @@ class MatrixPriceEditor extends Page implements HasForms, HasTable
   {
     $retailPriceId = PriceType::where('slug', 'retail')->value('id');
 
-    // Получаем материалы для динамических колонок (Акрил, Кварц)
     $materials = AttributeOption::whereHas(
       'attribute',
       fn ($q) => $q->where('code', 'target_material'),
@@ -106,13 +105,11 @@ class MatrixPriceEditor extends Page implements HasForms, HasTable
         ->type('number')
         ->toggleable()
         ->disabled(function (Product $record) use ($slug) {
-          // ИСПРАВЛЕНО: Проверяем, есть ли среди всех значений атрибутов нужный слаг
           return ! $record->variants->contains(function ($v) use ($slug) {
             return $v->attributeValues->contains(fn ($av) => $av->option?->slug === $slug);
           });
         })
         ->state(function (Product $record) use ($slug, $retailPriceId) {
-          // ИСПРАВЛЕНО
           $variant = $record->variants->first(function ($v) use ($slug) {
             return $v->attributeValues->contains(fn ($av) => $av->option?->slug === $slug);
           });
@@ -136,7 +133,6 @@ class MatrixPriceEditor extends Page implements HasForms, HasTable
             return;
           }
 
-          // ИСПРАВЛЕНО
           $variant = $record->variants->first(function ($v) use ($slug) {
             return $v->attributeValues->contains(fn ($av) => $av->option?->slug === $slug);
           });

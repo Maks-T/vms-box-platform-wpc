@@ -6,75 +6,102 @@ import os
 import sys
 
 # ==============================================================================
-# НАСТРОЙКИ И ИНФРАСТРУКТУРНЫЕ КОНСТАНТЫ
+# НАСТРОЙКИ КОНВЕРТАЦИИ И ИМПОРТА
 # ==============================================================================
 INPUT_RAW_DATA_PATH = "./import/import_data_raw.json"
-INPUT_PIPELINES_PATH = "./import/import_pipelines.json"
+INPUT_RAW_PIPELINES_PATH = "./import/import_pipelines.json"
 
 OUTPUT_DATA_PATH = "./import/import_data.json"
-OUTPUT_PIPELINES_PATH = "./import/import_pipelines.json"
 
-# Базовые валюты платформы (основная валюта — RUB)
+# Базовые валюты платформы (RUB — по умолчанию)
 STATIC_CURRENCIES = [
     {
-        "code": "RUB",
-        "symbol": "₽",
-        "symbol_native": {
-            "ru": "руб.",
-            "en": "rub."
-        },
-        "name": {
-            "ru": "Российский рубль",
-            "en": "Russian Ruble"
-        },
-        "rate": 1.0,
-        "is_default": True,
-        "is_active": True
+      "code": "RUB",
+      "symbol": "₽",
+      "symbol_native": {
+        "ru": "руб.",
+        "en": "rub."
+      },
+      "name": {
+        "ru": "Российский рубль",
+        "en": "Russian Ruble"
+      },
+      "rate": 1.0,
+      "is_default": True,
+      "is_active": True
     },
     {
-        "code": "USD",
-        "symbol": "$",
-        "symbol_native": {
-            "ru": "долл.",
-            "en": "$"
-        },
-        "name": {
-            "ru": "Доллар США",
-            "en": "US Dollar"
-        },
-        "rate": 90.0,
-        "is_default": False,
-        "is_active": True
+      "code": "USD",
+      "symbol": "$",
+      "symbol_native": {
+        "ru": "долл.",
+        "en": "$"
+      },
+      "name": {
+        "ru": "Доллар США",
+        "en": "US Dollar"
+      },
+      "rate": 90.0,
+      "is_default": False,
+      "is_active": True
     }
 ]
 
 # Настройка типов цен (розничная по умолчанию)
 STATIC_PRICE_TYPES = [
     {
-        "slug": "retail",
-        "currency_code": "RUB",
-        "is_default": True,
-        "name": {
-            "ru": "Розничная цена",
-            "en": "Retail Price"
-        },
-        "description": {
-            "ru": "Базовая розничная цена в системе",
-            "en": "Base retail price in the system"
-        }
+      "slug": "retail",
+      "currency_code": "RUB",
+      "is_default": True,
+      "name": {
+        "ru": "Цена продажи",
+        "en": "Retail"
+      },
+      "description": {
+        "ru": "Базовая розничная цена в системе",
+        "en": "Base retail price in the system"
+      }
     }
 ]
 
-# Набор характеристик, которые должны быть сохранены как числовые (float)
+# Две системные цепочки (pipelines) ДПК для ядра
+STATIC_PIPELINES = [
+    {
+        "external_code": "pl_terrace",
+        "name": {
+            "ru": "Террасный настил",
+            "en": "Terrace Decking"
+        },
+        "industry": "wpc",
+        "description": {
+            "ru": "Универсальный пайплайн подбора комплектующих для террасных систем",
+            "en": "Universal terrace decking BOM builder pipeline"
+        },
+        "is_active": True,
+        "sort_order": 10
+    },
+    {
+        "external_code": "pl_fence",
+        "name": {
+            "ru": "Системы ограждений",
+            "en": "Fence and Railing Systems"
+        },
+        "industry": "wpc",
+        "description": {
+            "ru": "Универсальный пайплайн подбора комплектующих для ограждений и балюстрад",
+            "en": "Universal fence and railing BOM builder pipeline"
+        },
+        "is_active": True,
+        "sort_order": 20
+    }
+]
+
 NUMERIC_EAV_ATTRIBUTES = {
     "length_mm", "width_mm", "height_mm", "thickness_mm", "wall_thickness_mm"
 }
 
 
 def cast_numeric_eav(eav_dict):
-    """
-    Принудительно приводит значения из NUMERIC_EAV_ATTRIBUTES к типу float.
-    """
     if not isinstance(eav_dict, dict):
         return eav_dict
 
@@ -84,81 +111,102 @@ def cast_numeric_eav(eav_dict):
             try:
                 cleaned_eav[key] = float(value)
             except (ValueError, TypeError):
-                cleaned_eav[key] = value  # если не удалось привести, оставляем как есть
+                cleaned_eav[key] = value
         else:
             cleaned_eav[key] = value
     return cleaned_eav
 
 
-def validate_and_prepare():
-    # 1. Проверяем наличие входных файлов
+def main():
     if not os.path.exists(INPUT_RAW_DATA_PATH):
-        print(f"[-] Ошибка: Файл каталога '{INPUT_RAW_DATA_PATH}' не найден.")
+        print(f"[-] Ошибка: Файл '{INPUT_RAW_DATA_PATH}' не найден.")
         sys.exit(1)
 
-    if not os.path.exists(INPUT_PIPELINES_PATH):
-        print(f"[-] Ошибка: Файл привязок '{INPUT_PIPELINES_PATH}' не найден.")
+    if not os.path.exists(INPUT_RAW_PIPELINES_PATH):
+        print(f"[-] Ошибка: Файл привязок '{INPUT_RAW_PIPELINES_PATH}' не найден.")
         sys.exit(1)
 
-    print("[+] Загрузка исходных файлов данных...")
-    with open(INPUT_RAW_DATA_PATH, 'r', encoding='utf-8') as f:
+    print("[+] Шаг 1: Загрузка исходных JSON файлов ДПК...")
+    with open(INPUT_RAW_DATA_PATH, "r", encoding="utf-8") as f:
         raw_data = json.load(f)
 
-    with open(INPUT_PIPELINES_PATH, 'r', encoding='utf-8') as f:
+    with open(INPUT_RAW_PIPELINES_PATH, "r", encoding="utf-8") as f:
         raw_pipelines = json.load(f)
 
-    # 2. Индексируем все существующие модификации (SKU) для валидации связей
+    # Индексируем варианты для строгой валидации внешних связей
+    print("[+] Шаг 2: Индексация модификаций каталога...")
     valid_variant_codes = set()
-    total_products = 0
-    total_variants = 0
+    variant_names = {}
 
-    print("[+] Индексация модификаций каталога ДПК...")
     for product in raw_data.get("products", []):
-        total_products += 1
-
-        # Принудительно очищаем EAV-характеристики на уровне базового товара
         if "eav" in product:
             product["eav"] = cast_numeric_eav(product["eav"])
 
         for variant in product.get("variants", []):
-            total_variants += 1
-            variant_code = variant.get("external_code")
-            if variant_code:
-                valid_variant_codes.add(variant_code)
+            code = variant.get("external_code")
+            if code:
+                valid_variant_codes.add(code)
+                # Сохраняем имя для генерации читаемых названий связей в админке
+                variant_names[code] = variant.get("name") or product.get("name", {}).get("ru", "SKU")
 
-            # Принудительно очищаем EAV-характеристики на уровне модификации (SKU)
             if "eav" in variant:
                 variant["eav"] = cast_numeric_eav(variant["eav"])
 
-    print(f"    - Всего товаров проиндексировано: {total_products}")
-    print(f"    - Всего модификаций (SKU) найдено: {total_variants}")
+    print(f"    - Проиндексировано {len(valid_variant_codes)} модификаций (SKU).")
 
-    # 3. Валидируем связи в файле привязок ДПК
-    cleaned_pipelines = []
-    skipped_pipelines_count = 0
+    # Преобразуем плоские правила во внутреннюю структуру связей (binding_rules) ядра
+    print("[+] Шаг 3: Конвертация и валидация правил подбора ДПК...")
+    binding_rules = []
+    skipped_count = 0
 
-    print("[+] Верификация реляционной целостности таблицы привязок...")
     for rule in raw_pipelines:
-        parent = rule.get("parent_external_code")
-        child = rule.get("child_external_code")
+        parent_code = rule.get("parent_external_code")
+        child_code = rule.get("child_external_code")
+        role = rule.get("role")
+        is_required = rule.get("is_required", True)
+        sort_order = rule.get("sort_order", 0)
+        pipeline_code = rule.get("pipeline_code", "terrace")
 
-        if parent in valid_variant_codes and child in valid_variant_codes:
-            cleaned_pipelines.append(rule)
-        else:
-            skipped_pipelines_count += 1
-            # Логируем битые ссылки для ручной отладки контент-менеджерами
-            if parent not in valid_variant_codes:
-                print(f"    [!] Пропущено правило {rule.get('role')} (сорт. {rule.get('sort_order')}): "
-                      f"Родительский SKU '{parent}' отсутствует в каталоге товаров.")
-            if child not in valid_variant_codes:
-                print(f"    [!] Пропущено правило {rule.get('role')} (сорт. {rule.get('sort_order')}): "
-                      f"Дочерний SKU '{child}' отсутствует в каталоге товаров.")
+        # Проверка целостности связей перед записью
+        if parent_code not in valid_variant_codes or child_code not in valid_variant_codes:
+            skipped_count += 1
+            continue
 
-    print(f"    - Успешно верифицировано связей: {len(cleaned_pipelines)}")
-    print(f"    - Отсечено некорректных связей: {skipped_pipelines_count}")
+        # Формируем уникальный внешний код для правила
+        rule_ext_code = f"rule_{parent_code}_{child_code}_{role}"
 
-    # 4. Собираем итоговую структуру import_data.json
-    final_import_data = {
+        # Определяем привязку к контейнеру-пайплайну ядра
+        pipeline_ext_code = "pl_terrace" if pipeline_code == "terrace" else "pl_fence"
+
+        # Понятное название для админки Filament
+        parent_name = variant_names.get(parent_code, parent_code)
+        child_name = variant_names.get(child_code, child_code)
+        rule_name = f"{role}: {parent_name} -> {child_name}"
+
+        binding_rules.append({
+            "external_code": rule_ext_code,
+            "pipeline_external_code": pipeline_ext_code,
+            "name": rule_name,
+            # Отношения строятся строго между модификациями (SKU)
+            "parent_type_key": "variant",
+            "parent_external_code": parent_code,
+            "child_type_key": "variant",
+            "child_external_code": child_code,
+            # Роль комплектующего записываем в условия связей
+            "conditions": {
+                "role": role
+            },
+            "quantity_formula": "1",
+            "is_required": is_required,
+            "sort_order": sort_order
+        })
+
+    print(f"    - Сгенерировано правил связей: {len(binding_rules)}")
+    print(f"    - Отсечено некорректных записей: {skipped_count}")
+
+    # Сборка финального файла импорта для ядра Nicole Core
+    print("[+] Шаг 4: Сборка и валидация финального import_data.json...")
+    import_data = {
         "currencies": STATIC_CURRENCIES,
         "price_types": STATIC_PRICE_TYPES,
         "languages": ["ru", "en"],
@@ -167,23 +215,17 @@ def validate_and_prepare():
         "categories": raw_data.get("categories", []),
         "complex_dictionaries": raw_data.get("complex_dictionaries", []),
         "attributes": raw_data.get("attributes", []),
-        "price_groups": [], # Заполняется при необходимости
-        "products": raw_data.get("products", [])
+        "price_groups": [],
+        "products": raw_data.get("products", []),
+        "pipelines": STATIC_PIPELINES,
+        "binding_rules": binding_rules
     }
 
-    # 5. Сохраняем результаты на диск
-    print("[+] Сохранение подготовленных файлов...")
+    with open(OUTPUT_DATA_PATH, "w", encoding="utf-8") as f:
+        json.dump(import_data, f, indent=2, ensure_ascii=False)
 
-    with open(OUTPUT_DATA_PATH, 'w', encoding='utf-8') as f:
-        json.dump(final_import_data, f, indent=2, ensure_ascii=False)
-    print(f"    -> Данные каталога успешно записаны в: {OUTPUT_DATA_PATH}")
-
-    with open(OUTPUT_PIPELINES_PATH, 'w', encoding='utf-8') as f:
-        json.dump(cleaned_pipelines, f, indent=2, ensure_ascii=False)
-    print(f"    -> Очищенные привязки ДПК успешно записаны в: {OUTPUT_PIPELINES_PATH}")
-
-    print("\n[+] Подготовка данных успешно завершена. Файлы готовы к загрузке через 'php artisan vms:import'.")
+    print(f"[+] Успех: Готовый файл импорта со всеми связями записан в '{OUTPUT_DATA_PATH}'.")
 
 
-if __name__ == '__main__':
-    validate_and_prepare()
+if __name__ == "__main__":
+    main()
