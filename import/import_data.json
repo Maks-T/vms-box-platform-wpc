@@ -13834,10 +13834,9 @@
       "code": "pl_terrace",
       "slug": "terrace",
       "name": {
-        "ru": "Калькулятор террасной доски (ДПК)",
-        "en": "Terrace Decking Calculator"
+        "ru": "Конфигуратор террасного настила (ДПК)",
+        "en": "Terrace Decking Configurator"
       },
-      "industry": "wpc",
       "is_active": true,
       "sort_order": 10,
       "ui_state": [],
@@ -13906,7 +13905,6 @@
             "is_required": true
           }
         },
-
         "brackets": {
           "holes": {
             "label_key": {
@@ -13920,14 +13918,13 @@
       }
     },
     {
+      "external_code": "pl_fence",
       "code": "pl_fence",
       "slug": "fence",
-      "external_code": "pl_fence",
       "name": {
-        "ru": "Калькулятор ограждений (ДПК)",
-        "en": "Fencing and Railing Calculator"
+        "ru": "Конфигуратор систем ограждений (ДПК)",
+        "en": "Fencing and Railing Configurator"
       },
-      "industry": "wpc",
       "is_active": true,
       "sort_order": 20,
       "ui_state": [],
