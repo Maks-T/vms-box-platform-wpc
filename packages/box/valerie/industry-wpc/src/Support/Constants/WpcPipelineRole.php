@@ -26,7 +26,6 @@ class WpcPipelineRole implements ChoiceConstantInterface
   public const string RAIL = 'rail';
   public const string LATH = 'lath';
   public const string LATH_FASTENER = 'lathFastener';
-
   public const string HOLES = 'holes';
 
   public static function label(string $value): string
@@ -47,8 +46,8 @@ class WpcPipelineRole implements ChoiceConstantInterface
       self::RAIL => __('Railing'),
       self::LATH => __('Lath'),
       self::LATH_FASTENER => __('Lath Screw'),
-      self::HOLES => __('Holes'), // Добавлен перевод
-      default => '',
+      self::HOLES => __('Holes'),
+      default => $value,
     };
   }
 

@@ -17,7 +17,7 @@ use Nicole\Box\Core\Models\ProductVariant;
 use Nicole\Box\Core\Services\PricingManager;
 use Nicole\Box\Core\Services\Calculator\PipelineTreeService;
 
-class WpcCalculatorBridgeController extends Controller
+class WpcConfigBridgeController extends Controller
 {
 
   public function products(Request $request): JsonResponse

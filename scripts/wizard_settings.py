@@ -2,7 +2,7 @@
 """
 VMS-NC Box: Configuration Settings Wizard
 Необходимые библиотеки: pip install questionary
-Запуск: python wizard_settings.py
+Запуск: python scripts/wizard_settings.py
 """
 
 import json
@@ -13,7 +13,7 @@ import copy
 try:
     import questionary
 except ImportError:
-    print("Ошибка: Не установлена библиотека 'questionary'.")
+    print("Ошибка: Не установлена библиотека 'questionary'. Запустите: pip install questionary")
     sys.exit(1)
 
 OUTPUT_FILE = "import_settings.json"
@@ -49,7 +49,7 @@ DEFAULT_SETTINGS = {
     ],
     "category": [
       {"key": "is_public", "type": "boolean", "label": {"ru": "Опубликовано", "en": "Published"}, "width": 1, "is_system": True, "default": True},
-      {"key": "is_settings_public", "type": "boolean", "label": {"ru": "Настройки публичны", "en": "Settings are public"}, "width": 1, "is_system": True, "default": False},
+      {"key": "is_settings_public", "type": "boolean", "label": {"ru": "Настройки публичны", "en": "Settings are public"}, "width": 1, "is_system": True, "default": True},
       {"key": "show_in_menu", "type": "boolean", "label": {"ru": "Показывать в меню", "en": "Show in menu"}, "width": 1, "is_system": True, "default": True}
     ],
     "product_type": [
@@ -58,23 +58,23 @@ DEFAULT_SETTINGS = {
     ],
     "product": [
       {"key": "is_public", "type": "boolean", "label": {"ru": "Опубликовано", "en": "Published"}, "width": 1, "is_system": True, "default": True},
-      {"key": "is_settings_public", "type": "boolean", "label": {"ru": "Настройки публичны", "en": "Settings are public"}, "width": 1, "is_system": True, "default": False}
+      {"key": "is_settings_public", "type": "boolean", "label": {"ru": "Настройки публичны", "en": "Settings are public"}, "width": 1, "is_system": True, "default": True}
     ],
     "product_variant": [
       {"key": "is_public", "type": "boolean", "label": {"ru": "Опубликовано", "en": "Published"}, "width": 1, "is_system": True, "default": True},
-      {"key": "is_settings_public", "type": "boolean", "label": {"ru": "Настройки публичны", "en": "Settings are public"}, "width": 1, "is_system": True, "default": False}
+      {"key": "is_settings_public", "type": "boolean", "label": {"ru": "Настройки публичны", "en": "Settings are public"}, "width": 1, "is_system": True, "default": True}
     ],
     "attribute_option": [
       {"key": "is_public", "type": "boolean", "label": {"ru": "Опубликовано", "en": "Published"}, "width": 1, "is_system": True, "default": True},
       {"key": "is_settings_public", "type": "boolean", "label": {"ru": "Настройки публичны", "en": "Settings are public"}, "width": 1, "is_system": True, "default": True}
     ],
     "price_type": [
-      {"key": "is_public", "type": "boolean", "label": {"ru": "Опубликовано", "en": "Published"}, "width": 1, "is_system": True, "default": False},
-      {"key": "is_settings_public", "type": "boolean", "label": {"ru": "Настройки публичны", "en": "Settings are public"}, "width": 1, "is_system": True, "default": False}
+      {"key": "is_public", "type": "boolean", "label": {"ru": "Опубликовано", "en": "Published"}, "width": 1, "is_system": True, "default": True},
+      {"key": "is_settings_public", "type": "boolean", "label": {"ru": "Настройки публичны", "en": "Settings are public"}, "width": 1, "is_system": True, "default": True}
     ],
     "currency": [
-      {"key": "is_public", "type": "boolean", "label": {"ru": "Опубликовано", "en": "Published"}, "width": 1, "is_system": True, "default": False},
-      {"key": "is_settings_public", "type": "boolean", "label": {"ru": "Настройки публичны", "en": "Settings are public"}, "width": 1, "is_system": True, "default": False}
+      {"key": "is_public", "type": "boolean", "label": {"ru": "Опубликовано", "en": "Published"}, "width": 1, "is_system": True, "default": True},
+      {"key": "is_settings_public", "type": "boolean", "label": {"ru": "Настройки публичны", "en": "Settings are public"}, "width": 1, "is_system": True, "default": True}
     ],
     "warehouse": [
       {"key": "is_public", "type": "boolean", "label": {"ru": "Опубликовано", "en": "Published"}, "width": 1, "is_system": True, "default": True},
@@ -84,8 +84,8 @@ DEFAULT_SETTINGS = {
       {"key": "is_public", "type": "boolean", "label": {"ru": "Опубликовано", "en": "Published"}, "width": 1, "is_system": True, "default": False}
     ],
     "pipeline": [
-      {"key": "is_public", "type": "boolean", "label": {"ru": "Опубликовано", "en": "Published"}, "width": 1, "is_system": True, "default": False},
-      {"key": "is_settings_public", "type": "boolean", "label": {"ru": "Настройки публичны", "en": "Settings are public"}, "width": 1, "is_system": True, "default": False}
+      {"key": "is_public", "type": "boolean", "label": {"ru": "Опубликовано", "en": "Published"}, "width": 1, "is_system": True, "default": True},
+      {"key": "is_settings_public", "type": "boolean", "label": {"ru": "Настройки публичны", "en": "Settings are public"}, "width": 1, "is_system": True, "default": True}
     ]
   }
 }
