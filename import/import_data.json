@@ -14071,11 +14071,35 @@
           }
         }
       }
+    },
+    {
+      "external_code": "pl_joist",
+      "code": "pl_joist",
+      "slug": "joist",
+      "name": {
+        "ru": "Конфигуратор подсистемы и лаг (ДПК / Алюминий)",
+        "en": "Substructure and Joist Configurator"
+      },
+      "is_active": true,
+      "sort_order": 30,
+      "ui_state": [],
+      "schema": {
+        "joist": {
+          "fixing": {
+            "label_key": {
+              "ru": "Крепление лаги (саморез)",
+              "en": "Joist Screw"
+            },
+            "type_code": "fasteners",
+            "is_required": true
+          }
+        }
+      }
     }
   ],
   "binding_rules": [
     {
-      "pipeline_external_code": "pl_terrace",
+      "pipeline_external_code": "pl_joist",
       "external_code": "rule_ba540058844f6b2d5cc66c590ab8268a",
       "name": "Связь Крепление лаги",
       "role": "fixing",
@@ -18927,7 +18951,7 @@
       "sort_order": 10
     },
     {
-      "pipeline_external_code": "pl_terrace",
+      "pipeline_external_code": "pl_joist",
       "external_code": "rule_3549dd7ba26c8f5078c0b2e1a6e1efc2",
       "name": "Связь Крепление лаги",
       "role": "fixing",
@@ -18942,7 +18966,7 @@
       "sort_order": 10
     },
     {
-      "pipeline_external_code": "pl_terrace",
+      "pipeline_external_code": "pl_joist",
       "external_code": "rule_ec1b68f31614613e4c52b46f62bc1459",
       "name": "Связь Крепление лаги",
       "role": "fixing",
