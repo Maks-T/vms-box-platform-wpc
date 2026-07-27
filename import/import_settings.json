@@ -9,6 +9,9 @@
     },
     "catalog": {
       "is_public_default": true
+    },
+    "b2b_portal": {
+      "is_public_default": true
     }
   },
   "setting_schemas": {
@@ -167,7 +170,7 @@
         },
         "width": 1,
         "is_system": true,
-        "default": false
+        "default": true
       },
       {
         "key": "show_in_menu",
@@ -226,7 +229,7 @@
         },
         "width": 1,
         "is_system": true,
-        "default": false
+        "default": true
       }
     ],
     "product_variant": [
@@ -250,7 +253,7 @@
         },
         "width": 1,
         "is_system": true,
-        "default": false
+        "default": true
       }
     ],
     "attribute_option": [
@@ -287,7 +290,7 @@
         },
         "width": 1,
         "is_system": true,
-        "default": false
+        "default": true
       },
       {
         "key": "is_settings_public",
@@ -298,7 +301,7 @@
         },
         "width": 1,
         "is_system": true,
-        "default": false
+        "default": true
       }
     ],
     "currency": [
@@ -311,7 +314,7 @@
         },
         "width": 1,
         "is_system": true,
-        "default": false
+        "default": true
       },
       {
         "key": "is_settings_public",
@@ -322,7 +325,7 @@
         },
         "width": 1,
         "is_system": true,
-        "default": false
+        "default": true
       }
     ],
     "warehouse": [
@@ -372,7 +375,7 @@
         },
         "width": 1,
         "is_system": true,
-        "default": false
+        "default": true
       },
       {
         "key": "is_settings_public",
@@ -383,7 +386,7 @@
         },
         "width": 1,
         "is_system": true,
-        "default": false
+        "default": true
       }
     ]
   }
