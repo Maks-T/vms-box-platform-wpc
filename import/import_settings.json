@@ -1,16 +1,12 @@
 {
   "languages": [
-    "ru",
-    "en"
+    "ru"
   ],
   "channels": {
     "widget": {
       "is_public_default": true
     },
     "catalog": {
-      "is_public_default": true
-    },
-    "b2b_portal": {
       "is_public_default": true
     }
   },
@@ -75,9 +71,9 @@
             "ru": "Список чекбоксов",
             "en": "Checkboxes"
           },
-          "radio": {
-            "ru": "Одиночный выбор",
-            "en": "Radio buttons"
+          "select": {
+            "ru": "Выпадающий список (Select)",
+            "en": "Dropdown select"
           },
           "color": {
             "ru": "Цветовые кружки",
@@ -88,6 +84,30 @@
             "en": "Range slider"
           }
         }
+      }
+    ],
+    "price_group": [
+      {
+        "key": "is_public",
+        "type": "boolean",
+        "label": {
+          "ru": "Опубликовано",
+          "en": "Published"
+        },
+        "width": 1,
+        "is_system": true,
+        "default": true
+      },
+      {
+        "key": "is_settings_public",
+        "type": "boolean",
+        "label": {
+          "ru": "Настройки публичны",
+          "en": "Settings are public"
+        },
+        "width": 1,
+        "is_system": true,
+        "default": true
       }
     ],
     "complex_dictionary": [
