@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Valerie\Box\IndustryWpc\Support\Constants;
 
-use Nicole\Box\Core\Support\Contracts\ChoiceConstantInterface;
+use Nicole\Box\Core\Support\Constants\EntityType as ET;
+use Nicole\Box\Core\Contracts\PipelineRoleInterface;
 
-class WpcPipelineRole implements ChoiceConstantInterface
+class WpcPipelineRole implements PipelineRoleInterface
 {
   // Роли для Террасы
   public const string START_CLIP = 'startClip';
@@ -51,20 +52,63 @@ class WpcPipelineRole implements ChoiceConstantInterface
     };
   }
 
-  public static function defaultProductType(string $value): ?string
+  /**
+   * Определение целевого типа сущности и целевого кода по умолчанию.
+   *
+   * @param string $value
+   * @return array{target_type: string, target_code: string|null}|null
+   */
+  public static function defaultTarget(string $value): ?array
   {
     return match ($value) {
-      self::START_CLIP, self::BASE_CLIP, self::BRACKET => 'brackets',
-      self::CORNER => 'decorProducts',
-      self::UNIVERSAL_BOARDS => 'board',
-      self::STEP_BOARDS => 'stepBoard',
-      self::FIXING, self::BRACKET_FASTENER, self::LATH_FASTENER => 'fasteners',
-      self::NOSE_SIZE, self::HOLES => 'general',
-      self::BALUSTER => 'baluster',
-      self::FENCE_PROFILE => 'fenceProfile',
-      self::ACCESSORIES => 'accessories',
-      self::RAIL => 'rail',
-      self::LATH => 'lath',
+      // Слоты товаров каталога (ProductType)
+      self::START_CLIP, self::BASE_CLIP, self::BRACKET => [
+        'target_type' => ET::PRODUCT_TYPE,
+        'target_code' => 'brackets',
+      ],
+      self::CORNER => [
+        'target_type' => ET::PRODUCT_TYPE,
+        'target_code' => 'decorProducts',
+      ],
+      self::UNIVERSAL_BOARDS => [
+        'target_type' => ET::PRODUCT_TYPE,
+        'target_code' => 'board',
+      ],
+      self::STEP_BOARDS => [
+        'target_type' => ET::PRODUCT_TYPE,
+        'target_code' => 'stepBoard',
+      ],
+      self::FIXING, self::BRACKET_FASTENER, self::LATH_FASTENER => [
+        'target_type' => ET::PRODUCT_TYPE,
+        'target_code' => 'fasteners',
+      ],
+      self::BALUSTER => [
+        'target_type' => ET::PRODUCT_TYPE,
+        'target_code' => 'baluster',
+      ],
+      self::FENCE_PROFILE => [
+        'target_type' => ET::PRODUCT_TYPE,
+        'target_code' => 'fenceProfile',
+      ],
+      self::ACCESSORIES => [
+        'target_type' => ET::PRODUCT_TYPE,
+        'target_code' => 'accessories',
+      ],
+      self::RAIL => [
+        'target_type' => ET::PRODUCT_TYPE,
+        'target_code' => 'rail',
+      ],
+      self::LATH => [
+        'target_type' => ET::PRODUCT_TYPE,
+        'target_code' => 'lath',
+      ],
+
+      // Скалярные параметры (числа / размеры)
+      self::NOSE_SIZE, self::HOLES => [
+        'target_type' => ET::SCALAR,
+        'target_code' => null,
+      ],
+
       default => null,
     };
   }
