@@ -9,9 +9,10 @@
 
     @include('partials.seo', ['seo' => $seo ?? []])
 
+    <!-- Подключение Google Fonts: Inter Variable -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 
     @routes
 
@@ -19,7 +20,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.tsx'])
     @inertiaHead
 </head>
-<body class="font-sans antialiased bg-bg-light text-tx-primary overflow-x-hidden">
+<body class="font-sans antialiased bg-background text-foreground overflow-x-hidden">
 @inertia
 <div class="dummy-calc-anchor">dummy-calc-anchor</div>
 </body>

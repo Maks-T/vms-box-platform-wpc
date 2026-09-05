@@ -14,7 +14,7 @@ interface LogoProps {
 }
 
 export function Logo({
-                       variant = 'orange-dark',
+                       variant = 'dark-solid',
                        className,
                        imgClassName,
                        href = route('catalog'),
@@ -23,14 +23,14 @@ export function Logo({
   const getLogoSrc = () => {
     switch (variant) {
       case 'dark-outline':
-        return '/images/logo-dark-outline.svg';
+        return '/images/logo.svg';
       case 'light-solid':
-        return '/images/logo-light-solid.svg';
-      case 'dark-solid':
-        return '/images/logo-dark-solid.svg';
+        return '/images/logo.svg';
       case 'orange-dark':
+        return '/images/logo.svg';
+      case 'dark-solid':
       default:
-        return '/images/logo-orange-dark.svg';
+        return '/images/logo.svg';
     }
   };
 
@@ -39,14 +39,14 @@ export function Logo({
       href={href}
       onClick={onClick}
       className={cn(
-        "shrink-0 flex items-center active:scale-[0.98] transition-transform",
+        "shrink-0 flex items-center active:scale-[0.98] transition-transform cursor-pointer py-1",
         className
       )}
     >
       <img
         src={getLogoSrc()}
-        alt="VMS-NC Box"
-        className={cn("h-12 md:h-16 w-auto", imgClassName)}
+        alt="VISTEGRA"
+        className={cn("h-7 md:h-8 w-auto object-contain", imgClassName)}
       />
     </Link>
   );

@@ -1,13 +1,12 @@
-import React, {ReactNode} from 'react';
+import React, { ReactNode } from 'react';
 import SectionLayout from '@/shared/components/layouts/SectionLayout';
-import WaveBackground from '@/shared/components/ui/WaveBackground';
-import StatusBadge from '@/shared/components/ui/StatusBadge';
+import { Badge } from '@/shared/ui/badge';
+import {cn} from "@shared/lib/utils";
 
 interface PageHeroProps {
-  badge: string;
+  badge?: string;
   title: ReactNode;
-  description: string;
-  badgeVariant?: 'blue' | 'success' | 'warning';
+  description?: string;
   className?: string;
 }
 
@@ -15,34 +14,35 @@ export function PageHero({
                            badge,
                            title,
                            description,
-                           badgeVariant = 'blue',
                            className
                          }: PageHeroProps) {
   return (
     <SectionLayout
-      bg="bg-[#0B0F19]"
-      bgElement={<WaveBackground/>}
       containerVariant="content"
       noPadding={true}
-      className={className ?? "py-1 md:py-2"}
+      className={cn("pt-6 pb-2", className)}
     >
-      <div
-        className="flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-12 py-8 md:py-12 px-6 md:px-12 w-full">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-border/70 w-full">
+        <div className="flex flex-col gap-1.5">
+          {badge && (
+            <Badge
+              variant="secondary"
+              className="w-fit text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5"
+            >
+              {badge}
+            </Badge>
+          )}
 
-        <div className="flex flex-col gap-3">
-          <StatusBadge variant={badgeVariant} className="self-start !py-1 !px-3.5 !text-[11px]">
-            {badge}
-          </StatusBadge>
-
-          <h1 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
+          <h1 className="text-2xl md:text-3xl font-extrabold text-foreground tracking-tight leading-tight">
             {title}
           </h1>
         </div>
 
-        <p className="text-sm md:text-base text-slate-400 max-w-xl leading-relaxed">
-          {description}
-        </p>
-
+        {description && (
+          <p className="text-xs md:text-sm text-muted-foreground max-w-md leading-relaxed">
+            {description}
+          </p>
+        )}
       </div>
     </SectionLayout>
   );

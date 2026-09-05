@@ -1,7 +1,6 @@
 import React from 'react';
 import { cn } from '@/shared/lib/utils';
 
-
 export interface PillOption<T> {
   value: T;
   label: string;
@@ -15,17 +14,17 @@ interface PillSwitcherProps<T> {
   className?: string;
 }
 
-
 export default function PillSwitcher<T extends string | number | boolean>({
-  options,
-  activeValue,
-  onChange,
-  className,
-}: PillSwitcherProps<T>) {
+                                                                            options,
+                                                                            activeValue,
+                                                                            onChange,
+                                                                            className,
+                                                                          }: PillSwitcherProps<T>) {
   return (
     <div
+      role="group"
       className={cn(
-        "flex items-center gap-2 bg-white/5 rounded-full p-1 border border-white/10 select-none",
+        "inline-flex items-center gap-0.5 rounded-full border border-white/10 bg-white/[0.04] p-0.5 select-none",
         className
       )}
     >
@@ -35,12 +34,13 @@ export default function PillSwitcher<T extends string | number | boolean>({
         return (
           <button
             key={String(option.value)}
+            type="button"
             onClick={() => onChange(option.value)}
             className={cn(
-              "px-3 py-1 rounded-full text-xs font-bold transition-colors cursor-pointer uppercase",
+              "cursor-pointer rounded-full px-2.5 py-0.5 text-[11px] font-semibold tracking-wider uppercase transition-all duration-200 outline-none",
               isActive
-                ? "bg-white text-slate-900 shadow-sm"
-                : "text-white/60 hover:text-white"
+                ? "bg-white/15 text-white shadow-xs"
+                : "text-white/50 hover:text-white"
             )}
             title={option.title}
           >

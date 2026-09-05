@@ -1,18 +1,18 @@
 import React from 'react';
-import {Head} from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 
 import MainLayout from '@/layouts/MainLayout';
 import SectionLayout from '@/shared/components/layouts/SectionLayout';
-import {CatalogFilters} from '@/features/catalog/components/CatalogFilters';
-import {CatalogSearchInput} from '@/features/catalog/components/CatalogSearchInput';
-import {useCatalogParams} from '@/features/catalog/hooks/useCatalogParams';
-import {useCatalogApi} from '@/features/catalog/hooks/useCatalogApi';
+import { CatalogFilters } from '@/features/catalog/components/CatalogFilters';
+import { CatalogSearchInput } from '@/features/catalog/components/CatalogSearchInput';
+import { useCatalogParams } from '@/features/catalog/hooks/useCatalogParams';
+import { useCatalogApi } from '@/features/catalog/hooks/useCatalogApi';
 
-import {CatalogHeroBlock} from './components/CatalogHeroBlock';
-import {CatalogNavigationBlock} from './components/CatalogNavigationBlock';
-import {ProductGridBlock} from './components/ProductGridBlock';
-import {ApiInspector} from '@widgets/ApiInspector';
-import {useDevMode} from '@/shared/hooks/useDevMode';
+import { CatalogHeroBlock } from './components/CatalogHeroBlock';
+import { CatalogNavigationBlock } from './components/CatalogNavigationBlock';
+import { ProductGridBlock } from './components/ProductGridBlock';
+import { ApiInspector } from '@widgets/ApiInspector';
+import { useDevMode } from '@/shared/hooks/useDevMode';
 
 export default function CatalogIndex() {
   const isDev = useDevMode();
@@ -20,11 +20,11 @@ export default function CatalogIndex() {
   const {
     family, productType, search, page, filters: activeFilters,
     setFamily, setProductType, setSearch, setPage, toggleFilter, clearFilters
-  } = useCatalogParams('stone');
+  } = useCatalogParams('decking_system');
 
   const {
     products, meta, filtersSchema, bootstrapConfig, isLoading, apiUrl
-  } = useCatalogApi({family, productType, search, page, filters: activeFilters});
+  } = useCatalogApi({ family, productType, search, page, filters: activeFilters });
 
   const familiesList = bootstrapConfig?.families || [];
 
@@ -38,7 +38,7 @@ export default function CatalogIndex() {
     {
       label: 'Данные Каталога (Товары / Услуги)',
       endpoint: apiUrl,
-      data: {data: products, meta: meta}
+      data: { data: products, meta: meta }
     },
     {
       label: 'Схема Фильтров Каталога',
@@ -54,12 +54,13 @@ export default function CatalogIndex() {
 
   return (
     <MainLayout headerOverlaps={false}>
-      <Head title={`${activeFamilyName || 'Каталог'} - VMS-NC Box`}/>
+      <Head title={`${activeFamilyName || 'Каталог'} - VMS-NC Box`} />
 
-      <CatalogHeroBlock/>
+      {/* Компактный заголовок каталога */}
+      <CatalogHeroBlock />
 
-      <SectionLayout containerVariant="content" className="pt-0 -mt-6 md:-mt-10">
-
+      {/* Контентная часть (без огромных дыр) */}
+      <SectionLayout containerVariant="content" className="pt-2 pb-16">
         <CatalogNavigationBlock
           familiesList={familiesList}
           activeFamily={family}
@@ -70,11 +71,11 @@ export default function CatalogIndex() {
         />
 
         {/* Строка поиска */}
-        <div className="mb-8 w-full flex justify-start">
+        <div className="mb-6 w-full flex justify-start">
           <CatalogSearchInput
             value={search}
             onChange={setSearch}
-            placeholder="Поиск по названию, коду, артикулу поставщика..."
+            placeholder="Поиск по названию, коду, артикулу..."
           />
         </div>
 
@@ -83,19 +84,19 @@ export default function CatalogIndex() {
             <div className="sticky top-28 max-h-[calc(100vh-140px)] overflow-y-auto pr-4 custom-scrollbar">
               {hasActiveFilters && (
                 <button
+                  type="button"
                   onClick={clearFilters}
-                  className="mb-8 text-[12px] font-bold text-muted-foreground hover:text-primary uppercase tracking-widest border-b border-border hover:border-primary pb-1 transition-colors cursor-pointer"
+                  className="mb-6 text-[11px] font-bold text-muted-foreground hover:text-primary uppercase tracking-widest border-b border-border hover:border-primary pb-1 transition-colors cursor-pointer"
                 >
                   Сбросить фильтры
                 </button>
               )}
-              <CatalogFilters filters={filtersSchema} activeFilters={activeFilters} onToggle={toggleFilter}/>
+              <CatalogFilters filters={filtersSchema} activeFilters={activeFilters} onToggle={toggleFilter} />
             </div>
           </aside>
 
-          <div className="lg:col-span-9 flex-1 relative flex flex-col pt-2 md:pt-4">
-
-            <div className="relative flex-1 mb-16">
+          <div className="lg:col-span-9 flex-1 relative flex flex-col">
+            <div className="relative flex-1 mb-12">
               <ProductGridBlock
                 isLoading={isLoading}
                 products={products}
@@ -107,12 +108,11 @@ export default function CatalogIndex() {
             </div>
 
             {!isLoading && isDev && (
-              <div className="mt-8 border-t border-border pt-12 pb-8">
-                <h3 className="text-xl font-bold text-foreground mb-6">Инспектор API запросов</h3>
-                <ApiInspector requests={apiRequests}/>
+              <div className="mt-8 border-t border-border pt-10 pb-6">
+                <h3 className="text-lg font-bold text-foreground mb-4">Инспектор API запросов</h3>
+                <ApiInspector requests={apiRequests} />
               </div>
             )}
-
           </div>
         </div>
       </SectionLayout>

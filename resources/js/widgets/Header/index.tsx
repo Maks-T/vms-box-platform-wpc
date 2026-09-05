@@ -44,7 +44,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="w-full z-50 bg-[#16191B] sticky top-0 shadow-lg border-b border-white/5">
+      <header className="sticky top-0 z-50 w-full border-b border-white/[0.08] bg-[#0B0F19]/90 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
         <TopBar
           locale={locale}
           onLanguageChange={handleLanguageChange}
@@ -52,40 +52,60 @@ export default function Header() {
           isEmployee={isEmployee}
         />
 
-        <div className="max-w-[1400px] mx-auto px-4 md:px-8 h-20 flex justify-between items-center">
+        <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-4 md:px-8">
           <Logo variant="dark-solid" />
 
           <NavBar items={visibleNavItems} />
 
-          {(isDev || isEmployee) && (
-            <a href="/admin" target="_blank" rel="noreferrer" className="hidden lg:flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-white text-sm font-medium transition-all active:scale-[0.98]">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              Админ-панель
-            </a>
-          )}
-
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => setIsOpen(true)}
-              className="relative p-2.5 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 rounded-xl transition-all cursor-pointer text-white flex items-center justify-center"
-            >
-              <Heart className="w-5 h-5 stroke-[1.8]" />
-              {items.length > 0 && (
-                <span className="absolute -top-1 -right-1 bg-destructive text-white text-[9px] font-black w-4.5 h-4.5 flex items-center justify-center rounded-full px-0.5 border border-[#16191B]">
-                  {items.length}
-                </span>
-              )}
-            </button>
-
-            {isDev && (
-              <a href="/docs/api" target="_blank" rel="noreferrer" className="hidden lg:flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-white text-sm font-medium transition-all active:scale-[0.98]">
-                <BookOpen className="w-4 h-4 text-primary" />
-                API Docs
+          <div className="flex items-center gap-2.5">
+            {(isDev || isEmployee) && (
+              <a
+                href="/admin"
+                target="_blank"
+                rel="noreferrer"
+                className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-white/90 hover:text-white text-xs font-semibold tracking-wide transition-all active:scale-[0.98]"
+              >
+                <ShieldCheck className="size-3.5 text-emerald-400" />
+                <span>Админ-панель</span>
               </a>
             )}
 
-            <button className="lg:hidden p-2 text-white/80 hover:text-white" onClick={() => setIsMobileMenuOpen(true)}>
-              <Menu className="w-6 h-6" />
+            {isDev && (
+              <a
+                href="/docs/api"
+                target="_blank"
+                rel="noreferrer"
+                className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-white/90 hover:text-white text-xs font-semibold tracking-wide transition-all active:scale-[0.98]"
+              >
+                <BookOpen className="size-3.5 text-sky-400" />
+                <span>API Docs</span>
+              </a>
+            )}
+
+            {/* Изящная кнопка Избранного */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setIsOpen(true)}
+                aria-label="Избранное"
+                className="size-9 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-white/80 hover:text-white flex items-center justify-center transition-all cursor-pointer active:scale-95"
+              >
+                <Heart className="size-4 stroke-[2]" />
+              </button>
+              {items.length > 0 && (
+                <span className="pointer-events-none absolute -top-1 -right-1 size-4 rounded-full bg-red-500 text-white text-[9px] font-bold flex items-center justify-center border border-[#0B0F19] shadow-sm">
+                  {items.length}
+                </span>
+              )}
+            </div>
+
+            {/* Мобильное меню */}
+            <button
+              type="button"
+              className="lg:hidden size-9 rounded-xl bg-white/[0.04] border border-white/10 text-white/80 hover:text-white flex items-center justify-center cursor-pointer"
+              onClick={() => setIsMobileMenuOpen(true)}
+            >
+              <Menu className="size-5" />
             </button>
           </div>
         </div>
