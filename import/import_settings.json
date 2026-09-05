@@ -1,13 +1,22 @@
 {
   "languages": [
-    "ru"
+    "ru",
+    "en"
   ],
   "channels": {
     "widget": {
-      "is_public_default": true
+      "is_public_default": true,
+      "name": {
+        "ru": "Виджет калькулятора",
+        "en": "Calculator Widget"
+      }
     },
     "catalog": {
-      "is_public_default": true
+      "is_public_default": true,
+      "name": {
+        "ru": "Каталог сайта",
+        "en": "Online Catalog"
+      }
     }
   },
   "setting_schemas": {
@@ -16,8 +25,8 @@
         "key": "is_public",
         "type": "boolean",
         "label": {
-          "ru": "Опубликовано",
-          "en": "Published"
+          "ru": "Опубликовано в канале",
+          "en": "Published in channel"
         },
         "width": 1,
         "is_system": true,
@@ -27,8 +36,8 @@
         "key": "is_settings_public",
         "type": "boolean",
         "label": {
-          "ru": "Настройки публичны",
-          "en": "Settings are public"
+          "ru": "Настройки публичны в API",
+          "en": "Settings public in API"
         },
         "width": 1,
         "is_system": true,
@@ -49,7 +58,7 @@
         "key": "is_collapsed",
         "type": "boolean",
         "label": {
-          "ru": "Свернуть по умолчанию",
+          "ru": "Свернуть в UI по умолчанию",
           "en": "Collapsed by default"
         },
         "width": 1,
@@ -60,8 +69,8 @@
         "key": "filter_type",
         "type": "select",
         "label": {
-          "ru": "Вид фильтра",
-          "en": "Filter UI type"
+          "ru": "Вид отображения фильтра",
+          "en": "Filter UI Type"
         },
         "width": 2,
         "is_system": true,
@@ -76,62 +85,14 @@
             "en": "Dropdown select"
           },
           "color": {
-            "ru": "Цветовые кружки",
+            "ru": "Цветовые кружки (Color swatches)",
             "en": "Color swatches"
           },
           "range": {
-            "ru": "Диапазон (слайдер)",
+            "ru": "Диапазон (Слайдер от-до)",
             "en": "Range slider"
           }
         }
-      }
-    ],
-    "price_group": [
-      {
-        "key": "is_public",
-        "type": "boolean",
-        "label": {
-          "ru": "Опубликовано",
-          "en": "Published"
-        },
-        "width": 1,
-        "is_system": true,
-        "default": true
-      },
-      {
-        "key": "is_settings_public",
-        "type": "boolean",
-        "label": {
-          "ru": "Настройки публичны",
-          "en": "Settings are public"
-        },
-        "width": 1,
-        "is_system": true,
-        "default": true
-      }
-    ],
-    "complex_dictionary": [
-      {
-        "key": "is_public",
-        "type": "boolean",
-        "label": {
-          "ru": "Опубликовано",
-          "en": "Published"
-        },
-        "width": 1,
-        "is_system": true,
-        "default": true
-      },
-      {
-        "key": "is_settings_public",
-        "type": "boolean",
-        "label": {
-          "ru": "Настройки публичны",
-          "en": "Settings are public"
-        },
-        "width": 1,
-        "is_system": true,
-        "default": true
       }
     ],
     "family": [
@@ -372,7 +333,7 @@
         "default": false
       }
     ],
-    "stock": [
+    "pipeline": [
       {
         "key": "is_public",
         "type": "boolean",
@@ -382,10 +343,21 @@
         },
         "width": 1,
         "is_system": true,
-        "default": false
+        "default": true
+      },
+      {
+        "key": "is_settings_public",
+        "type": "boolean",
+        "label": {
+          "ru": "Настройки публичны",
+          "en": "Settings are public"
+        },
+        "width": 1,
+        "is_system": true,
+        "default": true
       }
     ],
-    "pipeline": [
+    "complex_dictionary": [
       {
         "key": "is_public",
         "type": "boolean",

@@ -8,7 +8,7 @@ import shutil
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TARGET_FILE = os.path.join(BASE_DIR, 'import_data.json')
-SOURCE_FILE = os.path.join(BASE_DIR, 'import_data_letomarket.json')
+SOURCE_FILE = os.path.join(BASE_DIR, 'import_data_raw.json')
 BACKUP_FILE = os.path.join(BASE_DIR, 'import_data.json.bak')
 
 # Полная эталонная палитра HEX-кодов ДПК (по слагам и русским названиям)

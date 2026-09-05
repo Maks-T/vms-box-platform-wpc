@@ -7,7 +7,7 @@ echo "Обновление статических файлов виджета к
 
 rm -rf public/calculator-app
 
-git clone -b "$BRANCH_NAME" --single-branch git@github.com:kapitulin24/projectstroy.git public/calculator-app
+git clone -b "$BRANCH_NAME" --single-branch git@github.com:kapitulin24/oliver-deck.git public/calculator-app
 
 rm -rf public/calculator-app/.git
 

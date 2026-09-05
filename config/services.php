@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'calculator' => [
+      'webhook_secret' => env('CALCULATOR_WEBHOOK_SECRET'),
+    ],
+
 ];
