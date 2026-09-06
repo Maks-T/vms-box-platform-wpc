@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. ГЛОБАЛЬНЫЕ ПРАВИЛА И СТРОГИЙ РАЗМЕР ЛИСТА А4
+   1. ГЛОБАЛЬНЫЕ ПРАВИЛА И ФИРМЕННАЯ ПАЛИТРА POLIVAN GROUP
    ========================================================================== */
 @page {
     size: 210mm 297mm;
@@ -7,9 +7,11 @@
 }
 
 :root {
-    --brand-blue: #005ECA;
-    --brand-blue-hover: #3B96FF;
-    --brand-blue-light: rgba(0, 94, 202, 0.10);
+    /* Фирменная эко-палитра POLIVAN GROUP */
+    --brand-green: #489117;           /* Основной травяной зеленый (кнопки, плашки, шапки) */
+    --brand-green-hover: #7CBF2B;     /* Яркий лаймовый акцент (подсветка, титлы, бордеры) */
+    --brand-green-accent: #8EC427;    /* Светлый шартрез (из кругов логотипа) */
+    --brand-green-light: rgba(72, 145, 23, 0.08);
 
     --bg-dark: #141412;
     --bg-light: #FDFCFA;
@@ -69,13 +71,14 @@ html, body {
     color: var(--text-white) !important;
 }
 
+/* Верхняя градиентная полоса Polivan */
 .top-gradient-line {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, #A5D233 0%, #B8DC3C 50%, rgba(184, 220, 60, 0) 100%);
+    background: linear-gradient(90deg, #489117 0%, #7CBF2B 50%, rgba(124, 191, 43, 0) 100%);
     z-index: 100;
 }
 
@@ -125,7 +128,7 @@ html, body {
 }
 
 .header-logo-text {
-    color: var(--brand-blue);
+    color: var(--brand-green);
     font-size: 9px;
     font-weight: 500;
     text-transform: uppercase;
@@ -133,7 +136,7 @@ html, body {
 }
 
 .pdf-header-dark .header-logo-text {
-    color: var(--brand-blue-hover);
+    color: var(--brand-green-hover);
 }
 
 .header-contacts-text {
@@ -201,23 +204,23 @@ html, body {
     margin: 0 0 12px 0;
 }
 
-.title-hero .blue-accent {
-    color: var(--brand-blue);
+.title-hero .green-accent {
+    color: var(--brand-green);
 }
 
-.page-dark .title-hero .blue-accent {
-    color: var(--brand-blue-hover);
+.page-dark .title-hero .green-accent {
+    color: var(--brand-green-hover);
 }
 
-.divider-blue {
+.divider-green {
     width: 120px;
     height: 2px;
-    background-color: var(--brand-blue);
+    background-color: var(--brand-green);
     margin-bottom: 20px;
 }
 
 /* ==========================================================================
-   4. СТРАНИЦА 1: ТИТУЛЬНЫЙ ЛИСТ (COVER) — ПОЛИГРАФИЧЕСКАЯ КЛАССИКА
+   4. СТРАНИЦА 1: ТИТУЛЬНЫЙ ЛИСТ (COVER)
    ========================================================================== */
 .page-cover {
     background-color: var(--bg-dark) !important;
@@ -317,11 +320,11 @@ html, body {
 }
 
 .cover-title-accent {
-    color: var(--brand-blue-hover);
+    color: var(--brand-green-hover);
     font-style: italic;
 }
 
-/* Сетка параметров без серого фона */
+/* Сетка параметров */
 .cover-meta-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -353,7 +356,7 @@ html, body {
     line-height: 1.25;
 }
 
-/* Нижняя аккуратная карточка стоимости */
+/* Нижняя карточка стоимости */
 .cover-bottom-row {
     width: 100%;
 }
@@ -514,9 +517,10 @@ html, body {
     flex-direction: column;
 }
 
+/* Зеленая фирменная плашка Polivan */
 .material-card__header {
     padding: 8px 14px;
-    background-color: var(--brand-blue);
+    background-color: var(--brand-green);
     display: flex;
     align-items: center;
 }
@@ -660,181 +664,10 @@ html, body {
     letter-spacing: 0.5px;
 }
 
-/* Мягкий серый разделитель шапки */
 .estimate-head-divider {
     width: 100%;
     height: 1px;
     background-color: #DDD9D0;
-    margin-bottom: 2px;
-}
-
-/* Строки таблицы */
-.estimate-table-body {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.estimate-row {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    border-bottom: 1px solid #DDD9D0;
-    padding: 9.5px 0;
-}
-
-.est-td-name {
-    flex: 1;
-    color: #5A5750;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 1.35;
-    padding-right: 15px;
-}
-
-.est-td-qty {
-    width: 100px;
-    color: #16191B;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.2;
-}
-
-.est-td-price {
-    width: 120px;
-    text-align: right;
-    color: #16191B;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.2;
-    font-feature-settings: 'tnum';
-    white-space: nowrap;
-}
-
-/* Мягкий серый разделитель строки Итого */
-.estimate-subtotal-divider {
-    width: 100%;
-    height: 1px;
-    background-color: #DDD9D0;
-    margin-top: 6px;
-    margin-bottom: 8px;
-}
-
-.estimate-subtotal-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-.est-subtotal-label {
-    color: #16191B;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1.2;
-}
-
-.est-subtotal-value {
-    color: #16191B;
-    font-size: 12px;
-    font-weight: 700;
-    text-align: right;
-    line-height: 1.2;
-    font-feature-settings: 'tnum';
-    white-space: nowrap;
-}
-
-/* Фирменная синяя плашка общей суммы */
-.grand-price-banner {
-    width: 100%;
-    padding: 16px 20px;
-    background-color: var(--brand-blue);
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #FFFFFF;
-    margin-top: 14px;
-    margin-bottom: 14px;
-}
-
-.banner-left {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.banner-left-title {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.banner-left-desc {
-    font-size: 11.5px;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.85);
-}
-
-.banner-right-price {
-    font-size: 28px;
-    font-weight: 700;
-    font-feature-settings: 'tnum';
-    white-space: nowrap;
-    line-height: 1;
-}
-
-/* Дисклеймер под плашкой */
-.estimate-disclaimer {
-    font-size: 10px;
-    line-height: 1.5;
-    color: #5A5750;
-}
-
-/* Шапка таблицы сметы */
-.estimate-table-head {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding-bottom: 8px;
-}
-
-.est-th-name {
-    flex: 1;
-    color: #5A5750;
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.est-th-qty {
-    width: 100px;
-    color: #5A5750;
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.est-th-price {
-    width: 120px;
-    text-align: right;
-    color: #5A5750;
-    font-size: 10px;
-    font-weight: 500;
-    line-height: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.estimate-head-divider {
-    width: 100%;
-    height: 0.5px;
-    background-color: rgba(64, 64, 64, 0.88);
     margin-bottom: 2px;
 }
 
@@ -884,8 +717,8 @@ html, body {
 /* Строка Итого */
 .estimate-subtotal-divider {
     width: 100%;
-    height: 0.5px;
-    background-color: rgba(64, 64, 64, 0.4);
+    height: 1px;
+    background-color: #DDD9D0;
     margin-top: 6px;
     margin-bottom: 8px;
 }
@@ -914,11 +747,11 @@ html, body {
     white-space: nowrap;
 }
 
-/* Фирменная синяя плашка общей суммы */
+/* Фирменная зелёная плашка общей суммы Polivan Group */
 .grand-price-banner {
     width: 100%;
     padding: 16px 20px;
-    background-color: var(--brand-blue);
+    background-color: var(--brand-green);
     border-radius: 8px;
     display: flex;
     justify-content: space-between;
@@ -944,7 +777,7 @@ html, body {
 .banner-left-desc {
     font-size: 11.5px;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.90);
 }
 
 .banner-right-price {
@@ -963,7 +796,7 @@ html, body {
 }
 
 /* ==========================================================================
-   8. СТРАНИЦА 5: ШАГИ И КОНТАКТЫ (CONTACTS) ПО FIGMA
+   8. СТРАНИЦА 5: ШАГИ И КОНТАКТЫ (CONTACTS)
    ========================================================================== */
 .page-content-contacts {
     padding: 22mm 50px 16mm 50px !important;
@@ -996,7 +829,7 @@ html, body {
     padding: 10px 14px;
     background: rgba(255, 255, 255, 0.04);
     border-radius: 10px;
-    border-left: 2px solid var(--brand-blue-hover);
+    border-left: 2px solid var(--brand-green-hover);
     display: flex;
     align-items: center;
     gap: 12px;
@@ -1006,7 +839,7 @@ html, body {
     width: 45px;
     min-width: 45px;
     text-align: center;
-    color: var(--brand-blue-hover);
+    color: var(--brand-green-hover);
     font-size: 24px;
     font-weight: 500;
     line-height: 1;
@@ -1116,7 +949,7 @@ html, body {
 }
 
 .closing-price-val {
-    color: var(--brand-blue-hover);
+    color: var(--brand-green-hover);
     font-size: 26px;
     font-weight: 700;
     line-height: 41.6px;
