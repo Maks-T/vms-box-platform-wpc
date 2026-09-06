@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Valerie\Box\IndustryWpc\Support;
 
+
 use Filament\Infolists\Components\RepeatableEntry;
 use Filament\Infolists\Components\RepeatableEntry\TableColumn;
+
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
@@ -13,25 +15,33 @@ use Nicole\Box\Core\Contracts\OrderSectionFormatterInterface;
 use Nicole\Box\Core\Models\OrderSection;
 
 /**
- * Отраслевой форматтер для террасных систем ДПК.
+ * Отраслевой форматтер для террасных систем ДПК в панели Filament.
  *
  * @since 2026-09-06
  */
 class WpcTerraceSectionFormatter implements OrderSectionFormatterInterface
 {
+  /**
+   * Формирование списка характеристик для карточки изделия
+   *
+   * @return array<string, string>
+   */
   public function formatSpecifications(OrderSection $section): array
   {
-    $props = $section->meta['properties'] ?? [];
+    /** @var array<string, mixed> $meta */
+    $meta = is_array($section->meta) ? $section->meta : (json_decode((string)($section->meta ?? '{}'), true) ?? []);
+    $props = $meta['properties'] ?? [];
+
     if (empty($props)) {
       return [];
     }
 
     $formLabels = [
       'rectangular' => __('Rectangular'),
-      'trapezoid'   => __('Trapezoid'),
-      'l-shaped'    => __('L-shaped'),
-      'u-shaped'    => __('U-shaped'),
-      'pool'        => __('With pool cutout'),
+      'trapezoid' => __('Trapezoid'),
+      'l-shaped' => __('L-shaped'),
+      'u-shaped' => __('U-shaped'),
+      'pool' => __('With pool'),
     ];
 
     $formatted = [];
@@ -43,45 +53,52 @@ class WpcTerraceSectionFormatter implements OrderSectionFormatterInterface
 
     if (isset($props['decking_area_mm2']) && is_numeric($props['decking_area_mm2'])) {
       $areaM2 = round((float)$props['decking_area_mm2'] / 1_000_000, 2);
-      $formatted[__('Decking Area')] = "{$areaM2} " . __('m²');
+      $formatted[__('Decking Area')] = number_format($areaM2, 2, ',', ' ') . ' ' . __('m²');
     }
 
     if (isset($props['perimeter_mm']) && is_numeric($props['perimeter_mm'])) {
-      $perimM = round((float)$props['perimeter_mm'] / 1000, 2);
-      $formatted[__('Finishing Perimeter')] = "{$perimM} " . __('m');
+      $perimeterM = round((float)$props['perimeter_mm'] / 1000, 2);
+      $formatted[__('Finishing Perimeter')] = number_format($perimeterM, 2, ',', ' ') . ' ' . __('m');
     }
 
     foreach ($props as $key => $val) {
-      if (in_array($key, ['form', 'decking_area_mm2', 'perimeter_mm'], true)) {
+      if (in_array($key, ['form', 'decking_area_mm2', 'perimeter_mm', 'layingDirection'], true)) {
         continue;
       }
-      $formatted[__(ucfirst(str_replace('_', ' ', (string)$key)))] = is_bool($val) ? ($val ? __('Yes') : __('No')) : (string)$val;
+      $label = __(ucfirst(str_replace('_', ' ', (string)$key)));
+      $formatted[$label] = is_bool($val) ? ($val ? __('Yes') : __('No')) : (string)$val;
     }
 
     return $formatted;
   }
 
+  /**
+   * Краткая сводка для строки в таблице изделий
+   */
   public function formatSummary(OrderSection $section): string
   {
     $specs = $this->formatSpecifications($section);
+
     if (empty($specs)) {
-      return '-';
+      return '—';
     }
 
     return collect($specs)
-      ->map(fn($val, $key) => "▪ {$key}: {$val}")
-      ->join("<br />");
+      ->map(fn(string $val, string $key): string => "▪ <strong>{$key}:</strong> {$val}")
+      ->join('<br />');
   }
 
   /**
-   * Отраслевой рендеринг сметы террасы с финансовым блоком.
+   * Отраслевой рендеринг сметы террасы с финансовым блоком
    *
-   * @since 2026-09-06
+   * @return array<\Filament\Infolists\Components\Component>
    */
   public function formatEstimate(OrderSection $section): array
   {
-    $estimate = $section->estimate ?? [];
-    if (empty($estimate) || !is_array($estimate)) {
+    /** @var array<int, array<string, mixed>> $estimate */
+    $estimate = is_array($section->estimate) ? $section->estimate : (json_decode((string)($section->estimate ?? '[]'), true) ?? []);
+
+    if (empty($estimate)) {
       return [TextEntry::make('empty_estimate')->state(__('No estimate data'))->hiddenLabel()];
     }
 
@@ -100,12 +117,19 @@ class WpcTerraceSectionFormatter implements OrderSectionFormatterInterface
       $tableColumns[] = TableColumn::make((string)$colName);
       $entry = TextEntry::make("col_{$colIndex}");
 
-      if ($colIndex > 0) {
+      // Колонка 1 (Количество) — по центру
+      if ($colIndex === 1) {
+        $entry->alignCenter();
+      }
+
+      // Колонки цен (Цена за ед. и Стоимость) — по правому краю
+      if ($colIndex >= 2) {
         $entry->alignEnd();
       }
 
+      // Итоговая колонка стоимости — жирным
       if ($colIndex === $totalCols - 1) {
-        $entry->weight('bold')->color('success');
+        $entry->weight('bold')->color('primary');
       }
 
       $textEntries[] = $entry;
@@ -140,12 +164,12 @@ class WpcTerraceSectionFormatter implements OrderSectionFormatterInterface
             ->schema([
               TextEntry::make('price_total')
                 ->label(__('Subtotal'))
-                ->state(fn() => number_format((float)$section->price_total, 2, '.', ' ') . " {$currency}"),
+                ->state(fn(): string => number_format((float)$section->price_total, 2, '.', ' ') . " {$currency}"),
 
               TextEntry::make('price_discount')
                 ->label(__('Discount'))
                 ->visible((float)$section->price_discount > 0)
-                ->state(function () use ($section, $currency) {
+                ->state(function () use ($section, $currency): string {
                   $discountVal = number_format((float)$section->price_discount, 2, '.', ' ') . " {$currency}";
                   $percent = (float)($section->price_discount_percent ?? 0);
                   return $percent > 0 ? "-{$discountVal} ({$percent}%)" : "-{$discountVal}";
@@ -155,7 +179,7 @@ class WpcTerraceSectionFormatter implements OrderSectionFormatterInterface
               TextEntry::make('price_vat')
                 ->label(__('VAT'))
                 ->visible((float)$section->price_vat > 0)
-                ->state(function () use ($section, $currency) {
+                ->state(function () use ($section, $currency): string {
                   $vatVal = number_format((float)$section->price_vat, 2, '.', ' ') . " {$currency}";
                   $percent = (float)($section->price_vat_percent ?? 0);
                   return $percent > 0 ? "{$vatVal} ({$percent}%)" : $vatVal;
@@ -164,7 +188,7 @@ class WpcTerraceSectionFormatter implements OrderSectionFormatterInterface
 
               TextEntry::make('price_grand_total')
                 ->label(__('Total to Pay'))
-                ->state(fn() => number_format((float)$section->price_grand_total, 2, '.', ' ') . " {$currency}")
+                ->state(fn(): string => number_format((float)$section->price_grand_total, 2, '.', ' ') . " {$currency}")
                 ->weight('bold')
                 ->color('success')
                 ->size('lg'),
@@ -174,4 +198,5 @@ class WpcTerraceSectionFormatter implements OrderSectionFormatterInterface
         ->columnSpanFull(),
     ];
   }
+
 }

@@ -1,0 +1,1165 @@
+/* ==========================================================================
+   1. ГЛОБАЛЬНЫЕ ПРАВИЛА И СТРОГИЙ РАЗМЕР ЛИСТА А4
+   ========================================================================== */
+@page {
+    size: 210mm 297mm;
+    margin: 0 !important;
+}
+
+:root {
+    --brand-blue: #005ECA;
+    --brand-blue-hover: #3B96FF;
+    --brand-blue-light: rgba(0, 94, 202, 0.10);
+
+    --bg-dark: #141412;
+    --bg-light: #FDFCFA;
+    --bg-card: #FFFFFF;
+    --bg-card-inner: #F8FAFC;
+
+    --stroke-light: #C2C2C2;
+    --stroke-subtle: #E2E8F0;
+    --stroke-dark: rgba(255, 255, 255, 0.12);
+
+    --text-dark: #16191B;
+    --text-secondary: #5A5750;
+    --text-muted: #928E88;
+    --text-white: #FFFFFF;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    background-color: #525659;
+    font-family: 'Manrope', -apple-system, sans-serif !important;
+    color: var(--text-dark);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Фиксированный изолированный лист А4 */
+.page {
+    width: 210mm !important;
+    min-height: 297mm !important;
+    height: 297mm !important;
+    max-height: 297mm !important;
+    margin: 20px auto !important;
+    background: var(--bg-light);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+    page-break-after: always;
+    break-after: page;
+    page-break-inside: avoid;
+}
+
+.page:last-child {
+    page-break-after: avoid;
+    break-after: avoid;
+}
+
+.page-dark {
+    background-color: var(--bg-dark) !important;
+    color: var(--text-white) !important;
+}
+
+.top-gradient-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #005ECA 0%, #3B96FF 50%, rgba(59, 150, 255, 0) 100%);
+    z-index: 100;
+}
+
+/* Базовая контентная область для страниц 2–5 */
+.page-content {
+    padding: 22mm 50px 16mm 50px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================================================
+   2. КОЛОНТИТУЛЫ (HEADER / FOOTER)
+   ========================================================================== */
+.header-logo-box {
+    height: 52px;
+    display: flex;
+    align-items: center;
+}
+
+.header-logo-img {
+    height: 48px;
+    max-height: 48px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.pdf-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 16mm;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--stroke-light);
+    background-color: var(--bg-light);
+    z-index: 50;
+}
+
+.pdf-header-dark {
+    background-color: var(--bg-dark) !important;
+    border-bottom: 1px solid var(--stroke-dark) !important;
+}
+
+.header-logo-text {
+    color: var(--brand-blue);
+    font-size: 9px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+}
+
+.pdf-header-dark .header-logo-text {
+    color: var(--brand-blue-hover);
+}
+
+.header-contacts-text {
+    font-size: 10px;
+    font-weight: 400;
+    color: #928E87;
+}
+
+.pdf-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 14mm;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--stroke-light);
+    background-color: var(--bg-light);
+    font-size: 10px;
+    color: var(--text-muted);
+    z-index: 50;
+}
+
+.pdf-footer-dark {
+    background-color: var(--bg-dark) !important;
+    border-top: 1px solid var(--stroke-dark) !important;
+    color: var(--text-muted) !important;
+}
+
+.footer-cell-center {
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+/* ==========================================================================
+   3. ОБЩАЯ ТИПОГРАФИКА
+   ========================================================================== */
+.label-caps {
+    font-size: 9.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.title-section {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--text-dark);
+    margin: 0 0 16px 0;
+}
+
+.page-dark .title-section {
+    color: var(--text-white);
+}
+
+.title-hero {
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 0 0 12px 0;
+}
+
+.title-hero .blue-accent {
+    color: var(--brand-blue);
+}
+
+.page-dark .title-hero .blue-accent {
+    color: var(--brand-blue-hover);
+}
+
+.divider-blue {
+    width: 120px;
+    height: 2px;
+    background-color: var(--brand-blue);
+    margin-bottom: 20px;
+}
+
+/* ==========================================================================
+   4. СТРАНИЦА 1: ТИТУЛЬНЫЙ ЛИСТ (COVER) — ПОЛИГРАФИЧЕСКАЯ КЛАССИКА
+   ========================================================================== */
+.page-cover {
+    background-color: var(--bg-dark) !important;
+    color: var(--text-white) !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.cover-photo-container {
+    width: 100%;
+    height: 155mm;
+    position: relative;
+    background-color: #1a1a18;
+    overflow: hidden;
+}
+
+.cover-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.cover-photo-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60mm;
+    background: linear-gradient(180deg, rgba(20, 20, 18, 0) 0%, var(--bg-dark) 100%);
+    z-index: 2;
+}
+
+.cover-content {
+    flex: 1;
+    padding: 20px 50px 36px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--bg-dark);
+    position: relative;
+    z-index: 3;
+}
+
+/* Верхняя строка */
+.cover-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    padding-bottom: 14px;
+}
+
+.cover-logo-img {
+    height: 68px;
+    max-height: 76px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.cover-brand-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+}
+
+.cover-doc-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.cover-doc-code {
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+/* Заголовок */
+.cover-title-block {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.cover-title {
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 46px;
+    color: #FFFFFF;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.cover-title-accent {
+    color: var(--brand-blue-hover);
+    font-style: italic;
+}
+
+/* Сетка параметров без серого фона */
+.cover-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px 20px;
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    padding: 16px 0;
+}
+
+.cover-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cover-meta-label {
+    font-size: 9.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+.cover-meta-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 1.25;
+}
+
+/* Нижняя аккуратная карточка стоимости */
+.cover-bottom-row {
+    width: 100%;
+}
+
+.cover-price-card {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+}
+
+.cover-price-left {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.cover-price-label {
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+.cover-price-sublabel {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.cover-price-val {
+    font-size: 26px;
+    font-weight: 700;
+    color: #FFFFFF;
+    font-feature-settings: 'tnum';
+    white-space: nowrap;
+}
+
+/* ==========================================================================
+   5. СТРАНИЦА 2: О РАСЧЕТЕ (ABOUT)
+   ========================================================================== */
+.page-content-about {
+    padding: 22mm 50px 16mm 50px !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.about-title {
+    font-size: 24px;
+    font-weight: 500;
+    color: #121210;
+    margin: 0 0 16px 0;
+    line-height: 1.2;
+}
+
+.about-content-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+}
+
+.schematic-card {
+    width: 100%;
+    height: 86mm;
+    background-color: #FFFFFF;
+    border: 1px solid var(--stroke-light);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.schematic-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.stats-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 100%;
+}
+
+.stat-card {
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: 1px solid var(--stroke-light);
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+}
+
+.stat-val {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 26px;
+    color: #2C2C2C;
+}
+
+.stat-lbl {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 13px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+}
+
+.about-desc-text {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20.4px;
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   6. СТРАНИЦА 3: МАТЕРИАЛЫ (MATERIALS) — ЗОЛОТАЯ СЕРЕДИНА
+   ========================================================================== */
+.page-content-materials {
+    padding: 20mm 50px 16mm 50px !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.materials-page-title {
+    font-size: 24px;
+    font-weight: 500;
+    color: #1A1916;
+    margin: 0 0 14px 0;
+    line-height: 1.2;
+}
+
+.materials-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.material-card {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid rgba(77, 77, 77, 0.20);
+    background-color: #FFFFFF;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.material-card__header {
+    padding: 8px 14px;
+    background-color: var(--brand-blue);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+}
+
+.material-card__title {
+    color: #FFFFFF;
+    font-size: 11.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 15px;
+    letter-spacing: 0.8px;
+    flex: 1;
+    min-width: 0;
+    word-break: break-word;
+}
+
+.material-card__price {
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+    font-feature-settings: 'tnum';
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.material-card__body {
+    display: flex;
+    width: 100%;
+    padding: 8px 12px;
+    gap: 14px;
+    align-items: center;
+}
+
+.material-card__photo {
+    width: 210px;
+    min-width: 210px;
+    height: 145px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF;
+    overflow: hidden;
+}
+
+.material-card__img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.material-card__specs {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.spec-row {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(77, 77, 77, 0.15);
+    padding: 6.2px 8px;
+}
+
+.spec-row:last-child {
+    border-bottom: none;
+}
+
+.spec-label {
+    width: 44%;
+    color: #5A5750;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.spec-value {
+    width: 56%;
+    color: #16191B;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+/* ==========================================================================
+   7. СТРАНИЦА 4: СМЕТА (ESTIMATE)
+   ========================================================================== */
+.page-content-estimate {
+    padding: 22mm 50px 16mm 50px !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.estimate-block {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.estimate-section-title {
+    font-size: 24px;
+    font-weight: 500;
+    color: #1A1916;
+    margin: 0 0 16px 0;
+    line-height: 28.6px;
+}
+
+.estimate-table-wrap {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Шапка таблицы сметы */
+.estimate-table-head {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 8px;
+}
+
+.est-th-name {
+    flex: 1;
+    color: #5A5750;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.est-th-qty {
+    width: 100px;
+    color: #5A5750;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.est-th-price {
+    width: 120px;
+    text-align: right;
+    color: #5A5750;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Мягкий серый разделитель шапки */
+.estimate-head-divider {
+    width: 100%;
+    height: 1px;
+    background-color: #DDD9D0;
+    margin-bottom: 2px;
+}
+
+/* Строки таблицы */
+.estimate-table-body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.estimate-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid #DDD9D0;
+    padding: 9.5px 0;
+}
+
+.est-td-name {
+    flex: 1;
+    color: #5A5750;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.35;
+    padding-right: 15px;
+}
+
+.est-td-qty {
+    width: 100px;
+    color: #16191B;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.est-td-price {
+    width: 120px;
+    text-align: right;
+    color: #16191B;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.2;
+    font-feature-settings: 'tnum';
+    white-space: nowrap;
+}
+
+/* Мягкий серый разделитель строки Итого */
+.estimate-subtotal-divider {
+    width: 100%;
+    height: 1px;
+    background-color: #DDD9D0;
+    margin-top: 6px;
+    margin-bottom: 8px;
+}
+
+.estimate-subtotal-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.est-subtotal-label {
+    color: #16191B;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.est-subtotal-value {
+    color: #16191B;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: right;
+    line-height: 1.2;
+    font-feature-settings: 'tnum';
+    white-space: nowrap;
+}
+
+/* Фирменная синяя плашка общей суммы */
+.grand-price-banner {
+    width: 100%;
+    padding: 16px 20px;
+    background-color: var(--brand-blue);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #FFFFFF;
+    margin-top: 14px;
+    margin-bottom: 14px;
+}
+
+.banner-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.banner-left-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.banner-left-desc {
+    font-size: 11.5px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.banner-right-price {
+    font-size: 28px;
+    font-weight: 700;
+    font-feature-settings: 'tnum';
+    white-space: nowrap;
+    line-height: 1;
+}
+
+/* Дисклеймер под плашкой */
+.estimate-disclaimer {
+    font-size: 10px;
+    line-height: 1.5;
+    color: #5A5750;
+}
+
+/* Шапка таблицы сметы */
+.estimate-table-head {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 8px;
+}
+
+.est-th-name {
+    flex: 1;
+    color: #5A5750;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.est-th-qty {
+    width: 100px;
+    color: #5A5750;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.est-th-price {
+    width: 120px;
+    text-align: right;
+    color: #5A5750;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.estimate-head-divider {
+    width: 100%;
+    height: 0.5px;
+    background-color: rgba(64, 64, 64, 0.88);
+    margin-bottom: 2px;
+}
+
+/* Строки таблицы */
+.estimate-table-body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.estimate-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid #DDD9D0;
+    padding: 9.5px 0;
+}
+
+.est-td-name {
+    flex: 1;
+    color: #5A5750;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.35;
+    padding-right: 15px;
+}
+
+.est-td-qty {
+    width: 100px;
+    color: #16191B;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.est-td-price {
+    width: 120px;
+    text-align: right;
+    color: #16191B;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.2;
+    font-feature-settings: 'tnum';
+    white-space: nowrap;
+}
+
+/* Строка Итого */
+.estimate-subtotal-divider {
+    width: 100%;
+    height: 0.5px;
+    background-color: rgba(64, 64, 64, 0.4);
+    margin-top: 6px;
+    margin-bottom: 8px;
+}
+
+.estimate-subtotal-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.est-subtotal-label {
+    color: #16191B;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.est-subtotal-value {
+    color: #16191B;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: right;
+    line-height: 1.2;
+    font-feature-settings: 'tnum';
+    white-space: nowrap;
+}
+
+/* Фирменная синяя плашка общей суммы */
+.grand-price-banner {
+    width: 100%;
+    padding: 16px 20px;
+    background-color: var(--brand-blue);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #FFFFFF;
+    margin-top: 14px;
+    margin-bottom: 14px;
+}
+
+.banner-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.banner-left-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.banner-left-desc {
+    font-size: 11.5px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.banner-right-price {
+    font-size: 28px;
+    font-weight: 700;
+    font-feature-settings: 'tnum';
+    white-space: nowrap;
+    line-height: 1;
+}
+
+/* Дисклеймер под плашкой */
+.estimate-disclaimer {
+    font-size: 10px;
+    line-height: 1.5;
+    color: #5A5750;
+}
+
+/* ==========================================================================
+   8. СТРАНИЦА 5: ШАГИ И КОНТАКТЫ (CONTACTS) ПО FIGMA
+   ========================================================================== */
+.page-content-contacts {
+    padding: 22mm 50px 16mm 50px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.contacts-hero-title {
+    color: var(--text-white);
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 44px;
+    margin: 0 0 20px 0;
+    letter-spacing: -0.5px;
+}
+
+/* Стек 3 шагов */
+.steps-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.step-card {
+    width: 100%;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 10px;
+    border-left: 2px solid var(--brand-blue-hover);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.step-num-col {
+    width: 45px;
+    min-width: 45px;
+    text-align: center;
+    color: var(--brand-blue-hover);
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.step-text-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.step-title {
+    color: var(--text-white);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 19.2px;
+}
+
+.step-desc {
+    color: rgba(255, 255, 255, 0.50);
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 15.4px;
+}
+
+/* 3-колоночная плашка контактов */
+.contacts-info-card {
+    width: 100%;
+    padding: 20px 24px;
+    background-color: #1D1D1B;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: auto;
+}
+
+.contact-info-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.contact-info-lbl {
+    color: #928E88;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 13px;
+}
+
+.contact-info-val {
+    color: var(--text-white);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+/* Финальный блок закрытия */
+.closing-summary-block {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.closing-divider {
+    width: 100%;
+    height: 0.5px;
+    background-color: rgba(255, 255, 255, 0.10);
+    margin-bottom: 20px;
+}
+
+.closing-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.closing-date-col {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.closing-price-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+.closing-lbl {
+    color: rgba(255, 255, 255, 0.60);
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 16px;
+}
+
+.closing-val {
+    color: var(--text-white);
+    font-size: 11.5px;
+    font-weight: 400;
+    line-height: 18.4px;
+}
+
+.closing-price-val {
+    color: var(--brand-blue-hover);
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 41.6px;
+    font-feature-settings: 'tnum';
+    white-space: nowrap;
+}
+
+/* ==========================================================================
+   9. ПРАВИЛА ПЕЧАТИ BROWSERSHOT
+   ========================================================================== */
+@media print {
+    @page {
+        size: A4 portrait;
+        margin: 0 !important;
+    }
+
+    html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 210mm !important;
+        height: 297mm !important;
+        background: transparent !important;
+    }
+
+    .page {
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        page-break-after: always !important;
+        break-after: page !important;
+    }
+}
