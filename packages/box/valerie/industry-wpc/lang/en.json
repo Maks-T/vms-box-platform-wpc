@@ -24,5 +24,25 @@
   "Slug": "Slug",
   "Start Clip": "Start Clip",
   "Step Boards": "Step Boards",
-  "Universal Boards": "Universal Boards"
+  "Universal Boards": "Universal Boards",
+
+  "Estimate": "Estimate",
+  "No estimate data": "No estimate data",
+  "Financial Summary": "Financial Summary",
+  "Subtotal": "Subtotal",
+  "Discount": "Discount",
+  "VAT": "VAT",
+  "Total to Pay": "Total to Pay",
+  "Terrace Form": "Terrace Form",
+  "Decking Area": "Decking Area",
+  "Finishing Perimeter": "Finishing Perimeter",
+  "Rectangular": "Rectangular",
+  "Trapezoid": "Trapezoid",
+  "L-shaped": "L-shaped",
+  "U-shaped": "U-shaped",
+  "With pool cutout": "With pool cutout",
+  "m²": "m²",
+  "m": "m",
+  "Yes": "Yes",
+  "No": "No"
 }

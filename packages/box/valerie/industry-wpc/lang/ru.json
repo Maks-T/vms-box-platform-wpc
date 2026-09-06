@@ -24,5 +24,25 @@
   "Slug": "Идентификатор (Slug)",
   "Start Clip": "Стартовый кляймер",
   "Step Boards": "Ступени",
-  "Universal Boards": "Универсальные доски"
+  "Universal Boards": "Универсальные доски",
+
+  "Estimate": "Смета",
+  "No estimate data": "Нет данных сметы",
+  "Financial Summary": "Финансовый итог",
+  "Subtotal": "Сумма без скидки",
+  "Discount": "Скидка",
+  "VAT": "НДС",
+  "Total to Pay": "Итого к оплате",
+  "Terrace Form": "Форма террасы",
+  "Decking Area": "Площадь настила",
+  "Finishing Perimeter": "Периметр отделки",
+  "Rectangular": "Прямоугольная",
+  "Trapezoid": "Трапециевидная",
+  "L-shaped": "Г-образная",
+  "U-shaped": "П-образная",
+  "With pool cutout": "С вырезом под бассейн",
+  "m²": "м²",
+  "m": "м",
+  "Yes": "Да",
+  "No": "Нет"
 }
