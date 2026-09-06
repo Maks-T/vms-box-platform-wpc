@@ -38,7 +38,7 @@ class AdminPanelProvider extends PanelProvider
       ->path('admin')
       ->login()
       ->colors([
-        'primary' => Color::Blue,
+        'primary' => \Filament\Support\Colors\Color::Lime,
       ])
       ->viteTheme('resources/css/filament/admin/theme.css')
       ->maxContentWidth(Width::Full)
