@@ -42,7 +42,7 @@ class AdminPanelProvider extends PanelProvider
       ])
       ->viteTheme('resources/css/filament/admin/theme.css')
       ->maxContentWidth(Width::Full)
-      ->brandLogo(asset('images/logo_black.svg'))
+      ->brandLogo(asset('images/pdf/logo_black.png'))
       ->brandLogoHeight('3rem')
       ->homeUrl('/')
       ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')

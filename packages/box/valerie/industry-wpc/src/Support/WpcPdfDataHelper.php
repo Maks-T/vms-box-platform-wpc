@@ -8,7 +8,6 @@ use Carbon\Carbon;
 use Nicole\Box\Core\Models\Order;
 use Nicole\Box\Core\Models\OrderProduct;
 use Nicole\Box\Core\Models\OrderSection;
-use Nicole\Box\Core\Models\ProductVariant;
 
 class WpcPdfDataHelper
 {
@@ -38,7 +37,6 @@ class WpcPdfDataHelper
    *
    * @return array<int, array{
    *   title: string,
-   *   price: string,
    *   photo: ?string,
    *   specs: array<string, string>
    * }>
@@ -46,7 +44,6 @@ class WpcPdfDataHelper
   public static function extractMaterialCards(OrderSection $section, ?Order $order = null): array
   {
     $cards = [];
-    $currency = $order->currency ?? ($section->order->currency ?? 'RUB');
 
     /** @var array<int, array<string, mixed>> $estimate */
     $estimate = is_array($section->estimate) ? $section->estimate : (json_decode((string) ($section->estimate ?? '[]'), true) ?? []);
@@ -63,22 +60,22 @@ class WpcPdfDataHelper
     $products = $section->products;
 
     // 1. ПОЗИЦИЯ: Основная террасная доска (terraceBoard)
-    if ($boardCard = self::buildBoardCard($products, $estimate, $currency, $section)) {
+    if ($boardCard = self::buildBoardCard($products, $estimate)) {
       $cards[] = $boardCard;
     }
 
     // 2. ПОЗИЦИЯ: Опорная лага (joist)
-    if ($joistCard = self::buildJoistCard($products, $estimate, $currency)) {
+    if ($joistCard = self::buildJoistCard($products, $estimate)) {
       $cards[] = $joistCard;
     }
 
     // 3. ПОЗИЦИЯ: Уголок (decorProducts / corner)
-    if ($cornerCard = self::buildCornerCard($products, $estimate, $currency)) {
+    if ($cornerCard = self::buildCornerCard($products, $estimate)) {
       $cards[] = $cornerCard;
     }
 
-    // 4. ПОЗИЦИЯ: Ступень (stepBoard)
-    if ($stepCard = self::buildStepCard($products, $estimate, $currency)) {
+    // 4. ПОЗИЦИЯ: Ступень (stepBoard) - если нет уголка, будет 3-м блоком 03
+    if ($stepCard = self::buildStepCard($products, $estimate)) {
       $cards[] = $stepCard;
     }
 
@@ -92,7 +89,7 @@ class WpcPdfDataHelper
   /**
    * Карточка 1: Террасная доска
    */
-  private static function buildBoardCard($products, array $estimate, string $currency, OrderSection $section): ?array
+  private static function buildBoardCard($products, array $estimate): ?array
   {
     /** @var OrderProduct|null $op */
     $op = $products->first(fn ($p) => ($p->variant?->product?->type?->code ?? '') === 'terraceBoard');
@@ -110,14 +107,11 @@ class WpcPdfDataHelper
     $color    = self::getAttributeOptionValue($variant, 'color', 'В ассортименте');
     $material = self::getAttributeOptionValue($product, 'material', 'ДПК');
 
-    // Точный расчет количества и суммы по ID варианта в смете
     $estimateData = self::getEstimateByVariantId($estimate, $variant->id);
     $totalQty = $estimateData['count'] > 0 ? $estimateData['count'] : (int) $op->quantity;
-    $totalPrice = $estimateData['total'] > 0 ? $estimateData['total'] : $section->price_grand_total;
 
     return [
       'title' => '01 · ' . mb_strtoupper($product->name ?? 'ТЕРРАСНАЯ ДОСКА ИЗ ДПК'),
-      'price' => self::formatPrice($totalPrice, $currency),
       'photo' => self::getMediaBase64($variant) ?? self::getMediaBase64($product),
       'specs' => [
         'Террасная доска' => (string) ($variant->name ?? $product->name),
@@ -133,7 +127,7 @@ class WpcPdfDataHelper
   /**
    * Карточка 2: Лага (Основание)
    */
-  private static function buildJoistCard($products, array $estimate, string $currency): ?array
+  private static function buildJoistCard($products, array $estimate): ?array
   {
     /** @var OrderProduct|null $op */
     $op = $products->first(fn ($p) => ($p->variant?->product?->type?->code ?? '') === 'joist');
@@ -150,14 +144,11 @@ class WpcPdfDataHelper
     $height   = self::getAttributeNumeric($product, 'height_mm', 40);
     $material = self::getAttributeOptionValue($product, 'material', 'Алюминиевый профиль / ДПК');
 
-    // Точный расчет по ID варианта
     $estimateData = self::getEstimateByVariantId($estimate, $variant->id);
     $totalQty = $estimateData['count'] > 0 ? $estimateData['count'] : (int) $op->quantity;
-    $totalPrice = $estimateData['total'] > 0 ? $estimateData['total'] : ($op->quantity * $variant->cost_price);
 
     return [
       'title' => '02 · ОСНОВАНИЕ (' . mb_strtoupper($product->name ?? 'ОПОРНАЯ ЛАГА') . ')',
-      'price' => self::formatPrice($totalPrice, $currency),
       'photo' => self::getMediaBase64($variant) ?? self::getMediaBase64($product),
       'specs' => [
         'Основание' => (string) ($variant->name ?? $product->name),
@@ -173,7 +164,7 @@ class WpcPdfDataHelper
   /**
    * Карточка 3: Уголок (decorProducts / corner)
    */
-  private static function buildCornerCard($products, array $estimate, string $currency): ?array
+  private static function buildCornerCard($products, array $estimate): ?array
   {
     /** @var OrderProduct|null $op */
     $op = $products->first(fn ($p) => in_array($p->variant?->product?->type?->code ?? '', ['decorProducts', 'corner', 'decor_products'], true));
@@ -193,11 +184,9 @@ class WpcPdfDataHelper
 
     $estimateData = self::getEstimateByVariantId($estimate, $variant->id);
     $totalQty = $estimateData['count'] > 0 ? $estimateData['count'] : (int) $op->quantity;
-    $totalPrice = $estimateData['total'] > 0 ? $estimateData['total'] : ($op->quantity * $variant->cost_price);
 
     return [
       'title' => '03 · ОБРАМЛЕНИЕ (УГОЛОК)',
-      'price' => self::formatPrice($totalPrice, $currency),
       'photo' => self::getMediaBase64($variant) ?? self::getMediaBase64($product),
       'specs' => [
         'Наименование' => (string) ($variant->name ?? $product->name),
@@ -212,9 +201,9 @@ class WpcPdfDataHelper
   }
 
   /**
-   * Карточка 4: Ступень (stepBoard)
+   * Карточка 3 (альтернатива): Ступень (stepBoard)
    */
-  private static function buildStepCard($products, array $estimate, string $currency): ?array
+  private static function buildStepCard($products, array $estimate): ?array
   {
     /** @var OrderProduct|null $op */
     $op = $products->first(fn ($p) => in_array($p->variant?->product?->type?->code ?? '', ['stepBoard', 'step_board', 'step'], true));
@@ -234,11 +223,9 @@ class WpcPdfDataHelper
 
     $estimateData = self::getEstimateByVariantId($estimate, $variant->id);
     $totalQty = $estimateData['count'] > 0 ? $estimateData['count'] : (int) $op->quantity;
-    $totalPrice = $estimateData['total'] > 0 ? $estimateData['total'] : ($op->quantity * $variant->cost_price);
 
     return [
-      'title' => '04 · ОБРАМЛЕНИЕ (СТУПЕНЬ)',
-      'price' => self::formatPrice($totalPrice, $currency),
+      'title' => '03 · ОБРАМЛЕНИЕ (СТУПЕНЬ)',
       'photo' => self::getMediaBase64($variant) ?? self::getMediaBase64($product),
       'specs' => [
         'Наименование' => (string) ($variant->name ?? $product->name),
@@ -257,7 +244,7 @@ class WpcPdfDataHelper
      ========================================================================== */
 
   /**
-   * Точный поиск количества и стоимости в смете по ID модификации (variantId)
+   * Точный поиск количества в смете по ID модификации (variantId)
    *
    * @return array{count: int, total: float}
    */
@@ -368,7 +355,8 @@ class WpcPdfDataHelper
    */
   public static function resolveCoverImage(): ?string
   {
-    $path = public_path('images/pdf/cover.jpg');
+    $coverSetting = ltrim((string) config('nicole.company.cover_image', 'images/pdf/cover.jpg'), '/');
+    $path = public_path(ltrim($coverSetting, '/'));
 
     if (file_exists($path)) {
       return 'data:image/jpeg;base64,' . base64_encode((string) file_get_contents($path));
@@ -453,6 +441,4 @@ class WpcPdfDataHelper
     $date = $createdAt ? $createdAt->copy()->addDays($days) : Carbon::now()->addDays($days);
     return $date->locale('ru')->translatedFormat('d F Y');
   }
-
-
 }

@@ -10,18 +10,17 @@
     @include('valerie-wpc::pdf.partials.header', ['theme' => 'light'])
 
     <div class="page-content page-content-materials">
-        <h2 class="materials-page-title">Террасная доска</h2>
+        <h2 class="materials-page-title">Материалы и комплектующие</h2>
 
         <div class="materials-list">
             @foreach($materialCards as $card)
                 <div class="material-card">
-                    {{-- Шапка карточки --}}
+                    {{-- Шапка карточки без вывода цены --}}
                     <div class="material-card__header">
                         <div class="material-card__title">{{ $card['title'] }}</div>
-                        <div class="material-card__price">{{ $card['price'] }}</div>
                     </div>
 
-                    {{-- Тело карточки: Картинка 260x195 + Таблица характеристик --}}
+                    {{-- Тело карточки: Картинка 210x145 + Таблица характеристик --}}
                     <div class="material-card__body">
                         <div class="material-card__photo">
                             @if(!empty($card['photo']))

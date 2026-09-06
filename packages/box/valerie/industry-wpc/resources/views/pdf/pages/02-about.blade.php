@@ -4,6 +4,7 @@
     $section = $order->sections->first();
     $stats = $section ? WpcPdfDataHelper::extractTerraceStats($section) : [];
     $terraceLayoutImage = $section ? WpcPdfDataHelper::resolveTerraceLayoutImage($section, $order) : null;
+    $companyName = config('nicole.company.name', 'POLIVAN GROUP');
 @endphp
 
 <div class="page">
@@ -34,10 +35,10 @@
                 @endforeach
             </div>
 
-            {{-- 3. Описательный текст --}}
+            {{-- 3. Описательный текст с брендом Polivan Group --}}
             <div class="about-desc-text">
-                Благодарим за интерес к террасным решениям VISTEGRA. Ниже — расчёт материалов для {{ mb_strtolower($stats[2]['val'] ?? 'террасы') }},
-                подобранных из коллекций POLIVAN GROUP: настил SINGARAJA с 3D-текстурой дерева и скрытым крепежом, а также
+                Благодарим за интерес к террасным решениям {{ $companyName }}. Ниже — расчёт материалов для {{ mb_strtolower($stats[2]['val'] ?? 'террасы') }},
+                подобранных из коллекций {{ $companyName }}: настил SINGARAJA с 3D-текстурой дерева и скрытым крепежом, а также
                 ограждение DENPASAR — столбы, балясины и перила в цвете «Серый». Все изделия выполнены из ДПК на основе
                 первичного полиэтилена HDPE и бамбуковой муки, с заводской гарантией 15 лет.
             </div>

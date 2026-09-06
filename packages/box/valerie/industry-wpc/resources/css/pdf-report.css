@@ -75,7 +75,7 @@ html, body {
     left: 0;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, #005ECA 0%, #3B96FF 50%, rgba(59, 150, 255, 0) 100%);
+    background: linear-gradient(90deg, #A5D233 0%, #B8DC3C 50%, rgba(184, 220, 60, 0) 100%);
     z-index: 100;
 }
 
@@ -481,7 +481,7 @@ html, body {
 }
 
 /* ==========================================================================
-   6. СТРАНИЦА 3: МАТЕРИАЛЫ (MATERIALS) — ЗОЛОТАЯ СЕРЕДИНА
+   6. СТРАНИЦА 3: МАТЕРИАЛЫ (MATERIALS)
    ========================================================================== */
 .page-content-materials {
     padding: 20mm 50px 16mm 50px !important;
@@ -518,9 +518,7 @@ html, body {
     padding: 8px 14px;
     background-color: var(--brand-blue);
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 14px;
 }
 
 .material-card__title {
@@ -530,19 +528,8 @@ html, body {
     text-transform: uppercase;
     line-height: 15px;
     letter-spacing: 0.8px;
-    flex: 1;
-    min-width: 0;
+    width: 100%;
     word-break: break-word;
-}
-
-.material-card__price {
-    color: #FFFFFF;
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 1;
-    font-feature-settings: 'tnum';
-    white-space: nowrap;
-    flex-shrink: 0;
 }
 
 .material-card__body {

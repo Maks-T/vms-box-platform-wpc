@@ -1,12 +1,14 @@
 @php
     $isDark = ($theme ?? 'light') === 'dark';
+    $site = config('nicole.company.website', config('nicole.company.website_label', 'polivan.com'));
+    $address = config('nicole.company.address', 'Москва / Владивосток');
 @endphp
 
 <div class="pdf-footer {{ $isDark ? 'pdf-footer-dark' : '' }}">
-    <div class="footer-cell-left">{{ config('nicole.company.website_label', 'vistegra.ru') }}</div>
+    <div class="footer-cell-left">{{ $site }}</div>
     <div class="footer-cell-center">
         @if($isDark)
-            {{ config('nicole.company.address', 'Могилев · ул. Космонавтов, д. 19, оф.316') }}
+            {{ $address }}
         @else
             Коммерческое предложение
         @endif

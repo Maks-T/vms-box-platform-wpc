@@ -5,9 +5,9 @@
         ? mb_strtolower(\Carbon\Carbon::parse($order->created_at)->locale('ru')->addDays(30)->translatedFormat('d F Y'))
         : mb_strtolower(\Carbon\Carbon::now()->locale('ru')->addDays(30)->translatedFormat('d F Y'));
 
-    $phone = $order->manager?->phone ?? config('nicole.company.phone', '+375 29 189 8322');
-    $email = $order->manager?->email ?? config('nicole.company.email', 'info@vistegra.by');
-    $site  = config('nicole.company.website_label', 'vistegra.ru');
+    $phone = $order->manager?->phone ?: config('nicole.company.phone', '8 (800) 100-05-75');
+    $email = $order->manager?->email ?: config('nicole.company.email', 'info@polivan.com');
+    $site  = config('nicole.company.website', config('nicole.company.website_label', 'polivan.com'));
 @endphp
 
 <div class="page page-dark">
@@ -45,7 +45,7 @@
             </div>
         </div>
 
-        {{-- 3-колоночная плашка контактов --}}
+        {{-- 3-колоночная плашка контактов из .env --}}
         <div class="contacts-info-card">
             <div class="contact-info-col">
                 <div class="contact-info-lbl">Телефон</div>
