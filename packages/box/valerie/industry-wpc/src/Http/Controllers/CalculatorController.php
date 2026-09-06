@@ -5,66 +5,73 @@ declare(strict_types=1);
 namespace Valerie\Box\IndustryWpc\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Nicole\Box\Core\Models\Order;
-use Nicole\Box\Core\Support\WidgetAssetHelper;
 use Inertia\Inertia;
 use Inertia\Response;
 
+/**
+ * Контроллер монтирования страницы конфигуратора ДПК (WPC).
+ *
+ * @since 2026-09-06
+ */
 class CalculatorController
 {
   /**
-   * Отображение страницы калькулятора ДПК (Террасы / Ограждения).
+   * Отображение страницы калькулятора террас.
    */
-  public function show(Request $request, string $type = 'terrace'): Response
+  public function show(Request $request): Response
   {
     $widgetSlug = 'calculator-app';
     $assets = $this->getAssets($widgetSlug);
 
-    // 1. Поиск заказа (по code или orderId)
-    $orderCode = null;
-    $state = null;
+    $user = auth()->user();
+    $code = $request->query('code') ?? $request->query('orderCode');
 
-    if ($request->filled('code')) {
-      $orderCode = (string)$request->input('code');
-    } elseif ($request->filled('orderId')) {
-      $order = Order::find($request->input('orderId'));
-      $orderCode = $order?->code;
+    // Получаем список названий ролей строго строками
+    $roles = [];
+    if ($user) {
+      if (method_exists($user, 'getRoleNames')) {
+        $roles = $user->getRoleNames()->values()->toArray();
+      } elseif (isset($user->roles)) {
+        $roles = collect($user->roles)->pluck('name')->filter()->values()->toArray();
+      }
     }
 
-    // 2. Получение авторизованного пользователя с fallback для гостей
-    $user = auth()->user();
-
-    $employee = [
-      'id' => $user?->id ?? null,
-      'name' => $user?->name ?? 'Гость / Клиент',
-      'email' => $user?->email ?? 'guest@vms.local',
-      'roles' => ($user && method_exists($user, 'getRoleNames'))
-        ? $user->getRoleNames()->toArray()
-        : ['guest'],
-    ];
-
-    // 3. Формирование initialData строго по схеме oliver-deck (InitialDataProps)
     $initialData = [
-      'apiUrl' => config('app.url') . '/api',
+      'apiUrl' => rtrim((string) config('app.url'), '/') . '/api',
+      'assetsUrl' => rtrim(config('app.url') . '/storage', '/'),
+      'baseUrl' => config('app.url'),
+      'policyLink' => config('nicole.policy_link', '#'),
+      'ofertaLink' => config('nicole.oferta_link', '#'),
       'auth' => [
-        'employee' => $employee,
+        'client' => null,
+        'employee' => $user ? [
+          'id' => (int) $user->id,
+          'name' => (string) $user->name,
+          'email' => (string) $user->email,
+          'roles' => array_values(array_map('strval', $roles)),
+        ] : [
+          'id' => null,
+          'name' => 'Гость',
+          'email' => '',
+          'roles' => [],
+        ],
       ],
+      'type' => 'terrace',
     ];
 
-    // ВАЖНО: orderCode и state строго взаимоисключающие!
-    if ($orderCode) {
-      $initialData['orderCode'] = $orderCode;
+    if (!empty($code)) {
+      $initialData['orderCode'] = (string) $code;
     }
 
     return Inertia::render('Calculator/Show', [
       'assets' => $assets,
       'initialData' => $initialData,
-      'currentType' => $type,
+      'currentType' => 'terrace',
     ]);
   }
 
   /**
-   * Получение скомпилированных ассетов из manifest.json
+   * Поиск собранных бандлов JS и CSS в манифесте виджета.
    */
   protected function getAssets(string $widgetSlug): array
   {
@@ -74,32 +81,21 @@ class CalculatorController
       return ['js' => null, 'css' => null];
     }
 
-    $manifest = json_decode(file_get_contents($manifestPath), true) ?? [];
+    $manifest = json_decode((string) file_get_contents($manifestPath), true);
+    if (!is_array($manifest)) {
+      return ['js' => null, 'css' => null];
+    }
 
     $jsFile = null;
     $cssFile = null;
 
-    // Ищем main.js / main.css в манифесте
-    if (isset($manifest['main.js'])) {
-      $path = $manifest['main.js'];
-      $jsFile = str_starts_with($path, '/') ? $path : url($widgetSlug . '/' . $path);
-    }
+    foreach ($manifest as $key => $path) {
+      if (str_ends_with($key, '.js') && (str_starts_with($key, 'main') || str_starts_with($key, 'index'))) {
+        $jsFile = str_starts_with($path, '/') ? $path : url($widgetSlug . '/' . $path);
+      }
 
-    if (isset($manifest['main.css'])) {
-      $path = $manifest['main.css'];
-      $cssFile = str_starts_with($path, '/') ? $path : url($widgetSlug . '/' . $path);
-    }
-
-    // Fallback перебором ключей, если манифест имеет другой формат
-    if (!$jsFile || !$cssFile) {
-      foreach ($manifest as $key => $path) {
-        if (!$jsFile && str_ends_with($key, '.js') && (str_starts_with($key, 'main') || str_starts_with($key, 'index'))) {
-          $jsFile = str_starts_with($path, '/') ? $path : url($widgetSlug . '/' . $path);
-        }
-
-        if (!$cssFile && str_ends_with($key, '.css') && (str_starts_with($key, 'main') || str_starts_with($key, 'index'))) {
-          $cssFile = str_starts_with($path, '/') ? $path : url($widgetSlug . '/' . $path);
-        }
+      if (str_ends_with($key, '.css') && (str_starts_with($key, 'main') || str_starts_with($key, 'index'))) {
+        $cssFile = str_starts_with($path, '/') ? $path : url($widgetSlug . '/' . $path);
       }
     }
 
