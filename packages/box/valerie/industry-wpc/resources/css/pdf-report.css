@@ -7,11 +7,11 @@
 }
 
 :root {
-
-    --brand-green: #2E5B27;
-    --brand-green-hover: #4FA833;
-    --brand-green-accent: #5BA83A;
-    --brand-green-light: rgba(46, 91, 39, 0.08);
+    /* Фирменная палитра GREENDECKS (в тон акцента WPC из логотипа) */
+    --brand-green: #0E6251;           /* Глубокий благородный изумрудно-тиловый (шапки карточек, плашки сметы) */
+    --brand-green-hover: #00A896;     /* Фирменный бирюзово-зеленый из логотипа WPC (цифры шагов, бордеры, титлы) */
+    --brand-green-accent: #2DD4BF;    /* Светлый аквамарин */
+    --brand-green-light: rgba(0, 168, 150, 0.08);
 
     --bg-dark: #141412;
     --bg-light: #FDFCFA;
@@ -752,7 +752,7 @@ html, body {
 .grand-price-banner {
     width: 100%;
     padding: 16px 20px;
-    background: linear-gradient(90deg, var(--brand-green) 0%, #24491F 100%);
+    background: linear-gradient(90deg, #0E6251 0%, #0A493C 100%);
     border-radius: 8px;
     display: flex;
     justify-content: space-between;
