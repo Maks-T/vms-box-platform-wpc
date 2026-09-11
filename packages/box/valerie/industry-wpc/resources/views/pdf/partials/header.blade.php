@@ -3,9 +3,9 @@
 
     $isDark = ($theme ?? 'light') === 'dark';
     $logoBase64 = WpcPdfDataHelper::resolveLogo($isDark);
-    $companyName = config('nicole.company.name', 'POLIVAN GROUP');
-    $companyPhone = config('nicole.company.phone', '8 (800) 100-05-75');
-    $companyEmail = config('nicole.company.email', 'info@polivan.com');
+    $companyName = config('nicole.company.name', 'GREENDECKS');
+    $companyPhone = config('nicole.company.phone', '+7 (775) 172-07-63');
+    $companyEmail = config('nicole.company.email', 'info@greendecks.kz');
 @endphp
 
 <div class="pdf-header {{ $isDark ? 'pdf-header-dark' : '' }}">

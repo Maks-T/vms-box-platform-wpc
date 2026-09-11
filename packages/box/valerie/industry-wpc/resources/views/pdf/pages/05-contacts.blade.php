@@ -5,11 +5,12 @@
         ? mb_strtolower(\Carbon\Carbon::parse($order->created_at)->locale('ru')->addDays(30)->translatedFormat('d F Y'))
         : mb_strtolower(\Carbon\Carbon::now()->locale('ru')->addDays(30)->translatedFormat('d F Y'));
 
-    // Всегда берем официальные реквизиты компании из config / .env
-    $phone = config('nicole.company.phone', '8 (800) 100-05-75');
-    $email = config('nicole.company.email', 'info@polivan.com');
-    $site  = config('nicole.company.website', config('nicole.company.website_label', 'polivan.com'));
+    // Официальные реквизиты компании из config / .env с дефолтами Greendecks
+    $phone = config('nicole.company.phone', '+7 (775) 172-07-63');
+    $email = config('nicole.company.email', 'info@greendecks.kz');
+    $site  = config('nicole.company.website', config('nicole.company.website_label', 'greendecks.kz'));
 @endphp
+
 
 <div class="page page-dark">
     <div class="top-gradient-line"></div>

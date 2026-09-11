@@ -1,7 +1,7 @@
 @php
     $isDark = ($theme ?? 'light') === 'dark';
-    $site = config('nicole.company.website', config('nicole.company.website_label', 'polivan.com'));
-    $address = config('nicole.company.address', 'Москва / Владивосток');
+    $site = config('nicole.company.website', config('nicole.company.website_label', 'greendecks.kz'));
+    $address = config('nicole.company.address', 'г. Астана, ул. Өндіріс 12/2');
 @endphp
 
 <div class="pdf-footer {{ $isDark ? 'pdf-footer-dark' : '' }}">

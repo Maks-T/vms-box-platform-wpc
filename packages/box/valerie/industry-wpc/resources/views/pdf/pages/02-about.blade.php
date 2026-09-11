@@ -4,7 +4,7 @@
     $section = $order->sections->first();
     $stats = $section ? WpcPdfDataHelper::extractTerraceStats($section) : [];
     $terraceLayoutImage = $section ? WpcPdfDataHelper::resolveTerraceLayoutImage($section, $order) : null;
-    $companyName = config('nicole.company.name', 'POLIVAN GROUP');
+    $companyName = config('nicole.company.name', 'GREENDECKS');
 @endphp
 
 <div class="page">
@@ -35,12 +35,11 @@
                 @endforeach
             </div>
 
-            {{-- 3. Описательный текст с брендом Polivan Group --}}
+            {{-- 3. Описательный текст с брендом Greendecks --}}
             <div class="about-desc-text">
                 Благодарим за интерес к террасным решениям {{ $companyName }}. Ниже — расчёт материалов для {{ mb_strtolower($stats[2]['val'] ?? 'террасы') }},
-                подобранных из коллекций {{ $companyName }}: настил SINGARAJA с 3D-текстурой дерева и скрытым крепежом, а также
-                ограждение DENPASAR — столбы, балясины и перила в цвете «Серый». Все изделия выполнены из ДПК на основе
-                первичного полиэтилена HDPE и бамбуковой муки, с заводской гарантией 15 лет.
+                подобранных из коллекций {{ $companyName }}: долговечный настил из ДПК с выразительной фактурой дерева и скрытым крепежом, а также
+                комплектующие и элементы обрамления. Изделия выполнены из экологичного композита, устойчивы к влаге и перепадам температур, с заводской гарантией 25 лет.
             </div>
         </div>
     </div>

@@ -32,7 +32,7 @@
             @if(!empty($coverLogoBase64))
                 <img src="{{ $coverLogoBase64 }}" alt="Logo" class="cover-logo-img" />
             @else
-                <span class="cover-brand-title">{{ config('nicole.company.name', 'POLIVAN GROUP') }}</span>
+                <span class="cover-brand-title">{{ config('nicole.company.name', 'GREENDECKS') }}</span>
             @endif
 
             <div class="cover-doc-meta">

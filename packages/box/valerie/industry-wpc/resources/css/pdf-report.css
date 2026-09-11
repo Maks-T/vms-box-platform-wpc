@@ -7,11 +7,11 @@
 }
 
 :root {
-    /* Фирменная эко-палитра POLIVAN GROUP */
-    --brand-green: #489117;           /* Основной травяной зеленый (кнопки, плашки, шапки) */
-    --brand-green-hover: #7CBF2B;     /* Яркий лаймовый акцент (подсветка, титлы, бордеры) */
-    --brand-green-accent: #8EC427;    /* Светлый шартрез (из кругов логотипа) */
-    --brand-green-light: rgba(72, 145, 23, 0.08);
+
+    --brand-green: #2E5B27;
+    --brand-green-hover: #4FA833;
+    --brand-green-accent: #5BA83A;
+    --brand-green-light: rgba(46, 91, 39, 0.08);
 
     --bg-dark: #141412;
     --bg-light: #FDFCFA;
@@ -26,6 +26,7 @@
     --text-secondary: #5A5750;
     --text-muted: #928E88;
     --text-white: #FFFFFF;
+
 }
 
 * {
@@ -78,7 +79,7 @@ html, body {
     left: 0;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, #489117 0%, #7CBF2B 50%, rgba(124, 191, 43, 0) 100%);
+    background: linear-gradient(90deg, var(--brand-green) 0%, var(--brand-green-hover) 50%, rgba(69, 140, 46, 0) 100%);
     z-index: 100;
 }
 
@@ -751,7 +752,7 @@ html, body {
 .grand-price-banner {
     width: 100%;
     padding: 16px 20px;
-    background-color: var(--brand-green);
+    background: linear-gradient(90deg, var(--brand-green) 0%, #24491F 100%);
     border-radius: 8px;
     display: flex;
     justify-content: space-between;
@@ -860,7 +861,7 @@ html, body {
 }
 
 .step-desc {
-    color: rgba(255, 255, 255, 0.50);
+    color: rgba(255, 255, 255, 0.70);
     font-size: 11px;
     font-weight: 400;
     line-height: 15.4px;
