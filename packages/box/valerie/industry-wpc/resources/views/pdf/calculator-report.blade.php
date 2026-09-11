@@ -4,6 +4,7 @@
         'RUB' => '₽',
         'USD' => '$',
         'BYN' => 'Br',
+        'KZT' => '₸',
         default => $order->currency
     };
 
