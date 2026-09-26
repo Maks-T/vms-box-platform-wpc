@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Providers\Filament;
 
-use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
-use CmsMulti\FilamentClearCache\FilamentClearCachePlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -23,10 +21,7 @@ use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 use Nicole\Box\Core\NicoleCorePlugin;
-
-use Outerweb\FilamentTranslatableFields\TranslatableFieldsPlugin;
 use Valerie\Box\IndustryWpc\ValerieWpcPlugin;
 
 class AdminPanelProvider extends PanelProvider
@@ -39,7 +34,7 @@ class AdminPanelProvider extends PanelProvider
       ->path('admin')
       ->login()
       ->colors([
-        'primary' => \Filament\Support\Colors\Color::Lime,
+        'primary' => Color::Lime,
       ])
       ->viteTheme('resources/css/filament/admin/theme.css')
       ->maxContentWidth(Width::Full)
@@ -51,7 +46,7 @@ class AdminPanelProvider extends PanelProvider
       ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
       ->discoverClusters(in: app_path('Filament/Clusters'), for: 'App\\Filament\\Clusters')
       ->widgets([
-        Widgets\AccountWidget::class
+        Widgets\AccountWidget::class,
       ])
       ->middleware([
         EncryptCookies::class,
@@ -71,34 +66,15 @@ class AdminPanelProvider extends PanelProvider
         Dashboard::class,
       ])
       ->navigationGroups([
-        NavigationGroup::make()
-          ->label(fn (): string => __('Catalog')),
-
-
-        NavigationGroup::make()
-          ->label(fn (): string => __('Catalog Settings'))
-          ->collapsed(),
-
-        NavigationGroup::make()
-          ->label(fn (): string => __('Inventory')),
-
-
-        NavigationGroup::make()
-          ->label(fn (): string => __('Access Control'))
-          ->collapsed(),
+        NavigationGroup::make()->label(fn (): string => __('Catalog')),
+        NavigationGroup::make()->label(fn (): string => __('Configurations')),
+        NavigationGroup::make()->label(fn (): string => __('Catalog Settings'))->collapsed(),
+        NavigationGroup::make()->label(fn (): string => __('Inventory')),
+        NavigationGroup::make()->label(fn (): string => __('Access Control'))->collapsed(),
       ])
       ->plugins([
-        FilamentClearCachePlugin::make(),
         NicoleCorePlugin::make(),
         ValerieWpcPlugin::make(),
-
-        SpatieTranslatablePlugin::make()
-          ->defaultLocales(config('nicole.locales', ['ru', 'en'])),
-
-        TranslatableFieldsPlugin::make()
-          ->supportedLocales(config('nicole.locales', ['ru', 'en'])),
-
-        FilamentShieldPlugin::make()->navigationGroup('Контроль доступа'),
       ]);
   }
 }
