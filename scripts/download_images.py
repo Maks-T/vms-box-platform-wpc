@@ -61,8 +61,8 @@ def resolve_base_dir(custom_dir: str | None) -> str:
 
 def sanitize_filename(url: str) -> str:
     """Генерация чистого и уникального имени файла WebP"""
-    parsed = urllib.parse.urlparse(url)
-    raw_name = os.path.basename(parsed.path)
+    parsed = urllib.parse.urlsplit(url)
+    raw_name = os.path.basename(urllib.parse.unquote(parsed.path))
 
     if not raw_name:
         url_hash = hashlib.md5(url.encode('utf-8')).hexdigest()[:8]
@@ -124,10 +124,21 @@ def optimize_and_save_image(source_path: str, dest_path: str, max_size: int = 60
         return False
 
 
+def safe_url(url: str) -> str:
+    """Корректное экранирование пробелов и спецсимволов в URL для urllib"""
+    parsed = urllib.parse.urlsplit(url)
+    clean_path = urllib.parse.unquote(parsed.path)
+    quoted_path = urllib.parse.quote(clean_path, safe="/:@!$&'()*+,;=-_~")
+    clean_query = urllib.parse.unquote(parsed.query)
+    quoted_query = urllib.parse.quote(clean_query, safe="=&:@!$'()*+,;/?-_~")
+    return urllib.parse.urlunsplit((parsed.scheme, parsed.netloc, quoted_path, quoted_query, parsed.fragment))
+
+
 def download_file(url: str, dest_path: str) -> bool:
     """Безопасное скачивание файла по сети"""
+    encoded_url = safe_url(url)
     req = urllib.request.Request(
-        url,
+        encoded_url,
         headers={
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
             'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8'
