@@ -23,6 +23,119 @@
     .dummy-calc-anchor {
         display: none;
     }
+
+    /* ==========================================================================
+       СТИЛИЗАЦИЯ КАЛЬКУЛЯТОРА (OLIVER-DECK) В ПАЛИТРЕ GREENDECKS
+       ========================================================================== */
+    #calcAppRoot,
+    [data-slot="dialog-content"],
+    [data-slot="drawer-popup"],
+    [data-slot="drawer-content"],
+    [data-slot="popover-content"],
+    [data-slot="combobox-content"],
+    [data-slot="select-content"],
+    [data-slot="dropdown-menu-content"] {
+        /* Цвета темы UI */
+        --primary: #024700 !important;
+        --primary-foreground: #ffffff !important;
+        --ring: #a5c33c !important;
+        --accent: #f3fff0 !important;
+        --accent-foreground: #024700 !important;
+        --background: #ffffff !important;
+        --foreground: #1a1f16 !important;
+        --card: #ffffff !important;
+        --card-foreground: #1a1f16 !important;
+        --popover: #ffffff !important;
+        --popover-foreground: #1a1f16 !important;
+        --border: #e2e8f0 !important;
+        --input: #e2e8f0 !important;
+        --muted: #f4f5f0 !important;
+        --muted-foreground: #64748b !important;
+
+        /* Цвета 2D-сцены Konva (реактивно читаются через useCssColor) */
+        --canvas-background: #f8faf8 !important;
+        --canvas-contour-stroke: #273007 !important;
+        --canvas-contour-fill: rgba(165, 195, 60, 0.08) !important;
+        --canvas-contour-base-stroke: #273007 !important;
+        --canvas-base-stroke: #273007 !important;
+
+        /* Настил ДПК (древесный венге / шоколад) */
+        --canvas-decking-fill: #6d4327 !important;
+        --canvas-decking-stroke: #3b2214 !important;
+        --canvas-decking-foreground: #ffffff !important;
+
+        /* Лаги монтажные (алюминий / композит) */
+        --canvas-joists-fill: #4b5563 !important;
+        --canvas-joists-stroke: #374151 !important;
+
+        /* Кляймеры и крепеж */
+        --canvas-cleats-row-fill: #1e293b !important;
+        --canvas-cleats-row-stroke: #0f172a !important;
+        --canvas-cleats-start-fill: #a5c33c !important;
+        --canvas-cleats-start-stroke: #809c25 !important;
+
+        /* Ступени и отделочный профиль */
+        --canvas-step-board-fill: #5a3823 !important;
+        --canvas-step-board-stroke: #2d1e18 !important;
+        --canvas-step-board-foreground: #ffffff !important;
+        --canvas-decorative-corner-fill: #a5c33c !important;
+        --canvas-decorative-corner-stroke: #809c25 !important;
+
+        /* Размеры и метки */
+        --canvas-dimension-stroke: #024700 !important;
+        --canvas-dimension-label-fill-editable: #f3fff0 !important;
+        --canvas-dimension-input-bg: #ffffff !important;
+    }
+
+    /* Кнопки виджета */
+    #calcAppRoot [data-slot="button"][data-variant="default"],
+    [data-slot="dialog-content"] [data-slot="button"][data-variant="default"] {
+        background-color: #024700 !important;
+        color: #ffffff !important;
+        font-weight: 700 !important;
+        transition: all 0.2s ease !important;
+    }
+
+    #calcAppRoot [data-slot="button"][data-variant="default"]:hover,
+    [data-slot="dialog-content"] [data-slot="button"][data-variant="default"]:hover {
+        background-color: #000000 !important;
+    }
+
+    /* Селекты и поля ввода */
+    #calcAppRoot [data-slot="select-trigger"]:focus-visible,
+    #calcAppRoot [data-slot="input"]:focus-visible,
+    [data-slot="dialog-content"] input:focus-visible {
+        border-color: #a5c33c !important;
+        box-shadow: 0 0 0 3px rgba(165, 195, 60, 0.25) !important;
+    }
+
+    /* Активные свитчеры и радио */
+    #calcAppRoot [role="switch"][data-state="checked"] {
+        background-color: #024700 !important;
+    }
+
+    #calcAppRoot [role="radio"][data-state="checked"] {
+        border-color: #024700 !important;
+    }
+
+    /* Выпадающие пункты комбобоксов и селектов */
+    [data-slot="combobox-item"]:hover,
+    [data-slot="combobox-item"][data-highlighted],
+    [data-slot="select-item"]:hover,
+    [data-slot="select-item"][data-highlighted] {
+        background-color: #f3fff0 !important;
+        color: #024700 !important;
+    }
+
+    /* Выпадающие списки селектов и комбобоксов поверх модальных окон */
+    div:has(> [data-slot="select-content"]),
+    div:has(> [data-slot="combobox-content"]),
+    [data-slot="select-content"],
+    [data-slot="combobox-content"],
+    [data-slot="popover-content"],
+    [data-slot="dropdown-menu-content"] {
+        z-index: 60 !important;
+    }
 }
 
 /** ИНТЕГРАЦИЯ С TAILWIND V4 */

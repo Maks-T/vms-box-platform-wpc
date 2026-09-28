@@ -146,9 +146,9 @@ export default function CalculatorShow({ assets, initialData, currentType }: Pro
         <meta name="description" content="Рассчитайте точное количество материалов и стоимость террасы из ДПК за 2 минуты." />
       </Head>
 
-      <SectionLayout containerVariant="page" className="pt-4 md:pt-6 pb-8 md:pb-12 bg-gray-50">
+      <SectionLayout containerVariant="page" className="pt-4 md:pt-6 pb-8 md:pb-12 bg-gray-50 relative z-30">
 
-        <div className="w-full relative z-10 bg-white rounded-2xl border border-border p-2 sm:p-4 md:p-6 shadow-sm">
+        <div className="w-full bg-white rounded-2xl border border-border p-2 sm:p-4 md:p-6 shadow-sm">
           <div className="relative w-full">
             {!isWidgetReady && (
               <div className="absolute inset-0 z-10 bg-white flex items-center justify-center rounded-2xl min-h-[500px]">
