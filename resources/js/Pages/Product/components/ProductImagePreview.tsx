@@ -28,9 +28,10 @@ export function ProductImagePreview({image, name, externalCode, id}: Props) {
       )}
 
       <div className="absolute top-6 left-6">
-        <StatusBadge variant="blue">
-          Артикул: {externalCode || id}
-        </StatusBadge>
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-lightBg border border-green-200 text-brand-forest text-xs font-bold shadow-xs">
+          <span className="w-1.5 h-1.5 rounded-full bg-brand-forest" />
+          <span>Артикул: {externalCode || id}</span>
+        </div>
       </div>
     </GlassPanel>
   );

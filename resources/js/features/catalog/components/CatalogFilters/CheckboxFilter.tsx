@@ -27,7 +27,7 @@ export const CheckboxFilter = ({ options, activeValues, onToggle }: any) => (
             <div className={cn(
               "size-4 rounded-[5px] border transition-all flex items-center justify-center cursor-pointer",
               isChecked
-                ? "bg-primary border-primary text-primary-foreground shadow-xs"
+                ? "bg-brand-forest border-brand-forest text-white shadow-xs"
                 : "bg-input/80 border-border group-hover:border-foreground/40"
             )}>
               <Check className={cn("size-3 text-white stroke-[3.5px] transition-opacity", isChecked ? "opacity-100" : "opacity-0")} />
@@ -39,7 +39,7 @@ export const CheckboxFilter = ({ options, activeValues, onToggle }: any) => (
 
             <span className={cn(
               "text-sm leading-tight transition-colors cursor-pointer",
-              isChecked ? "text-foreground font-bold" : "text-muted-foreground font-medium group-hover:text-foreground"
+              isChecked ? "text-brand-forest font-bold" : "text-muted-foreground font-medium group-hover:text-brand-forest"
             )}>
               {opt.label}
             </span>

@@ -17,34 +17,31 @@ export interface SocialItem {
 
 export const siteConfig = {
   company: {
-    name: "VMS-NC Cloud SaaS",
-    status: "Каталог VMS-NC",
-    copyright: `© ${new Date().getFullYear()} Vistegra. Все права защищены.`,
+    name: "GreenDECKS",
+    subName: "Composite WPC",
+    status: "Склад в Астане",
+    warehouse: "г. Астана, ул. Өндіріс, 12/2",
+    schedule: "Пн-Сб: 09:00 - 18:00",
+    bin: "240440006864",
+    copyright: `© 2014–${new Date().getFullYear()} GREENDECKS. Все права защищены.`,
   },
 
   contacts: {
-    phone: { label: "+375 29 189-83-22", href: "tel:+375291898322" },
-    email: { label: "info@vistegra.by", href: "mailto:info@vistegra.by" },
+    phone: { label: "+7 775 172 07 63", href: "tel:+77751720763" },
+    email: { label: "info@greendecks.kz", href: "mailto:info@greendecks.kz" },
+    whatsapp: { label: "+7 775 172 07 63", href: "https://wa.me/77751720763" },
   },
 
   socials: [
-    { id: 'telegram', src: "/images/icons/telegram.svg", href: "https://t.me/Andrey_Uglikov", label: "Telegram" },
-    { id: 'viber', src: "/images/icons/viber.svg", href: "viber://chat?number=+375291898322", label: "Viber" },
-    { id: 'whatsapp', src: "/images/icons/whatsapp.svg", href: "https://wa.me/375291898322", label: "WhatsApp" },
-    { id: 'chanel', src: "/images/icons/chanel.svg", href: "https://t.me/margin_sense", label: "Канал основателя" },
-    {
-      id: 'linkedin',
-      src: "/images/icons/linkedin.svg",
-      href: "https://www.linkedin.com/in/andrey-uglikov-4945881a8/",
-      label: "LinkedIn"
-    },
+    { id: 'instagram', href: "https://www.instagram.com/greendecks_kz/", label: "Instagram" },
+    { id: 'youtube', href: "https://www.youtube.com/@greendeckS_kz", label: "YouTube" },
+    { id: 'tiktok', href: "https://tiktok.com", label: "TikTok" },
+    { id: 'telegram', href: "https://t.me/greendecksKZ", label: "Telegram" },
   ] as SocialItem[],
 
   headerNav: [
-    { label: 'Калькулятор', href: route('calculator.show'), disabled: false, forceRefresh: true },
-    { label: 'Конфигурация', href: route('bootstrap'), disabled: false },
     { label: 'Каталог', href: route('catalog'), disabled: false },
-    /*{ label: 'Услуги (Матрица)', href: route('services'), disabled: false },*/
-    { label: 'О компании', href: 'https://vistegra.ru/', disabled: false, isExternal: true },
+    { label: 'Калькулятор', href: route('calculator.show'), disabled: false, forceRefresh: true },
+    { label: 'Контакты', href: '#contacts', disabled: false },
   ] as (NavItem & { forceRefresh?: boolean })[],
 };

@@ -11,6 +11,10 @@ import { useCatalogApi } from '@/features/catalog/hooks/useCatalogApi';
 import { CatalogHeroBlock } from './components/CatalogHeroBlock';
 import { CatalogNavigationBlock } from './components/CatalogNavigationBlock';
 import { ProductGridBlock } from './components/ProductGridBlock';
+import { ValuesBlock } from './components/ValuesBlock';
+import { CalculatorTeaserBlock } from './components/CalculatorTeaserBlock';
+import { FaqBlock } from './components/FaqBlock';
+import { ContactsBlock } from './components/ContactsBlock';
 import { ApiInspector } from '@widgets/ApiInspector';
 import { useDevMode } from '@/shared/hooks/useDevMode';
 
@@ -54,13 +58,12 @@ export default function CatalogIndex() {
 
   return (
     <MainLayout headerOverlaps={false}>
-      <Head title={`${activeFamilyName || 'Каталог'} - VMS-NC Box`} />
+      <Head title={`${activeFamilyName || 'Каталог'} — GreenDECKS Казахстан`} />
 
-      {/* Компактный заголовок каталога */}
       <CatalogHeroBlock />
 
-      {/* Контентная часть (без огромных дыр) */}
-      <SectionLayout containerVariant="content" className="pt-2 pb-16">
+      {/* Секция каталога с фильтрами */}
+      <SectionLayout id="catalog" containerVariant="content" className="pt-8 pb-16">
         <CatalogNavigationBlock
           familiesList={familiesList}
           activeFamily={family}
@@ -116,6 +119,18 @@ export default function CatalogIndex() {
           </div>
         </div>
       </SectionLayout>
+
+      {/* Ценности и возможности */}
+      <ValuesBlock />
+
+      {/* Тизер калькулятора */}
+      <CalculatorTeaserBlock />
+
+      {/* Часто задаваемые вопросы */}
+      <FaqBlock />
+
+      {/* Контакты и реквизиты */}
+      <ContactsBlock />
     </MainLayout>
   );
 }

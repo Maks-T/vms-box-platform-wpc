@@ -13,8 +13,8 @@ export const CatalogPills = ({ families, activeFamily, onChange }: Props) => {
   const basePill = "group flex items-center gap-3 h-[46px] md:h-[54px] rounded-full border transition-all duration-300 shrink-0 overflow-hidden cursor-pointer pl-2 pr-6 md:pr-8";
 
   
-  const activeClass = "bg-primary border-primary text-primary-foreground shadow-md";
-  const inactiveClass = "bg-card border-border text-muted-foreground hover:border-primary/40 hover:text-foreground shadow-sm";
+  const activeClass = "bg-brand-forest border-brand-forest text-white shadow-md";
+  const inactiveClass = "bg-card border-border text-muted-foreground hover:border-brand-forest/40 hover:text-foreground shadow-sm";
 
   return (
     <div className="mb-2">
@@ -32,8 +32,8 @@ export const CatalogPills = ({ families, activeFamily, onChange }: Props) => {
                 "w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center font-bold text-xs shrink-0 transition-colors",
 
                 isActive
-                  ? "bg-primary-foreground text-primary"
-                  : "bg-muted text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary"
+                  ? "bg-brand-lime text-brand-charcoal"
+                  : "bg-muted text-muted-foreground group-hover:bg-brand-forest/10 group-hover:text-brand-forest"
               )}>
                 {family.name.charAt(0)}
               </div>

@@ -46,7 +46,7 @@ export const FavoriteItemRow = ({ item, onRemove, onNavigate, currencySymbol }: 
       {/* Описание и цена */}
       <ItemContent className="min-w-0 flex-1 flex flex-col justify-between py-0.5">
         <div className="flex items-center gap-1.5 mb-1">
-          <Badge variant="secondary" className="text-[10px] px-1.5 py-0 h-4 font-bold rounded-md">
+          <Badge variant="secondary" className="text-[10px] px-1.5 py-0 h-4 font-bold rounded-md bg-brand-lightBg text-brand-forest border border-brand-forest/20">
             ID {item.id}
           </Badge>
         </div>
@@ -54,7 +54,7 @@ export const FavoriteItemRow = ({ item, onRemove, onNavigate, currencySymbol }: 
         <Link
           href={route('product.show', item.slug)}
           onClick={onNavigate}
-          className="font-bold text-sm leading-snug text-foreground hover:text-primary transition-colors line-clamp-2 cursor-pointer"
+          className="font-bold text-sm leading-snug text-foreground hover:text-brand-forest transition-colors line-clamp-2 cursor-pointer"
         >
           {item.name}
         </Link>

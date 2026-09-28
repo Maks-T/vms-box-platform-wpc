@@ -105,7 +105,7 @@ export const ProductCard = ({ product, bootstrapConfig }: ProductCardProps) => {
         </Link>
 
         {/* Бейдж ID */}
-        <Badge variant="secondary" className="absolute top-3 left-3 bg-background/90 backdrop-blur-xs border border-border text-[10px] font-bold px-2 py-0.5 shadow-xs">
+        <Badge variant="secondary" className="absolute top-3 left-3 bg-brand-lightBg/95 text-brand-forest border border-brand-forest/20 text-[10px] font-bold px-2 py-0.5 shadow-xs">
           ID {id}
         </Badge>
 
@@ -127,7 +127,7 @@ export const ProductCard = ({ product, bootstrapConfig }: ProductCardProps) => {
         </div>
 
         <Link href={route('product.show', slug)} className="cursor-pointer">
-          <h3 className="text-base font-bold text-foreground leading-snug tracking-tight group-hover:text-primary transition-colors line-clamp-2 min-h-[40px]">
+          <h3 className="text-base font-bold text-foreground leading-snug tracking-tight group-hover:text-brand-forest transition-colors line-clamp-2 min-h-[40px]">
             {name}
           </h3>
         </Link>
@@ -144,7 +144,7 @@ export const ProductCard = ({ product, bootstrapConfig }: ProductCardProps) => {
                   onClick={(e) => handleColorClick(e, color)}
                   className={cn(
                     "size-5 rounded-full border border-black/15 shadow-xs cursor-pointer transition-transform hover:scale-110 shrink-0",
-                    isSelected ? "ring-2 ring-primary ring-offset-1 scale-105" : "opacity-75 hover:opacity-100"
+                    isSelected ? "ring-2 ring-brand-forest ring-offset-1 scale-105" : "opacity-75 hover:opacity-100"
                   )}
                   style={{ backgroundColor: color.meta?.hex || '#ccc' }}
                 >
@@ -178,16 +178,12 @@ export const ProductCard = ({ product, bootstrapConfig }: ProductCardProps) => {
             </div>
           </div>
 
-          <Button
-            size="sm"
-            variant="default"
-            className="cursor-pointer font-semibold rounded-xl px-4"
-            asChild
+          <Link
+            href={route('product.show', slug)}
+            className="inline-flex items-center justify-center bg-brand-forest hover:bg-black text-white text-xs font-heading font-bold uppercase tracking-wider px-4 py-2 rounded-xl transition shadow-xs active:scale-95"
           >
-            <Link href={route('product.show', slug)}>
-              Подробнее
-            </Link>
-          </Button>
+            Подробнее
+          </Link>
         </div>
       </div>
     </Card>

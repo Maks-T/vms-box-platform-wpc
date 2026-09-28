@@ -27,8 +27,16 @@
 
 /** ИНТЕГРАЦИЯ С TAILWIND V4 */
 @theme {
-    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    --font-heading: var(--font-sans);
+    --font-sans: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-heading: "Montserrat", sans-serif;
+
+    /* Фирменная палитра GreenDECKS */
+    --color-brand-lime: #a5c33c;
+    --color-brand-lime-hover: #93ae34;
+    --color-brand-forest: #024700;
+    --color-brand-dark-olive: #273007;
+    --color-brand-light-bg: #f3fff0;
+    --color-brand-charcoal: #1a1f16;
 
     /* Базовые цвета shadcn / oliver-deck */
     --color-background: var(--background);

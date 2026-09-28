@@ -9,8 +9,8 @@ interface FavoritesEmptyStateProps {
 export const FavoritesEmptyState = ({ onClose }: FavoritesEmptyStateProps) => {
   return (
     <div className="h-full flex flex-col items-center justify-center text-center p-6 min-h-[350px]">
-      <div className="size-16 rounded-2xl bg-muted/60 flex items-center justify-center mb-4 border border-border shadow-xs">
-        <Heart className="size-7 text-muted-foreground/40" strokeWidth={1.5} />
+      <div className="size-16 rounded-2xl bg-brand-lightBg flex items-center justify-center mb-4 border border-green-200 shadow-xs">
+        <Heart className="size-7 text-brand-forest/60" strokeWidth={1.5} />
       </div>
       <h4 className="text-base font-bold text-foreground mb-1.5">
         Список избранного пуст
@@ -18,14 +18,13 @@ export const FavoritesEmptyState = ({ onClose }: FavoritesEmptyStateProps) => {
       <p className="text-xs text-muted-foreground max-w-[240px] leading-relaxed mb-6">
         Нажимайте на сердечко у товаров, чтобы быстро вернуться к ним при расчете сметы.
       </p>
-      <Button
+      <button
         onClick={onClose}
-        variant="default"
-        size="sm"
-        className="rounded-xl px-5 font-semibold cursor-pointer"
+        type="button"
+        className="bg-brand-forest hover:bg-black text-white text-xs font-heading font-bold uppercase tracking-wider px-6 py-2.5 rounded-xl transition shadow-xs active:scale-95 cursor-pointer"
       >
         Перейти в каталог
-      </Button>
+      </button>
     </div>
   );
 };

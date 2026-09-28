@@ -11,11 +11,11 @@ interface MainLayoutProps extends PropsWithChildren {
 
 export default function MainLayout({ children, headerOverlaps = false }: MainLayoutProps) {
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50 font-sans text-foreground selection:bg-[#005ECA] selection:text-white">
-      {/* Темная шапка */}
+    <div className="flex flex-col min-h-screen bg-slate-50 font-sans text-foreground selection:bg-brand-lime selection:text-brand-charcoal">
+      {/* Шапка GreenDECKS */}
       <div className={cn(
         "w-full z-50 transition-colors duration-300",
-        headerOverlaps ? "absolute top-0 left-0 bg-transparent" : "relative bg-[#11141A]"
+        headerOverlaps ? "absolute top-0 left-0 bg-transparent" : "relative"
       )}>
         <Header />
       </div>

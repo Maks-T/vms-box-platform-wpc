@@ -17,7 +17,7 @@ export const FavoritesDrawer = () => {
     }
   }, [isOpen]);
 
-  const currencySymbol = bootstrapConfig?.base_currency?.symbol_native || bootstrapConfig?.base_currency?.symbol || 'руб.';
+  const currencySymbol = bootstrapConfig?.base_currency?.symbol_native || bootstrapConfig?.base_currency?.symbol || 'тенге';
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -46,7 +46,7 @@ export const FavoritesDrawer = () => {
         {items.length > 0 && (
           <div className="p-5 border-t border-border bg-muted/30 shrink-0 flex items-center justify-between text-xs text-muted-foreground">
             <span>Всего товаров: <strong className="text-foreground">{items.length}</strong></span>
-            <span className="text-[11px] font-mono uppercase tracking-wider">VISTEGRA DECK</span>
+            <span className="text-[11px] font-mono uppercase tracking-wider text-brand-forest font-bold">GREENDECKS</span>
           </div>
         )}
       </SheetContent>

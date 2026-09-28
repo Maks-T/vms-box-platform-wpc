@@ -38,8 +38,8 @@ export function CatalogNavigationBlock({
             className={cn(
               "px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all border cursor-pointer outline-none",
               productType === ''
-                ? "bg-primary text-primary-foreground border-primary shadow-xs"
-                : "bg-muted/60 border-transparent text-muted-foreground hover:bg-muted hover:text-foreground"
+                ? "bg-brand-forest text-white border-brand-forest shadow-xs font-bold"
+                : "bg-white border-gray-200 text-gray-700 hover:border-brand-forest/40 hover:text-brand-forest shadow-2xs"
             )}
           >
             Все типы
@@ -52,8 +52,8 @@ export function CatalogNavigationBlock({
               className={cn(
                 "px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all border cursor-pointer outline-none",
                 productType === t.code
-                  ? "bg-primary text-primary-foreground border-primary shadow-xs"
-                  : "bg-muted/60 border-transparent text-muted-foreground hover:bg-muted hover:text-foreground"
+                  ? "bg-brand-forest text-white border-brand-forest shadow-xs font-bold"
+                  : "bg-white border-gray-200 text-gray-700 hover:border-brand-forest/40 hover:text-brand-forest shadow-2xs"
               )}
             >
               {t.name}

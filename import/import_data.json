@@ -18,36 +18,6 @@
       "rate": 1,
       "is_default": true,
       "is_active": true
-    },
-    {
-      "code": "RUB",
-      "symbol": "₽",
-      "symbol_native": {
-        "ru": "руб.",
-        "en": "rub."
-      },
-      "name": {
-        "ru": "Российский рубль",
-        "en": "Russian Ruble"
-      },
-      "rate": 1,
-      "is_default": true,
-      "is_active": true
-    },
-    {
-      "code": "USD",
-      "symbol": "$",
-      "symbol_native": {
-        "ru": "долл.",
-        "en": "$"
-      },
-      "name": {
-        "ru": "Доллар США",
-        "en": "US Dollar"
-      },
-      "rate": 94.4,
-      "is_default": false,
-      "is_active": true
     }
   ],
   "price_types": [
@@ -72,6 +42,14 @@
       "name": {
         "ru": "Террасный настил",
         "en": "Terrace Decking Systems"
+      }
+    },
+    {
+      "external_code": "fam_hardware_accessories",
+      "code": "hardware_accessory",
+      "name": {
+        "ru": "Комплектующие и крепеж",
+        "en": "Hardware & Accessories"
       }
     }
   ],
@@ -195,7 +173,7 @@
     },
     {
       "external_code": "type_brackets",
-      "family_external_code": "fam_decking_systems",
+      "family_external_code": "fam_hardware_accessories",
       "code": "brackets",
       "name": {
         "ru": "Кляймеры и кронштейны",
@@ -218,7 +196,7 @@
     },
     {
       "external_code": "type_fasteners",
-      "family_external_code": "fam_decking_systems",
+      "family_external_code": "fam_hardware_accessories",
       "code": "fasteners",
       "name": {
         "ru": "Крепеж и саморезы",
@@ -241,7 +219,7 @@
     },
     {
       "external_code": "type_decorProducts",
-      "family_external_code": "fam_decking_systems",
+      "family_external_code": "fam_hardware_accessories",
       "code": "decorProducts",
       "name": {
         "ru": "Декоративные изделия (уголки)",
@@ -2106,7 +2084,7 @@
           "meta": {
             "width": 3900,
             "type": "econ",
-            "formula_3000_4000": "3900",
+            "formula_3000_4000": "3000+900/900+3000",
             "formula_3000": "3000+900/900+3000",
             "formula_4000": "3900"
           },
@@ -6186,9 +6164,9 @@
           "meta": {
             "width": 15900,
             "type": "econ",
-            "formula_3000_4000": "3950+4000+4000+3950/2000+3950+4000+3950+2000",
+            "formula_3000_4000": "4000+4000+4000+1900/1900+4000+4000+4000",
             "formula_3000": "2980+2980+2980+2980+2980+1000/1000+2980+2980+2980+2980+2980",
-            "formula_4000": "3950+4000+4000+3950/2000+3950+4000+3950+2000"
+            "formula_4000": "4000+4000+4000+1900/1900+4000+4000+4000"
           },
           "sort_order": 15900,
           "is_active": true
@@ -6485,7 +6463,6 @@
       ]
     }
   ],
-  "price_groups": [],
   "products": [
     {
       "external_code": "gdk_easydecking_doska_dlya_terras_i_fasadov_ea_145_21",
@@ -6507,8 +6484,7 @@
         "length_mm": 3010,
         "width_mm": 145,
         "thickness_mm": 21,
-        "source_url": "",
-        "color": "opt_chestnut"
+        "source_url": ""
       },
       "variants": [
         {
@@ -6526,7 +6502,9 @@
           "currency": "KZT",
           "price": 20590,
           "preview_picture": "products/z2tjcvjw1psl0ia273ryn8lovpqwaahe_ec1232.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_chestnut"
+          },
           "is_active": true
         },
         {
@@ -6544,7 +6522,9 @@
           "currency": "KZT",
           "price": 20590,
           "preview_picture": "products/jy11gxjlp4sj9qs56qf267mupkobmd1y_f78acd.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_oak"
+          },
           "is_active": true
         }
       ],
@@ -6571,8 +6551,7 @@
         "length_mm": 4000,
         "width_mm": 140,
         "thickness_mm": 25,
-        "source_url": "https://greendecks.kz/katalog/item/doska_terrasnaya_timber_essential_140_25_4000_mm_grey/",
-        "color": "opt_grey"
+        "source_url": "https://greendecks.kz/katalog/item/doska_terrasnaya_timber_essential_140_25_4000_mm_grey/"
       },
       "variants": [
         {
@@ -6590,7 +6569,9 @@
           "currency": "KZT",
           "price": 18320,
           "preview_picture": "products/231661476_w1280_h1280_tb_essential_grey_a0c5d8.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_grey"
+          },
           "is_active": true
         }
       ],
@@ -6617,8 +6598,7 @@
         "length_mm": 2440,
         "width_mm": 200,
         "thickness_mm": 25,
-        "source_url": "https://greendecks.kz/katalog/item/terrasnaya_doska_iz_poliuretana_pudeck_polnotelaya_25kh200kh2440_mm_1/",
-        "color": "opt_natural"
+        "source_url": "https://greendecks.kz/katalog/item/terrasnaya_doska_iz_poliuretana_pudeck_polnotelaya_25kh200kh2440_mm_1/"
       },
       "variants": [
         {
@@ -6636,7 +6616,9 @@
           "currency": "KZT",
           "price": 36568,
           "preview_picture": "products/235443236_w1280_h1280_bez_nazvaniya_1_4e45dc.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_natural"
+          },
           "is_active": true
         }
       ],
@@ -6663,8 +6645,7 @@
         "length_mm": 2900,
         "width_mm": 140,
         "thickness_mm": 22,
-        "source_url": "https://greendecks.kz/katalog/item/terrasnaya_doska_legro_ultra_natural_140kh22/",
-        "color": "opt_walnut"
+        "source_url": "https://greendecks.kz/katalog/item/terrasnaya_doska_legro_ultra_natural_140kh22/"
       },
       "variants": [
         {
@@ -6682,7 +6663,9 @@
           "currency": "KZT",
           "price": 10599,
           "preview_picture": "products/jwh3rt7iiz307px507qyxamx37mlw956_d7929c.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_walnut"
+          },
           "is_active": true
         },
         {
@@ -6700,7 +6683,9 @@
           "currency": "KZT",
           "price": 10599,
           "preview_picture": "products/kz9y0d62td1bq4050mwjuow3jhs4axv8_49fa4b.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_maple"
+          },
           "is_active": true
         },
         {
@@ -6718,7 +6703,9 @@
           "currency": "KZT",
           "price": 10599,
           "preview_picture": "products/ay4zog0ns1octnbmvgcg1x4o2sqfq829_1cd805.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_teak"
+          },
           "is_active": true
         },
         {
@@ -6736,7 +6723,9 @@
           "currency": "KZT",
           "price": 10599,
           "preview_picture": "products/d58bmjmpz0mkzxb8tubdwdyz9a28u7di_29c49b.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_basalt"
+          },
           "is_active": true
         }
       ],
@@ -6763,8 +6752,7 @@
         "length_mm": 3600,
         "width_mm": 220,
         "thickness_mm": 21,
-        "source_url": "https://greendecks.kz/katalog/item/terrasnaya_doska_pu_welltouch_220kh21kh3600_mm_poliuretanovyy_nastil/",
-        "color": "opt_natural"
+        "source_url": "https://greendecks.kz/katalog/item/terrasnaya_doska_pu_welltouch_220kh21kh3600_mm_poliuretanovyy_nastil/"
       },
       "variants": [
         {
@@ -6782,7 +6770,9 @@
           "currency": "KZT",
           "price": 35663,
           "preview_picture": "products/Hda29aa15268f4dfaaedb9bffb2378f9fS_2fd65b.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_natural"
+          },
           "is_active": true
         }
       ],
@@ -6809,8 +6799,7 @@
         "length_mm": 2900,
         "width_mm": 140,
         "thickness_mm": 21,
-        "source_url": "https://greendecks.kz/katalog/item/terrasnaya_doska_timbertech_3d_wood_grain_140mm_21mm/",
-        "color": "opt_natural"
+        "source_url": "https://greendecks.kz/katalog/item/terrasnaya_doska_timbertech_3d_wood_grain_140mm_21mm/"
       },
       "variants": [
         {
@@ -6828,7 +6817,9 @@
           "currency": "KZT",
           "price": 24310,
           "preview_picture": "products/231352142_w1280_h1280_cd_01_05_1d8e7f.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_natural"
+          },
           "is_active": true
         }
       ],
@@ -6855,8 +6846,7 @@
         "length_mm": 2900,
         "width_mm": 320,
         "thickness_mm": 20,
-        "source_url": "https://greendecks.kz/katalog/item/stupen_iz_dpk_brushing_mix_dlya_dekinga_20kh320kh2900_mm/",
-        "color": "opt_beige"
+        "source_url": "https://greendecks.kz/katalog/item/stupen_iz_dpk_brushing_mix_dlya_dekinga_20kh320kh2900_mm/"
       },
       "variants": [
         {
@@ -6874,7 +6864,9 @@
           "currency": "KZT",
           "price": 57827,
           "preview_picture": "products/bezhevyj-brushing-mix-stupen_9631de.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_beige"
+          },
           "is_active": true
         },
         {
@@ -6892,7 +6884,9 @@
           "currency": "KZT",
           "price": 57827,
           "preview_picture": "products/krasnyj-brushing-mix-stupen_058adc.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_terracotta"
+          },
           "is_active": true
         },
         {
@@ -6910,7 +6904,9 @@
           "currency": "KZT",
           "price": 57827,
           "preview_picture": "products/pesochnyj-brushing-mix-stupen_43521f.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_sand"
+          },
           "is_active": true
         },
         {
@@ -6928,7 +6924,9 @@
           "currency": "KZT",
           "price": 57827,
           "preview_picture": "products/seryj-brushing-mix-stupen_5930e4.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_grey"
+          },
           "is_active": true
         },
         {
@@ -6946,7 +6944,9 @@
           "currency": "KZT",
           "price": 57827,
           "preview_picture": "products/svetlo-korichnevyj-brushing-mix-stupen_4227d3.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_light_brown"
+          },
           "is_active": true
         }
       ],
@@ -6973,8 +6973,7 @@
         "length_mm": 4000,
         "width_mm": 176,
         "thickness_mm": 20,
-        "source_url": "https://greendecks.kz/katalog/item/stupen_oblitsovochnaya_doska_massiv_co_extrusion_1_5_20kh176kh5800_27kh176kh5800_mm/",
-        "color": "opt_white"
+        "source_url": "https://greendecks.kz/katalog/item/stupen_oblitsovochnaya_doska_massiv_co_extrusion_1_5_20kh176kh5800_27kh176kh5800_mm/"
       },
       "variants": [
         {
@@ -6992,7 +6991,9 @@
           "currency": "KZT",
           "price": 70112,
           "preview_picture": "products/stupen-nusadua-white_647cae.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_white"
+          },
           "is_active": true
         },
         {
@@ -7010,7 +7011,9 @@
           "currency": "KZT",
           "price": 70112,
           "preview_picture": "products/Stupen-i-oblitsovochnaya-doska-MASSIV-_20_176_3200_-4000-mm_-co-extrusion-3D_-PG_NUSADUA_-tsvet_-white_ed4098.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_suar_mix"
+          },
           "is_active": true
         },
         {
@@ -7028,7 +7031,9 @@
           "currency": "KZT",
           "price": 70112,
           "preview_picture": "products/stupen-nusadua-suar_382df8.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_snow_mix"
+          },
           "is_active": true
         },
         {
@@ -7046,7 +7051,9 @@
           "currency": "KZT",
           "price": 70112,
           "preview_picture": "products/sand-mix-stolb-co-extrusion_73af03.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_sand"
+          },
           "is_active": true
         },
         {
@@ -7064,7 +7071,9 @@
           "currency": "KZT",
           "price": 70112,
           "preview_picture": "products/grey-dark-stolb-co-extrusion_1f06a8.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_grey"
+          },
           "is_active": true
         },
         {
@@ -7082,7 +7091,9 @@
           "currency": "KZT",
           "price": 70112,
           "preview_picture": "products/RAL-8017-SHokoladno-korichnevii_93d93e.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_chocolate"
+          },
           "is_active": true
         }
       ],
@@ -7109,8 +7120,7 @@
         "length_mm": 3010,
         "width_mm": 57,
         "thickness_mm": 57,
-        "source_url": "https://greendecks.kz/katalog/item/ugol_easydecking_ko_ekstruziya_57kh57_staryy_ambar/",
-        "color": "opt_barnwood"
+        "source_url": "https://greendecks.kz/katalog/item/ugol_easydecking_ko_ekstruziya_57kh57_staryy_ambar/"
       },
       "variants": [
         {
@@ -7128,7 +7138,9 @@
           "currency": "KZT",
           "price": 11527,
           "preview_picture": "products/cb67pippghyotqx85l9p0ffkskiwz384_3e4e05.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_barnwood"
+          },
           "is_active": true
         },
         {
@@ -7146,7 +7158,9 @@
           "currency": "KZT",
           "price": 11527,
           "preview_picture": "products/s9tjyc9p2307xem3gobx1icb89j2f4cp_7971cc.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_oak"
+          },
           "is_active": true
         },
         {
@@ -7164,7 +7178,9 @@
           "currency": "KZT",
           "price": 11527,
           "preview_picture": "products/28y4um1l7uxwb95dwsgycu9o68hnh0kt_da77f1.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_chestnut"
+          },
           "is_active": true
         }
       ],
@@ -7191,8 +7207,7 @@
         "length_mm": 4000,
         "width_mm": 50,
         "thickness_mm": 50,
-        "source_url": "https://greendecks.kz/katalog/item/ugolok_dlya_terrasnoy_doski_so_ex_l_trim_50_50_4000_mm/",
-        "color": "opt_natural"
+        "source_url": "https://greendecks.kz/katalog/item/ugolok_dlya_terrasnoy_doski_so_ex_l_trim_50_50_4000_mm/"
       },
       "variants": [
         {
@@ -7210,7 +7225,9 @@
           "currency": "KZT",
           "price": 9865,
           "preview_picture": "products/NeoTimber-Deluxe-Corner-Trim-Teak_20a2a0.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_natural"
+          },
           "is_active": true
         }
       ],
@@ -7237,8 +7254,7 @@
         "length_mm": 3000,
         "width_mm": 57,
         "thickness_mm": 57,
-        "source_url": "https://greendecks.kz/katalog/item/ugolok_dpk_ravnopolochnyy_57_57_3000mm_velvet_antratsit/",
-        "color": "opt_anthracite"
+        "source_url": "https://greendecks.kz/katalog/item/ugolok_dpk_ravnopolochnyy_57_57_3000mm_velvet_antratsit/"
       },
       "variants": [
         {
@@ -7256,7 +7272,9 @@
           "currency": "KZT",
           "price": 5796,
           "preview_picture": "products/ravnopolochnyy-ugolok-dpk-dlya-dosok-deckron-darvolex-ecodeck-nauticprime-velvet-antratsit_7343e7.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_anthracite"
+          },
           "is_active": true
         },
         {
@@ -7274,7 +7292,9 @@
           "currency": "KZT",
           "price": 5796,
           "preview_picture": "products/ravnopolochnyy-ugolok-dpk-dlya-dosok-deckron-darvolex-ecodeck-nauticprime-velvet-venge_d7ea93.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_wenge"
+          },
           "is_active": true
         },
         {
@@ -7292,7 +7312,9 @@
           "currency": "KZT",
           "price": 5796,
           "preview_picture": "products/ravnopolochnyy-ugolok-dpk-dlya-dosok-deckron-darvolex-ecodeck-nauticprime-velvet-korichnevyy_556018.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_brown"
+          },
           "is_active": true
         }
       ],
@@ -7319,8 +7341,7 @@
         "length_mm": 3000,
         "width_mm": 45,
         "thickness_mm": 45,
-        "source_url": "https://greendecks.kz/katalog/item/ugolok_easydecking_vud_iks_45_45_3000_mm/",
-        "color": "opt_teak"
+        "source_url": "https://greendecks.kz/katalog/item/ugolok_easydecking_vud_iks_45_45_3000_mm/"
       },
       "variants": [
         {
@@ -7338,7 +7359,9 @@
           "currency": "KZT",
           "price": 0,
           "preview_picture": "products/c2irdlvg4n6pb3221zmdcsjlblrpjyqq_fccc8e.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_teak"
+          },
           "is_active": true
         },
         {
@@ -7356,7 +7379,9 @@
           "currency": "KZT",
           "price": 0,
           "preview_picture": "products/bm4j0bzmei8oqtdmfwgc14deujin0aft_e24923.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_grey"
+          },
           "is_active": true
         }
       ],
@@ -7383,8 +7408,7 @@
         "length_mm": 2900,
         "width_mm": 140,
         "thickness_mm": 20,
-        "source_url": "https://greendecks.kz/katalog/item/doska_dlya_obramleniya_iz_dpk_3d_wood_20kh140_mm/",
-        "color": "opt_sand"
+        "source_url": "https://greendecks.kz/katalog/item/doska_dlya_obramleniya_iz_dpk_3d_wood_20kh140_mm/"
       },
       "variants": [
         {
@@ -7402,7 +7426,9 @@
           "currency": "KZT",
           "price": 19429,
           "preview_picture": "products/Zavershayushchaya-doska-pesochnyy_9cb49a.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_sand"
+          },
           "is_active": true
         },
         {
@@ -7420,7 +7446,9 @@
           "currency": "KZT",
           "price": 19429,
           "preview_picture": "products/mini-Profil_Select_Smoke_gray_nakat_b62786.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_grey"
+          },
           "is_active": true
         },
         {
@@ -7438,7 +7466,9 @@
           "currency": "KZT",
           "price": 19429,
           "preview_picture": "products/Zavershayushchaya-doska-temno-korichnevyy_f1aa89.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_dark_brown"
+          },
           "is_active": true
         },
         {
@@ -7456,7 +7486,9 @@
           "currency": "KZT",
           "price": 19429,
           "preview_picture": "products/Zavershayushchaya-doska-chernyy_47ba80.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_black_wood"
+          },
           "is_active": true
         }
       ],
@@ -7483,8 +7515,7 @@
         "length_mm": 5800,
         "width_mm": 140,
         "thickness_mm": 20,
-        "source_url": "https://greendecks.kz/katalog/item/doska_dlya_obramleniya_iz_dpk_brushing_mix_20kh140kh2900_mm/",
-        "color": "opt_brown"
+        "source_url": "https://greendecks.kz/katalog/item/doska_dlya_obramleniya_iz_dpk_brushing_mix_20kh140kh2900_mm/"
       },
       "variants": [
         {
@@ -7502,7 +7533,9 @@
           "currency": "KZT",
           "price": 29304,
           "preview_picture": "products/Doska-dlya-obramleniya-MIX-korichnevyy_4107b6.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_brown"
+          },
           "is_active": true
         },
         {
@@ -7520,7 +7553,9 @@
           "currency": "KZT",
           "price": 29304,
           "preview_picture": "products/Doska-dlya-obramleniya-MIX-pesochnyy_14e0b5.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_sand"
+          },
           "is_active": true
         },
         {
@@ -7538,7 +7573,9 @@
           "currency": "KZT",
           "price": 29304,
           "preview_picture": "products/Doska-dlya-obramleniya-MIX-seryy_134a93.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_grey"
+          },
           "is_active": true
         },
         {
@@ -7556,7 +7593,9 @@
           "currency": "KZT",
           "price": 29304,
           "preview_picture": "products/Doska-dlya-obramleniya-MIX-bezhevyy_696f4a.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_beige"
+          },
           "is_active": true
         }
       ],
@@ -7583,8 +7622,7 @@
         "length_mm": 2900,
         "width_mm": 140,
         "thickness_mm": 20,
-        "source_url": "https://greendecks.kz/katalog/item/doska_obramleniya_iz_dpk_3d_wood_dlya_dekinga_dpk_20kh140_mm/",
-        "color": "opt_dark_brown"
+        "source_url": "https://greendecks.kz/katalog/item/doska_obramleniya_iz_dpk_3d_wood_dlya_dekinga_dpk_20kh140_mm/"
       },
       "variants": [
         {
@@ -7602,7 +7640,9 @@
           "currency": "KZT",
           "price": 19507,
           "preview_picture": "products/DSC_7282_8398fe.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_dark_brown"
+          },
           "is_active": true
         }
       ],
@@ -7629,8 +7669,7 @@
         "length_mm": 2900,
         "width_mm": 140,
         "thickness_mm": 11,
-        "source_url": "https://greendecks.kz/katalog/item/universalnaya_doska_iz_dpk_3d_wood_brushing_mix_11kh140kh2900_mm/",
-        "color": "opt_brown"
+        "source_url": "https://greendecks.kz/katalog/item/universalnaya_doska_iz_dpk_3d_wood_brushing_mix_11kh140kh2900_mm/"
       },
       "variants": [
         {
@@ -7648,7 +7687,9 @@
           "currency": "KZT",
           "price": 0,
           "preview_picture": "products/Universalnaya-doska-MIX-korichnevyy_da3611.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_brown"
+          },
           "is_active": true
         },
         {
@@ -7666,7 +7707,9 @@
           "currency": "KZT",
           "price": 0,
           "preview_picture": "products/Universalnaya-doska-MIX-pesochnyy_b5719a.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_sand"
+          },
           "is_active": true
         },
         {
@@ -7684,7 +7727,9 @@
           "currency": "KZT",
           "price": 0,
           "preview_picture": "products/Universalnaya-doska-MIX-seryy_167b39.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_grey"
+          },
           "is_active": true
         },
         {
@@ -7702,7 +7747,9 @@
           "currency": "KZT",
           "price": 0,
           "preview_picture": "products/Universalnaya-doska-MIX-bezhevyy_dfe207.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_beige"
+          },
           "is_active": true
         }
       ],
@@ -7729,8 +7776,7 @@
         "length_mm": 4000,
         "width_mm": 60,
         "thickness_mm": 40,
-        "source_url": "https://greendecks.kz/katalog/item/laga_alyuminiy_hilst_joist_pro_premium_60_40_4000mm/",
-        "color": "opt_silver"
+        "source_url": "https://greendecks.kz/katalog/item/laga_alyuminiy_hilst_joist_pro_premium_60_40_4000mm/"
       },
       "variants": [
         {
@@ -7748,7 +7794,9 @@
           "currency": "KZT",
           "price": 19981,
           "preview_picture": "products/laga-alyuminiy-hilst-joist-pro-premium-60-40-4000mm_0c7751.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_silver"
+          },
           "is_active": true
         }
       ],
@@ -7775,8 +7823,7 @@
         "length_mm": 4000,
         "width_mm": 60,
         "thickness_mm": 20,
-        "source_url": "https://greendecks.kz/katalog/item/laga_alyuminiy_hilst_joist_slim_premium_60_20_4000mm/",
-        "color": "opt_silver"
+        "source_url": "https://greendecks.kz/katalog/item/laga_alyuminiy_hilst_joist_slim_premium_60_20_4000mm/"
       },
       "variants": [
         {
@@ -7794,7 +7841,9 @@
           "currency": "KZT",
           "price": 16092,
           "preview_picture": "products/laga-alyuminiy-hilst-joist-slim-premium-60-20-4000mm_3a5274.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_silver"
+          },
           "is_active": true
         }
       ],
@@ -7821,8 +7870,7 @@
         "length_mm": 4000,
         "width_mm": 40,
         "thickness_mm": 35,
-        "source_url": "https://greendecks.kz/katalog/item/laga_dpk_40_35_4000mm_1/",
-        "color": "opt_black_wood"
+        "source_url": "https://greendecks.kz/katalog/item/laga_dpk_40_35_4000mm_1/"
       },
       "variants": [
         {
@@ -7840,7 +7888,9 @@
           "currency": "KZT",
           "price": 7301,
           "preview_picture": "products/Bez-nazvaniya_234479.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_black_wood"
+          },
           "is_active": true
         }
       ],
@@ -7865,8 +7915,7 @@
         "brand": "opt_brand_holzhof",
         "product_calc_category": "7-ZHjGVRi90X2pkVocJLo1",
         "length_mm": 4000,
-        "source_url": "https://greendecks.kz/katalog/item/laga_dpk_50_40_4000mm/",
-        "color": "opt_black_wood"
+        "source_url": "https://greendecks.kz/katalog/item/laga_dpk_50_40_4000mm/"
       },
       "variants": [
         {
@@ -7884,7 +7933,9 @@
           "currency": "KZT",
           "price": 2533,
           "preview_picture": "products/black_c3694a.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_black_wood"
+          },
           "is_active": true
         }
       ],
@@ -7909,8 +7960,7 @@
         "brand": "opt_brand_hilst",
         "product_calc_category": "7-ZHjGVRi90X2pkVocJLo1",
         "length_mm": 2900,
-        "source_url": "https://greendecks.kz/katalog/item/klipsa_hilst_start_premium_3d_metall_8mm_2_1/",
-        "color": "opt_silver"
+        "source_url": "https://greendecks.kz/katalog/item/klipsa_hilst_start_premium_3d_metall_8mm_2_1/"
       },
       "variants": [
         {
@@ -7928,7 +7978,9 @@
           "currency": "KZT",
           "price": 98,
           "preview_picture": "products/startovyy-klyaymer-hilst-fix-prof-3d-start-metall-8mm-100sht_02dfe8.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_silver"
+          },
           "is_active": true
         }
       ],
@@ -7953,8 +8005,7 @@
         "brand": "opt_brand_greendecks",
         "product_calc_category": "7-ZHjGVRi90X2pkVocJLo1",
         "length_mm": 2900,
-        "source_url": "https://greendecks.kz/katalog/item/klyaymer_ryadovoy_clipfix_dlya_montazha_terras/",
-        "color": "opt_natural"
+        "source_url": "https://greendecks.kz/katalog/item/klyaymer_ryadovoy_clipfix_dlya_montazha_terras/"
       },
       "variants": [
         {
@@ -7972,7 +8023,9 @@
           "currency": "KZT",
           "price": 85,
           "preview_picture": "products/99889-01-Klip-Patomatos-Endiameso-Inox-gia-WPC-Mayro_9b39a2.webp",
-          "eav": [],
+          "eav": {
+            "color": "opt_natural"
+          },
           "is_active": true
         }
       ],
@@ -7998,8 +8051,7 @@
         "product_calc_category": "7-ZHjGVRi90X2pkVocJLo1",
         "length_mm": 120,
         "width_mm": 5,
-        "thickness_mm": 5,
-        "color": "opt_silver"
+        "thickness_mm": 5
       },
       "variants": [
         {
@@ -8017,7 +8069,9 @@
           "currency": "KZT",
           "price": 60,
           "preview_picture": null,
-          "eav": [],
+          "eav": {
+            "color": "opt_silver"
+          },
           "is_active": true
         }
       ],
@@ -8043,8 +8097,7 @@
         "product_calc_category": "7-ZHjGVRi90X2pkVocJLo1",
         "length_mm": 70,
         "width_mm": 5,
-        "thickness_mm": 5,
-        "color": "opt_silver"
+        "thickness_mm": 5
       },
       "variants": [
         {
@@ -8062,7 +8115,9 @@
           "currency": "KZT",
           "price": 45,
           "preview_picture": null,
-          "eav": [],
+          "eav": {
+            "color": "opt_silver"
+          },
           "is_active": true
         }
       ],
@@ -8086,8 +8141,7 @@
         "material": "Металл",
         "brand": "opt_brand_greendecks",
         "product_calc_category": "7-ZHjGVRi90X2pkVocJLo1",
-        "length_mm": 25,
-        "color": "opt_silver"
+        "length_mm": 25
       },
       "variants": [
         {
@@ -8105,7 +8159,9 @@
           "currency": "KZT",
           "price": 25,
           "preview_picture": null,
-          "eav": [],
+          "eav": {
+            "color": "opt_silver"
+          },
           "is_active": true
         }
       ],

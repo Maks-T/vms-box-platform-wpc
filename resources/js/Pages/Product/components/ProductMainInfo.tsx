@@ -26,11 +26,10 @@ export function ProductMainInfo({name, priceFrom, bootstrapConfig, shortDescript
   return (
     <div className="mb-8 border-b border-border pb-8">
       {isDev && (
-        <StatusBadge variant="success" className="mb-6 w-max">
-          <div className="flex items-center gap-1.5 whitespace-nowrap">
-            <span>В наличии</span>
-          </div>
-        </StatusBadge>
+        <div className="mb-6 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-lightBg border border-green-200 text-brand-forest text-xs font-bold">
+          <span className="w-2 h-2 rounded-full bg-brand-forest" />
+          <span>В наличии на складе в Астане</span>
+        </div>
       )}
 
       <H1 className="!text-foreground !text-[32px] md:!text-[44px] mb-6">
@@ -43,7 +42,7 @@ export function ProductMainInfo({name, priceFrom, bootstrapConfig, shortDescript
             Базовая цена от
           </Text>
 
-          <div className="text-[32px] font-black text-primary leading-none flex items-baseline gap-1.5">
+          <div className="text-[32px] font-black text-brand-forest leading-none flex items-baseline gap-1.5">
             {priceFrom > 0 ? (
               <>
                 <span>{formattedNumber}</span>

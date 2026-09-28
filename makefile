@@ -27,6 +27,10 @@ migrate:
 mfs:
 	$(COMPOSE) exec app $(ARTISAN) migrate:fresh --seed
 
+mfsi:
+	$(COMPOSE) exec app $(ARTISAN) migrate:fresh --seed
+  $(COMPOSE) exec app $(ARTISAN) vms:import
+
 # Clear all Laravel cache
 pacc:
 	$(COMPOSE) exec app $(ARTISAN) cache:clear
@@ -78,8 +82,17 @@ tree:
 # Delete temporary combine context files
 cc:
 	@echo "Deleting temporary files..."
-	@find . \( -name "*_combine*" -o -name "tree.txt" \) -type f -delete
+	@find . \( -name "*_combine*" -o -name "tree.txt" -o -name "*Zone.Identifier" \) -type f -delete
 	@echo "Done!"
+
+uw: update-widget
+
+update-widget:
+	@echo "Updating CPQ Stone widget..."
+	rm -rf public/cpq-stone
+	git clone --branch deploy/build --single-branch git@github.com:kapitulin24/cpq-stone-calc.git public/cpq-stone
+	rm -rf public/cpq-stone/.git
+	@echo "Widget updated successfully!"
 
 DATE ?= 2026-05-03
 EXCLUDE ?=
@@ -88,18 +101,56 @@ git-diff:
 	chmod +x generate_diffs.sh
 	./generate_diffs.sh $(DATE) "$(EXCLUDE)"
 
+# Запуск всех тестов платформы с генерацией отчета покрытия
+test:
+	$(COMPOSE) exec app env XDEBUG_MODE=coverage $(ARTISAN) test --coverage-html=public/coverage
+
+# Запуск тестов ядра NicoleCore с генерацией отчета покрытия
+test-nicole:
+	$(COMPOSE) exec app env XDEBUG_MODE=coverage $(ARTISAN) test --testsuite=NicoleCore --coverage-html=public/coverage
+
+# Запуск тестов плагина камня ValerieStone с генерацией отчета покрытия
+test-valerie:
+	$(COMPOSE) exec app env XDEBUG_MODE=coverage $(ARTISAN) test --testsuite=ValerieStone --coverage-html=public/coverage
+
+package-update:
+	$(COMPOSE) exec app composer update nicole/box-core valerie/box-industry-stone
+
+
+dw:
+	@echo "Cleaning old widget files..."
+	rm -rf /home/maks-t/vms-box-platform-showers/public/widget/*
+	@echo "Copying new dev build files from Windows..."
+	mkdir -p /home/maks-t/vms-box-platform-showers/public/widget/
+	cp -r /mnt/d/Vistegra/projects/showers/build/* /home/maks-t/vms-box-platform-showers/public/widget/
+	@echo "Clearing Laravel cache..."
+	$(COMPOSE) exec app $(ARTISAN) cache:clear
+	@echo "Done!"
+dww:
+	@echo "Cleaning old widget files..."
+	rm -rf /home/maks-t/vms-box-platform-showers/public/widget/*
+	@echo "Copying new dev files..."
+	mkdir -p /home/maks-t/vms-box-platform-showers/public/widget/
+	cp -r /mnt/d/projects/viview/build/* /home/maks-t/vms-box-platform-showers/public/widget/
+	@echo "Clearing Laravel cache..."
+	$(COMPOSE) exec app $(ARTISAN) cache:clear
+	@echo "Done!"
+
 # Help
 help:
 	@echo "Available commands for VMS platform:"
-	@echo "  make up      - Start Docker containers"
-	@echo "  make down    - Stop containers"
-	@echo "  make bash    - Enter the app container"
-	@echo "  make migrate - Run migrations"
-	@echo "  make mfs     - Rebuild DB (fresh + seed)"
-	@echo "  make ci      - Run composer install"
-	@echo "  make ni      - Run npm install"
-	@echo "  make dev     - Start Vite (React 19)"
-	@echo "  make build   - Build frontend for production"
-	@echo "  make pacc    - Clear Laravel cache"
-	@echo "  make chown   - Fix file permissions"
-	@echo "  make cc      - Remove temporary *_combine.txt files"
+	@echo "  make up           - Start Docker containers"
+	@echo "  make down         - Stop containers"
+	@echo "  make bash         - Enter the app container"
+	@echo "  make test         - Run all tests with coverage report"
+	@echo "  make test-nicole  - Run NicoleCore tests with coverage"
+	@echo "  make test-valerie - Run ValerieStone tests with coverage"
+	@echo "  make migrate      - Run migrations"
+	@echo "  make mfs          - Rebuild DB (fresh + seed)"
+	@echo "  make ci           - Run composer install"
+	@echo "  make ni           - Run npm install"
+	@echo "  make dev          - Start Vite (React 19)"
+	@echo "  make build        - Build frontend for production"
+	@echo "  make pacc         - Clear Laravel cache"
+	@echo "  make chown        - Fix file permissions"
+	@echo "  make cc           - Remove temporary files"
