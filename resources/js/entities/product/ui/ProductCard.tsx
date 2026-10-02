@@ -3,9 +3,6 @@ import { Link } from '@inertiajs/react';
 import { Image as ImageIcon, Heart } from 'lucide-react';
 import { StoneProduct, EavValueOption, BootstrapConfig, ProductVariant } from '@/types/catalog';
 import { route } from "ziggy-js";
-import { Badge } from '@/shared/ui/badge';
-import { Button } from '@/shared/ui/button';
-import { Card } from '@/shared/ui/card';
 import { cn } from '@/shared/lib/utils';
 import { useFavorites } from '@/store/useFavorites';
 
@@ -29,20 +26,28 @@ export const ProductCard = ({ product, bootstrapConfig }: ProductCardProps) => {
     ? (activeVariant.prices?.[defaultPriceType] || Object.values(activeVariant.prices || {})[0] || price_from)
     : price_from;
 
-  const currencySymbol = bootstrapConfig?.base_currency?.symbol_native || bootstrapConfig?.base_currency?.symbol || 'руб.';
+  const currencySymbol = '₽';
 
   const formattedNumber = displayPrice > 0
     ? new Intl.NumberFormat('ru-RU', {
       minimumFractionDigits: 0,
-      maximumFractionDigits: 2
+      maximumFractionDigits: 0
     }).format(displayPrice)
     : '';
 
-  const brand = attributes?.brand?.value as EavValueOption | undefined;
-  const collection = attributes?.collection?.value as EavValueOption | undefined;
-  const subtitle = brand?.label || collection?.label || (unit ? `Ед. изм: ${unit.symbol || unit.name}` : 'ДПК Профиль');
+  // Расчет примерной цены за погонный метр (если за м²)
+  const meterPrice = displayPrice > 0 ? Math.round(displayPrice * 0.15) : 0;
+  const formattedMeterNumber = meterPrice > 0
+    ? new Intl.NumberFormat('ru-RU', { minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(meterPrice)
+    : '';
 
-  // Извлечение уникальных цветов
+  const brand = attributes?.brand?.value as EavValueOption | undefined;
+  const origin = (attributes?.country?.value as EavValueOption | undefined)?.label || 'Россия';
+  const dimensions = (attributes?.dimensions?.value || attributes?.size?.value || attributes?.length?.value)
+    ? String(attributes?.dimensions?.value || attributes?.size?.value || attributes?.length?.value)
+    : '20x150x3000 (4000) мм';
+
+  // Извлечение цветов
   const parentColor = attributes?.color?.value as EavValueOption | undefined;
   const variantColors: EavValueOption[] = [];
 
@@ -83,109 +88,117 @@ export const ProductCard = ({ product, bootstrapConfig }: ProductCardProps) => {
     toggleItem(product);
   };
 
+  const isHit = id === 1 || brand?.label === 'OliverDeck';
+
   return (
-    <Card
-      size="sm"
-      className="group relative flex flex-col h-full bg-card rounded-2xl border border-border/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden cursor-pointer"
-    >
-      {/* Превью картинки */}
-      <div className="relative aspect-4/3 w-full bg-muted/40 overflow-hidden flex items-center justify-center p-6 border-b border-border/60">
-        <Link href={route('product.show', slug)} className="block w-full h-full cursor-pointer">
+    <article className="bg-white border border-stone-200 hover:border-brand-gold/60 rounded-xl p-4 flex flex-col justify-between hover:shadow-lg transition-all group">
+      <div>
+        {/* Верхняя строка: бейдж статуса/страны + сердечко */}
+        <div className="flex items-center justify-between text-xs mb-2">
+          {isHit ? (
+            <span className="px-2 py-0.5 bg-amber-50 border border-amber-200 text-amber-900 rounded text-[10px] font-bold uppercase">
+              Хит продаж
+            </span>
+          ) : (
+            <span className="px-2 py-0.5 bg-stone-100 text-stone-700 rounded text-[10px] font-bold">
+              {origin}
+            </span>
+          )}
+
+          <button
+            type="button"
+            onClick={handleFavoriteClick}
+            className="text-stone-300 hover:text-rose-500 transition-colors cursor-pointer"
+            title="В избранное"
+          >
+            <Heart className={cn("size-4 transition-colors", isFavorite ? "fill-rose-500 text-rose-500" : "")} />
+          </button>
+        </div>
+
+        {/* Главное фото со срезом доски и водяным знаком OliverDeck */}
+        <Link href={route('product.show', slug)} className="block w-full h-44 bg-[#f8f9fa] rounded-lg overflow-hidden relative mb-3">
+          <img
+            src="https://oliverdeck.ru/thumb/2/LCcef9rDO6nWj2bcKBs__w/300c84/d/logox80-svg.svg"
+            className="absolute bottom-2 right-2 h-3.5 opacity-25 object-contain"
+            alt="Watermark"
+          />
           {displayImage ? (
             <img
               src={displayImage}
               alt={name}
-              className="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
+              className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300 mix-blend-multiply"
             />
           ) : (
-            <div className="flex items-center justify-center w-full h-full opacity-25 text-muted-foreground">
+            <div className="w-full h-full flex items-center justify-center opacity-25 text-stone-400">
               <ImageIcon className="size-12" />
             </div>
           )}
         </Link>
 
-        {/* Бейдж ID */}
-        <Badge variant="secondary" className="absolute top-3 left-3 bg-brand-lightBg/95 text-brand-forest border border-brand-forest/20 text-[10px] font-bold px-2 py-0.5 shadow-xs">
-          ID {id}
-        </Badge>
-
-        {/* Кнопка избранного */}
-        <button
-          type="button"
-          onClick={handleFavoriteClick}
-          aria-label="В избранное"
-          className="absolute top-3 right-3 p-1.5 rounded-full bg-background/80 hover:bg-background border border-border text-muted-foreground hover:text-red-500 shadow-xs transition-all cursor-pointer active:scale-90"
-        >
-          <Heart className={cn("size-4 transition-colors", isFavorite ? "fill-red-500 text-red-500" : "")} />
-        </button>
-      </div>
-
-      {/* Тело карточки */}
-      <div className="flex flex-col flex-1 p-5 gap-3">
-        <div className="text-[11px] font-semibold text-muted-foreground tracking-wider uppercase truncate">
-          {subtitle}
-        </div>
-
-        <Link href={route('product.show', slug)} className="cursor-pointer">
-          <h3 className="text-base font-bold text-foreground leading-snug tracking-tight group-hover:text-brand-forest transition-colors line-clamp-2 min-h-[40px]">
-            {name}
-          </h3>
-        </Link>
-
-        {/* Палитра цветов (Свотчи) */}
+        {/* Свотчи цветов (живые образцы) */}
         {colorsToShow.length > 0 && (
-          <div className="flex items-center gap-1.5 my-auto flex-wrap pt-1">
+          <div className="flex items-center gap-1.5 mb-2.5 flex-wrap">
             {colorsToShow.slice(0, 6).map((color) => {
               const isSelected = color.key === activeColorSlug;
               return (
-                <div
+                <span
                   key={color.key}
                   title={color.label}
                   onClick={(e) => handleColorClick(e, color)}
                   className={cn(
-                    "size-5 rounded-full border border-black/15 shadow-xs cursor-pointer transition-transform hover:scale-110 shrink-0",
-                    isSelected ? "ring-2 ring-brand-forest ring-offset-1 scale-105" : "opacity-75 hover:opacity-100"
+                    "size-4 rounded-full cursor-pointer shadow-xs transition-transform hover:scale-110 shrink-0",
+                    isSelected ? "border-2 border-stone-900 scale-105" : "border border-stone-200"
                   )}
-                  style={{ backgroundColor: color.meta?.hex || '#ccc' }}
-                >
-                  {color.meta?.image && (
-                    <img src={color.meta.image} alt={color.label} className="size-full rounded-full object-cover" />
-                  )}
-                </div>
+                  style={{ backgroundColor: color.meta?.hex || '#523321' }}
+                />
               );
             })}
-            {colorsToShow.length > 6 && (
-              <span className="text-[11px] font-medium text-muted-foreground ml-1">
-                +{colorsToShow.length - 6}
-              </span>
-            )}
           </div>
         )}
 
-        {/* Футер карточки: Цена + Кнопка */}
-        <div className="mt-auto pt-4 border-t border-border/60 flex items-center justify-between gap-3">
-          <div className="flex flex-col">
-            <span className="text-[10px] uppercase font-semibold text-muted-foreground tracking-wider">Цена</span>
-            <div className="text-lg font-black text-foreground flex items-baseline gap-1">
-              {displayPrice > 0 ? (
-                <>
-                  <span>{formattedNumber}</span>
-                  <span className="text-xs font-medium text-muted-foreground">{currencySymbol}</span>
-                </>
-              ) : (
-                <span className="text-xs font-semibold text-muted-foreground">По запросу</span>
-              )}
-            </div>
-          </div>
+        <div className="text-[11px] text-stone-400 mb-1">
+          Размер: {dimensions}
+        </div>
 
+        <Link
+          href={route('product.show', slug)}
+          className="text-sm font-bold text-stone-900 leading-snug line-clamp-2 hover:text-brand-gold transition-colors mb-3 block"
+        >
+          {name}
+        </Link>
+      </div>
+
+      {/* Цены в рублях и парные кнопки Подробнее / Расчет */}
+      <div className="pt-3 border-t border-stone-100">
+        <div className="flex items-baseline justify-between mb-3">
+          <div>
+            <span className="text-base font-black text-stone-900">
+              {displayPrice > 0 ? `${formattedNumber} ${currencySymbol}` : 'По запросу'}
+            </span>
+            <span className="text-xs text-stone-500 font-normal">/{unit?.symbol || 'м²'}</span>
+          </div>
+          {meterPrice > 0 && (
+            <div className="text-xs text-stone-500 font-medium">
+              {formattedMeterNumber} {currencySymbol}<span className="text-[10px]">/пог.м</span>
+            </div>
+          )}
+        </div>
+
+        <div className="grid grid-cols-2 gap-2">
           <Link
             href={route('product.show', slug)}
-            className="inline-flex items-center justify-center bg-brand-forest hover:bg-black text-white text-xs font-heading font-bold uppercase tracking-wider px-4 py-2 rounded-xl transition shadow-xs active:scale-95"
+            className="py-2 text-center bg-stone-900 hover:bg-black text-white text-[11px] font-bold uppercase tracking-wider rounded-lg transition-colors cursor-pointer"
           >
             Подробнее
           </Link>
+          <Link
+            href={route('calculator.show')}
+            className="py-2 text-center bg-brand-gold hover:bg-brand-gold-hover text-black text-[11px] font-bold uppercase tracking-wider rounded-lg transition-colors cursor-pointer"
+          >
+            Расчет
+          </Link>
         </div>
       </div>
-    </Card>
+    </article>
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
-import { cn } from '@/shared/lib/utils';
-import { CatalogPills } from '@/features/catalog/components/CatalogPills';
-import { BootstrapFamily } from '@/types/catalog';
+import {cn} from '@/shared/lib/utils';
+import {CatalogPills} from '@/features/catalog/components/CatalogPills';
+import {BootstrapFamily} from '@/types/catalog';
 
 interface Props {
   familiesList: BootstrapFamily[];
@@ -18,28 +18,28 @@ export function CatalogNavigationBlock({
                                          setFamily,
                                          typesSchema,
                                          productType,
-                                         setProductType
+                                         setProductType,
                                        }: Props) {
   return (
-    <div className="flex flex-col w-full mb-6 relative z-10">
-      {/* Главные семейства (Террасный настил, Ограждения и т.д.) */}
+    <div className="flex flex-col w-full relative z-10">
+      {/* Главные семейства (Террасный настил, Комплектующие и крепеж) */}
       <CatalogPills
         families={familiesList}
         activeFamily={activeFamily}
         onChange={setFamily}
       />
 
-      {/* Подтипы продукции */}
+      {/* Чипсы подкатегорий продукции */}
       {typesSchema.length > 0 && (
-        <div className="flex flex-wrap items-center gap-2 mt-4 pt-4 border-t border-border/60">
+        <div className="flex flex-wrap items-center gap-2 pb-6 text-xs">
           <button
             type="button"
             onClick={() => setProductType('')}
             className={cn(
-              "px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all border cursor-pointer outline-none",
+              "px-4 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer select-none",
               productType === ''
-                ? "bg-brand-forest text-white border-brand-forest shadow-xs font-bold"
-                : "bg-white border-gray-200 text-gray-700 hover:border-brand-forest/40 hover:text-brand-forest shadow-2xs"
+                ? "bg-stone-900 text-white shadow-xs font-semibold"
+                : "bg-stone-100 hover:bg-stone-200 text-stone-700"
             )}
           >
             Все типы
@@ -50,10 +50,10 @@ export function CatalogNavigationBlock({
               type="button"
               onClick={() => setProductType(t.code)}
               className={cn(
-                "px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all border cursor-pointer outline-none",
+                "px-4 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer select-none",
                 productType === t.code
-                  ? "bg-brand-forest text-white border-brand-forest shadow-xs font-bold"
-                  : "bg-white border-gray-200 text-gray-700 hover:border-brand-forest/40 hover:text-brand-forest shadow-2xs"
+                  ? "bg-stone-900 text-white shadow-xs font-semibold"
+                  : "bg-stone-100 hover:bg-stone-200 text-stone-700"
               )}
             >
               {t.name}

@@ -13,9 +13,45 @@
 @source "../../packages/box/valerie/industry-wpc/resources/views/filament/clusters/calculator-pipeline/**/*.blade.php";
 @source "../../packages/box/valerie/industry-wpc/resources/views/**/*.blade.php";
 @source "../../packages/box/valerie/industry-wpc/src/**/*.php";
-/*packages/box/valerie/industry-wpc/resources/views/filament/clusters/calculator-pipeline/components/tree-status-panel.blade.php*/
 
-/* Строго такой порядок чтобы не сломались стили калькулятора */
+/* ==========================================================================
+   ФИРМЕННЫЕ КЛАССЫ OLIVERDECK (ГАРАНТИРОВАННАЯ ТЕМНАЯ ТЕМА В БРАУЗЕРЕ)
+   ========================================================================== */
+:root {
+    --color-brand-header: #262325;
+    --color-brand-nav: #1e1c1e;
+    --color-brand-dark: #19191c;
+    --color-brand-surface: #2b2729;
+    --color-brand-border: #3d373a;
+    --color-brand-charcoal: #2c262a;
+    --color-brand-muted: #959094;
+    --color-brand-gold: #eec30d;
+    --color-brand-gold-hover: #d8b003;
+    --color-brand-gold-light: #fffceb;
+    --color-brand-green: #00ca5f;
+}
+
+/* Прямые селекторы для мгновенной заливки темных фонов */
+.bg-brand-header { background-color: #262325 !important; }
+.bg-brand-nav { background-color: #1e1c1e !important; }
+.bg-brand-dark { background-color: #19191c !important; }
+.bg-brand-surface { background-color: #2b2729 !important; }
+.border-brand-border { border-color: #3d373a !important; }
+.text-brand-muted { color: #959094 !important; }
+.text-brand-gold { color: #eec30d !important; }
+.hover\:text-brand-gold:hover { color: #eec30d !important; }
+.bg-brand-gold { background-color: #eec30d !important; }
+.hover\:bg-brand-gold-hover:hover { background-color: #d8b003 !important; }
+.hover\:bg-brand-border:hover { background-color: #3d373a !important; }
+.text-brand-green { color: #00ca5f !important; }
+.focus\:border-brand-gold:focus { border-color: #eec30d !important; }
+
+/* Стилизация чекбоксов в фирменный золотой цвет OliverDeck */
+input[type="checkbox"] {
+    accent-color: #eec30d !important;
+    cursor: pointer;
+}
+
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -25,7 +61,7 @@
     }
 
     /* ==========================================================================
-       СТИЛИЗАЦИЯ КАЛЬКУЛЯТОРА (OLIVER-DECK) В ПАЛИТРЕ GREENDECKS
+       СТИЛИЗАЦИЯ КАЛЬКУЛЯТОРА В ПАЛИТРЕ OLIVERDECK
        ========================================================================== */
     #calcAppRoot,
     [data-slot="dialog-content"],
@@ -35,62 +71,60 @@
     [data-slot="combobox-content"],
     [data-slot="select-content"],
     [data-slot="dropdown-menu-content"] {
-        /* Цвета темы UI */
-        --primary: #024700 !important;
+        --primary: #19191c !important;
         --primary-foreground: #ffffff !important;
-        --ring: #a5c33c !important;
-        --accent: #f3fff0 !important;
-        --accent-foreground: #024700 !important;
+        --ring: #eec30d !important;
+        --accent: #fffceb !important;
+        --accent-foreground: #19191c !important;
         --background: #ffffff !important;
-        --foreground: #1a1f16 !important;
+        --foreground: #19191c !important;
         --card: #ffffff !important;
-        --card-foreground: #1a1f16 !important;
+        --card-foreground: #19191c !important;
         --popover: #ffffff !important;
-        --popover-foreground: #1a1f16 !important;
+        --popover-foreground: #19191c !important;
         --border: #e2e8f0 !important;
         --input: #e2e8f0 !important;
-        --muted: #f4f5f0 !important;
-        --muted-foreground: #64748b !important;
+        --muted: #f4f4f5 !important;
+        --muted-foreground: #71717a !important;
 
-        /* Цвета 2D-сцены Konva (реактивно читаются через useCssColor) */
-        --canvas-background: #f8faf8 !important;
-        --canvas-contour-stroke: #273007 !important;
-        --canvas-contour-fill: rgba(165, 195, 60, 0.08) !important;
-        --canvas-contour-base-stroke: #273007 !important;
-        --canvas-base-stroke: #273007 !important;
+        /* Цвета 2D-сцены Konva */
+        --canvas-background: #fcfcfc !important;
+        --canvas-contour-stroke: #2c262a !important;
+        --canvas-contour-fill: rgba(238, 195, 13, 0.08) !important;
+        --canvas-contour-base-stroke: #2c262a !important;
+        --canvas-base-stroke: #2c262a !important;
 
-        /* Настил ДПК (древесный венге / шоколад) */
-        --canvas-decking-fill: #6d4327 !important;
-        --canvas-decking-stroke: #3b2214 !important;
+        /* Настил ДПК */
+        --canvas-decking-fill: #5c3826 !important;
+        --canvas-decking-stroke: #382115 !important;
         --canvas-decking-foreground: #ffffff !important;
 
-        /* Лаги монтажные (алюминий / композит) */
+        /* Лаги монтажные */
         --canvas-joists-fill: #4b5563 !important;
         --canvas-joists-stroke: #374151 !important;
 
         /* Кляймеры и крепеж */
         --canvas-cleats-row-fill: #1e293b !important;
         --canvas-cleats-row-stroke: #0f172a !important;
-        --canvas-cleats-start-fill: #a5c33c !important;
-        --canvas-cleats-start-stroke: #809c25 !important;
+        --canvas-cleats-start-fill: #eec30d !important;
+        --canvas-cleats-start-stroke: #d8b003 !important;
 
-        /* Ступени и отделочный профиль */
-        --canvas-step-board-fill: #5a3823 !important;
-        --canvas-step-board-stroke: #2d1e18 !important;
+        /* Ступени и отделочный декоративный угол */
+        --canvas-step-board-fill: #4a2d1d !important;
+        --canvas-step-board-stroke: #2c1a10 !important;
         --canvas-step-board-foreground: #ffffff !important;
-        --canvas-decorative-corner-fill: #a5c33c !important;
-        --canvas-decorative-corner-stroke: #809c25 !important;
+        --canvas-decorative-corner-fill: #eec30d !important;
+        --canvas-decorative-corner-stroke: #d8b003 !important;
 
         /* Размеры и метки */
-        --canvas-dimension-stroke: #024700 !important;
-        --canvas-dimension-label-fill-editable: #f3fff0 !important;
+        --canvas-dimension-stroke: #19191c !important;
+        --canvas-dimension-label-fill-editable: #fffceb !important;
         --canvas-dimension-input-bg: #ffffff !important;
     }
 
-    /* Кнопки виджета */
     #calcAppRoot [data-slot="button"][data-variant="default"],
     [data-slot="dialog-content"] [data-slot="button"][data-variant="default"] {
-        background-color: #024700 !important;
+        background-color: #19191c !important;
         color: #ffffff !important;
         font-weight: 700 !important;
         transition: all 0.2s ease !important;
@@ -101,33 +135,29 @@
         background-color: #000000 !important;
     }
 
-    /* Селекты и поля ввода */
     #calcAppRoot [data-slot="select-trigger"]:focus-visible,
     #calcAppRoot [data-slot="input"]:focus-visible,
     [data-slot="dialog-content"] input:focus-visible {
-        border-color: #a5c33c !important;
-        box-shadow: 0 0 0 3px rgba(165, 195, 60, 0.25) !important;
+        border-color: #eec30d !important;
+        box-shadow: 0 0 0 3px rgba(238, 195, 13, 0.25) !important;
     }
 
-    /* Активные свитчеры и радио */
     #calcAppRoot [role="switch"][data-state="checked"] {
-        background-color: #024700 !important;
+        background-color: #19191c !important;
     }
 
     #calcAppRoot [role="radio"][data-state="checked"] {
-        border-color: #024700 !important;
+        border-color: #eec30d !important;
     }
 
-    /* Выпадающие пункты комбобоксов и селектов */
     [data-slot="combobox-item"]:hover,
     [data-slot="combobox-item"][data-highlighted],
     [data-slot="select-item"]:hover,
     [data-slot="select-item"][data-highlighted] {
-        background-color: #f3fff0 !important;
-        color: #024700 !important;
+        background-color: #fffceb !important;
+        color: #19191c !important;
     }
 
-    /* Выпадающие списки селектов и комбобоксов поверх модальных окон */
     div:has(> [data-slot="select-content"]),
     div:has(> [data-slot="combobox-content"]),
     [data-slot="select-content"],
@@ -136,22 +166,143 @@
     [data-slot="dropdown-menu-content"] {
         z-index: 60 !important;
     }
+
+    /* Боковые карточки сайдбаров калькулятора */
+    #calcAppRoot [data-slot="card"] {
+        border: 1px solid #e2e8f0 !important;
+        background-color: #ffffff !important;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04) !important;
+        border-radius: 1rem !important;
+    }
+
+    #calcAppRoot [data-slot="card-title"] {
+        font-weight: 700 !important;
+        color: #19191c !important;
+        letter-spacing: -0.01em !important;
+    }
+
+    /* Кнопки «Выбрать» в карточках настила и основания */
+    #calcAppRoot [data-slot="dialog-trigger"] {
+        background-color: #f8f9fa !important;
+        border: 1px solid #e2e8f0 !important;
+        font-weight: 600 !important;
+        transition: all 0.15s ease !important;
+    }
+
+    #calcAppRoot [data-slot="dialog-trigger"]:hover {
+        background-color: #fffceb !important;
+        border-color: #eec30d !important;
+        color: #19191c !important;
+        box-shadow: 0 2px 8px rgba(238, 195, 13, 0.2) !important;
+    }
+
+    /* Главная кнопка «Рассчитать материал» */
+    #calcAppRoot button:has(svg.lucide-play):not([disabled]):not([data-disabled]),
+    #calcAppRoot button.calc\:bg-primary:not([disabled]):not([data-disabled]) {
+        background-color: #eec30d !important;
+        color: #19191c !important;
+        font-weight: 800 !important;
+        box-shadow: 0 4px 14px rgba(238, 195, 13, 0.35) !important;
+        border: none !important;
+    }
+
+    #calcAppRoot button:has(svg.lucide-play):not([disabled]):not([data-disabled]):hover,
+    #calcAppRoot button.calc\:bg-primary:not([disabled]):not([data-disabled]):hover {
+        background-color: #d8b003 !important;
+    }
+
+    /* Плавающие тулбары над 2D-сценой */
+    #calcAppRoot [data-slot="menubar"],
+    #calcAppRoot [data-slot="button-group"] {
+        border: 1px solid #e2e8f0 !important;
+        background-color: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(8px) !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    #calcAppRoot [data-slot="menubar-trigger"]:hover,
+    #calcAppRoot [data-slot="menubar-trigger"][aria-expanded="true"] {
+        background-color: #fffceb !important;
+        color: #19191c !important;
+    }
+
+    #calcAppRoot [data-slot="button-group"] button:hover {
+        background-color: #fffceb !important;
+        color: #19191c !important;
+    }
+
+    /* Поля ввода и фокус */
+    #calcAppRoot [data-slot="input-group"]:has(input:focus-visible),
+    #calcAppRoot [data-slot="input-group"]:focus-within {
+        border-color: #eec30d !important;
+        box-shadow: 0 0 0 3px rgba(238, 195, 13, 0.25) !important;
+    }
+
+    /* Модальное окно (Каталог настила) */
+    [data-slot="dialog-content"] {
+        border: 1px solid #e2e8f0 !important;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    [data-slot="dialog-content"] [data-slot="dialog-title"] {
+        font-weight: 800 !important;
+        color: #19191c !important;
+    }
+
+    /* Позиции каталога в модалке */
+    [data-slot="dialog-content"] [data-slot="item"] {
+        border: 1px solid #e2e8f0 !important;
+        transition: all 0.15s ease !important;
+    }
+
+    [data-slot="dialog-content"] [data-slot="item"]:hover {
+        border-color: #eec30d !important;
+        background-color: #fffceb !important;
+    }
+
+    /* Кнопки подвала модального окна */
+    [data-slot="dialog-content"] [data-slot="dialog-footer"] button:last-child:not([disabled]):not([data-disabled]) {
+        background-color: #eec30d !important;
+        color: #19191c !important;
+        font-weight: 700 !important;
+        border: none !important;
+        box-shadow: 0 4px 12px rgba(238, 195, 13, 0.3) !important;
+    }
+
+    [data-slot="dialog-content"] [data-slot="dialog-footer"] button:last-child:not([disabled]):not([data-disabled]):hover {
+        background-color: #d8b003 !important;
+    }
+
+    [data-slot="dialog-close"]:hover {
+        background-color: #fffceb !important;
+        color: #eec30d !important;
+    }
+
+    /* Индикатор прогресса расчета */
+    #calcAppRoot [data-slot="progress-indicator"] {
+        background-color: #eec30d !important;
+    }
 }
 
-/** ИНТЕГРАЦИЯ С TAILWIND V4 */
+/** ТОКЕНЫ TAILWIND V4 */
 @theme {
-    --font-sans: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    --font-heading: "Montserrat", sans-serif;
+    --font-sans: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-heading: "Roboto", sans-serif;
 
-    /* Фирменная палитра GreenDECKS */
-    --color-brand-lime: #a5c33c;
-    --color-brand-lime-hover: #93ae34;
-    --color-brand-forest: #024700;
-    --color-brand-dark-olive: #273007;
-    --color-brand-light-bg: #f3fff0;
-    --color-brand-charcoal: #1a1f16;
+    --color-brand-header: #262325;
+    --color-brand-nav: #1e1c1e;
+    --color-brand-dark: #19191c;
+    --color-brand-surface: #2b2729;
+    --color-brand-border: #3d373a;
+    --color-brand-charcoal: #2c262a;
+    --color-brand-muted: #959094;
 
-    /* Базовые цвета shadcn / oliver-deck */
+    --color-brand-gold: #eec30d;
+    --color-brand-gold-hover: #d8b003;
+    --color-brand-gold-light: #fffceb;
+    --color-brand-green: #00ca5f;
+
+    /* Базовые цвета shadcn / oliverdeck */
     --color-background: var(--background);
     --color-foreground: var(--foreground);
     --color-card: var(--card);
@@ -172,146 +323,55 @@
     --color-input: var(--input);
     --color-ring: var(--ring);
 
-    /* Sidebar цвета */
-    --color-sidebar: var(--sidebar);
-    --color-sidebar-foreground: var(--sidebar-foreground);
-    --color-sidebar-primary: var(--sidebar-primary);
-    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-    --color-sidebar-accent: var(--sidebar-accent);
-    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-    --color-sidebar-border: var(--sidebar-border);
-    --color-sidebar-ring: var(--sidebar-ring);
+    --radius-sm: 0.225rem;
+    --radius-md: 0.3rem;
+    --radius-lg: 0.375rem;
+    --radius-xl: 0.525rem;
+    --radius-2xl: 0.675rem;
+    --radius-3xl: 0.825rem;
+    --radius-4xl: 0.975rem;
 
-    /* Кастомные цвета Vistegra (для обратной совместимости) */
-    --color-heading: var(--heading);
-    --color-nav: var(--nav);
-    --color-meta: var(--meta);
-    --color-success: var(--success);
-    --color-warning: var(--warning);
-    --color-dark: var(--dark);
-    --color-primary-light: #3D98FF;
+    --shadow-subtle: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+    --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --shadow-icon: inset 0 0 5px 0 rgba(238, 195, 13, 0.2);
+    --shadow-deep: inset 0 1px 8px 0 rgba(0, 0, 0, 0.25);
+    --shadow-cta: 0 4px 14px 0 rgba(238, 195, 13, 0.35);
 
-    /* Радиусы скруглений дизайн-системы виджета */
-    --radius-sm: calc(var(--radius) * 0.6);
-    --radius-md: calc(var(--radius) * 0.8);
-    --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) * 1.4);
-    --radius-2xl: calc(var(--radius) * 1.8);
-    --radius-3xl: calc(var(--radius) * 2.2);
-    --radius-4xl: calc(var(--radius) * 2.6);
-
-    /* Тени Vistegra и карточек */
-    --shadow-subtle: 0 0 1px 0 rgba(0, 0, 0, 0.15);
-    --shadow-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
-    --shadow-card: inset 0 0 14px 0 rgba(144, 198, 221, 0.2);
-    --shadow-icon: inset 0 0 5px 0 rgba(89, 171, 206, 0.25);
-    --shadow-deep: inset 0 1px 8px 0 rgba(175, 203, 234, 0.5);
-    --shadow-cta: 0 5px 12px 0 rgba(0, 103, 216, 0.55);
-
-    /* Тени для стекла */
-    --shadow-glass-inset: inset 0 0 14px 0 rgba(144, 198, 221, 0.20);
-    --shadow-glass-panel: 0 0 6px 0 rgba(0, 0, 0, 0.25), inset 0 0 14px 0 rgba(144, 198, 221, 0.20);
-    --blur-glass: 2.5px;
+    --shadow-glass-inset: inset 0 0 14px 0 rgba(255, 255, 255, 0.1);
+    --shadow-glass-panel: 0 0 6px 0 rgba(0, 0, 0, 0.25), inset 0 0 14px 0 rgba(255, 255, 255, 0.05);
+    --blur-glass: 3px;
 }
 
-/** ПЕРЕМЕННЫЕ ДИЗАЙН-СИСТЕМЫ (OKLCH TOKENS) - СВЕТЛАЯ ТЕМА */
+/** ПЕРЕМЕННЫЕ SHADCN (СВЕТЛАЯ ТЕМА) */
 :root {
     --radius: 0.375rem;
+    --background: #ffffff;
+    --foreground: #19191c;
+    --card: #ffffff;
+    --card-foreground: #19191c;
+    --popover: #ffffff;
+    --popover-foreground: #19191c;
+    --primary: #19191c;
+    --primary-foreground: #ffffff;
+    --secondary: #f4f4f5;
+    --secondary-foreground: #19191c;
+    --muted: #f4f4f5;
+    --muted-foreground: #71717a;
+    --accent: #fffceb;
+    --accent-foreground: #19191c;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+    --ring: #eec30d;
 
-    /* Базовые цвета shadcn (Light Theme) */
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --destructive-foreground: oklch(0.985 0 0);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-
-    /* Sidebar токены */
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
-
-    /* Графики и диаграммы */
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-
-    /* Токены холста и интерактивных элементов */
-    --canvas-background: oklch(0.97 0 0);
-    --canvas-decking-fill: oklch(76.723% 0.12116 68.101);
-    --canvas-decking-foreground: oklch(0.145 0 0);
-    --canvas-decorative-corner-fill: oklch(0.709 0.159 293.5);
-    --canvas-decorative-corner-foreground: oklch(0.145 0 0);
-    --canvas-step-board-fill: oklch(0.75 0.12 55);
-    --canvas-step-board-foreground: oklch(0.145 0 0);
-
-    /* Семантические переменные хоста (Vistegra Aliases) */
-    --heading: oklch(0.145 0 0);
-    --nav: oklch(0.556 0 0);
-    --meta: oklch(0.556 0 0);
-    --success: oklch(0.627 0.194 149.214);
-    --warning: oklch(0.795 0.184 86.047);
-    --dark: oklch(0.145 0 0);
-}
-
-/** ПЕРЕМЕННЫЕ ДИЗАЙН-СИСТЕМЫ (OKLCH TOKENS) - ТЕМНАЯ ТЕМА */
-.dark,
-html.dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --destructive-foreground: oklch(0.985 0 0);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-
-    /* Sidebar токены */
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
-
-    /* Семантические переменные хоста (Dark Aliases) */
-    --heading: oklch(0.985 0 0);
-    --nav: oklch(0.708 0 0);
-    --meta: oklch(0.708 0 0);
-    --dark: oklch(0.985 0 0);
+    --heading: #19191c;
+    --nav: #71717a;
+    --meta: #71717a;
+    --success: #00ca5f;
+    --warning: #eec30d;
+    --dark: #19191c;
 }
 
 /** БАЗОВЫЕ СТИЛИ (BASE) */
@@ -321,7 +381,8 @@ html.dark {
     }
 
     body {
-        @apply selection:bg-primary selection:text-primary-foreground bg-background text-foreground;
+        font-family: var(--font-sans);
+        @apply selection:bg-brand-gold selection:text-black bg-[#eceef1] text-stone-900;
         touch-action: manipulation;
     }
 
@@ -330,54 +391,14 @@ html.dark {
         user-select: none !important;
     }
 
-    /** СТИЛИ АВТОЗАПОЛНЕНИЯ (AUTOFILL) */
-    /* Базовый сброс для всех типов автозаполнения */
+    /* Автозаполнение в темной теме */
     input:-webkit-autofill,
-    input:-webkit-autofill:hover,
-    input:-webkit-autofill:focus,
-    textarea:-webkit-autofill,
-    textarea:-webkit-autofill:hover,
-    textarea:-webkit-autofill:focus {
-        font-family: var(--font-sans), sans-serif !important;
-        transition: background-color 5000s ease-in-out 0s !important;
-        caret-color: currentColor;
-    }
-
-    /* Вариант DARK (Модалки) */
-    .autofill-dark:-webkit-autofill {
+    textarea:-webkit-autofill {
         -webkit-text-fill-color: #FFFFFF !important;
-        box-shadow: 0 0 0 1000px #1A1D21 inset !important;
-        border-color: rgba(255, 255, 255, 0.1) !important;
+        box-shadow: 0 0 0 1000px #19191c inset !important;
+        border-color: rgba(255, 255, 255, 0.15) !important;
     }
 
-    .autofill-dark:-webkit-autofill:focus {
-        border-color: var(--color-primary) !important;
-    }
-
-    /* Вариант BLUE (Синие баннеры) */
-    .autofill-blue:-webkit-autofill {
-        -webkit-text-fill-color: #FFFFFF !important;
-        box-shadow: 0 0 0 1000px #005ECA inset !important;
-        border-color: rgba(255, 255, 255, 0.2) !important;
-    }
-
-    .autofill-blue:-webkit-autofill:focus {
-        border-color: #FFFFFF !important;
-    }
-
-    /* Вариант WHITE (Светлые секции) */
-    .autofill-white:-webkit-autofill {
-        -webkit-text-fill-color: var(--color-heading) !important;
-        box-shadow: 0 0 0 1000px #F8F9FA inset !important;
-        border-color: var(--color-border) !important;
-        caret-color: var(--color-heading);
-    }
-
-    .autofill-white:-webkit-autofill:focus {
-        border-color: var(--color-primary) !important;
-    }
-
-    /* Хак для iOS Zoom */
     @media screen and (max-width: 768px) {
         input, textarea, select {
             font-size: 16px !important;
@@ -392,31 +413,9 @@ html.dark {
     }
 
     .container-content {
-        @apply w-full max-w-[1280px] mx-auto px-4 md:px-8 lg:px-10;
+        @apply w-full max-w-[1360px] mx-auto px-4 sm:px-6;
     }
 
-    /* Safe Areas */
-    .pt-safe {
-        padding-top: env(safe-area-inset-top);
-    }
-
-    .pb-safe {
-        padding-bottom: env(safe-area-inset-bottom);
-    }
-
-    .pl-safe {
-        padding-left: env(safe-area-inset-left);
-    }
-
-    .pr-safe {
-        padding-right: env(safe-area-inset-right);
-    }
-
-    .h-safe-screen {
-        height: calc(100vh - (env(safe-area-inset-top) + env(safe-area-inset-bottom)));
-    }
-
-    /* Скрытие скроллбара */
     .scrollbar-hide::-webkit-scrollbar {
         display: none;
     }
@@ -425,18 +424,6 @@ html.dark {
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
-
-    /* Маска для скролл-контейнеров */
-    .mask-fade-right {
-        --mask-stop: calc(100% - 40px);
-        --mask-grad: linear-gradient(to right, black var(--mask-stop), transparent 100%);
-        -webkit-mask-image: var(--mask-grad);
-        mask-image: var(--mask-grad);
-    }
-}
-
-@utility text-shadow-sm {
-    text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.25);
 }
 
 /** КАСТОМНЫЙ СКРОЛЛБАР */
@@ -449,59 +436,37 @@ html.dark {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 10px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: var(--color-primary);
+    background: #eec30d;
 }
 
-/** АНИМАЦИИ И ЭФФЕКТЫ */
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px) rotateY(-15deg) rotateX(5deg);
-    }
-    50% {
-        transform: translateY(-15px) rotateY(-12deg) rotateX(2deg);
-    }
-}
-
-.animate-float-3d {
-    animation: float 6s ease-in-out infinite;
-}
-
-[data-slot="dialog-content"],
-[data-slot="drawer-content"] {
-    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
-    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-/** СТИЛИ УВЕДОМЛЕНИЙ (SONNER TOASTS) */
+/** СТИЛИ УВЕДОМЛЕНИЙ (SONNER TOASTS) В ДИЗАЙНЕ OLIVERDECK */
 [data-sonner-toast] {
-    background-color: rgba(255, 255, 255, 0.85) !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
     backdrop-filter: blur(16px) saturate(150%);
-    border-radius: var(--radius-2xl, 14px) !important;
+    border-radius: 14px !important;
     font-family: var(--font-sans), sans-serif !important;
     padding: 14px 18px !important;
-    color: var(--foreground) !important;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12) !important;
-    border: 1px solid var(--border) !important;
+    color: #19191c !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+    border: 1px solid #e2e8f0 !important;
 }
 
-/* Успешное уведомление */
 [data-sonner-toast][data-type="success"] {
-    background-color: rgba(240, 253, 244, 0.9) !important;
-    border: 1px solid rgba(34, 158, 53, 0.2) !important;
+    background-color: rgba(255, 252, 235, 0.95) !important;
+    border: 1px solid rgba(238, 195, 13, 0.4) !important;
 }
 
 [data-sonner-toast][data-type="success"] [data-icon] {
-    color: #229E35 !important;
+    color: #d8b003 !important;
 }
 
-/* Ошибка */
 [data-sonner-toast][data-type="error"] {
-    background-color: rgba(254, 242, 242, 0.9) !important;
+    background-color: rgba(254, 242, 242, 0.95) !important;
     border: 1px solid rgba(221, 44, 44, 0.2) !important;
 }
 
@@ -509,21 +474,18 @@ html.dark {
     color: #DD2C2C !important;
 }
 
-/* Заголовок сообщения */
 [data-sonner-toast] [data-title] {
     font-weight: 600 !important;
-    color: var(--foreground) !important;
+    color: #19191c !important;
 }
 
-/* Описание сообщения */
 [data-sonner-toast] [data-description] {
-    color: var(--muted-foreground) !important;
+    color: #71717a !important;
     font-size: 13px !important;
 }
 
-/* Кнопка закрытия (если есть) */
 [data-sonner-toast] [data-close-button] {
-    background: var(--muted) !important;
-    border-color: var(--border) !important;
-    color: var(--foreground) !important;
+    background: #f4f4f5 !important;
+    border-color: #e2e8f0 !important;
+    color: #19191c !important;
 }

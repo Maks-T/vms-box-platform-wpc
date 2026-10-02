@@ -11,12 +11,12 @@ export function CalculatorTeaserBlock() {
   const approxBoards = Math.ceil(area / 0.42); // примерный расход досок
 
   return (
-    <section id="calculator" className="py-20 bg-[#273007] text-white relative overflow-hidden w-full">
-      <div className="absolute inset-0 bg-[radial-gradient(#a5c33c_1px,transparent_1px)] [background-size:24px_24px] opacity-5 pointer-events-none" />
+    <section id="calculator" className="py-16 sm:py-20 bg-brand-header text-white relative overflow-hidden w-full border-t border-brand-border">
+      <div className="absolute inset-0 bg-[radial-gradient(#eec30d_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none" />
 
-      <div className="relative z-10 max-w-[1200px] mx-auto px-4 sm:px-8">
+      <div className="relative z-10 max-w-[1360px] mx-auto px-4 sm:px-6">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-brand-lime font-bold text-xs uppercase tracking-wider block mb-2">
+          <span className="text-brand-gold font-bold text-xs uppercase tracking-wider block mb-2">
             Онлайн-калькулятор
           </span>
           <h2 className="font-heading font-extrabold text-2xl sm:text-4xl uppercase tracking-tight">
@@ -27,7 +27,7 @@ export function CalculatorTeaserBlock() {
           </p>
         </div>
 
-        <div className="bg-brand-charcoal/90 border border-white/10 rounded-2xl p-6 sm:p-10 shadow-2xl backdrop-blur-md">
+        <div className="bg-brand-surface border border-brand-border rounded-2xl p-6 sm:p-10 shadow-xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
             <div>
               <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-300 mb-2">
@@ -39,7 +39,7 @@ export function CalculatorTeaserBlock() {
                 max="50"
                 value={length}
                 onChange={(e) => setLength(Math.max(1, Number(e.target.value)))}
-                className="w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-white text-base font-semibold focus:outline-none focus:border-brand-lime transition"
+                className="w-full bg-brand-header border border-brand-border rounded-xl px-4 py-3 text-white text-base font-semibold focus:outline-none focus:border-brand-gold transition"
               />
             </div>
 
@@ -53,14 +53,14 @@ export function CalculatorTeaserBlock() {
                 max="50"
                 value={width}
                 onChange={(e) => setWidth(Math.max(1, Number(e.target.value)))}
-                className="w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-white text-base font-semibold focus:outline-none focus:border-brand-lime transition"
+                className="w-full bg-brand-header border border-brand-border rounded-xl px-4 py-3 text-white text-base font-semibold focus:outline-none focus:border-brand-gold transition"
               />
             </div>
 
             <div>
               <Link
                 href={route('calculator.show')}
-                className="w-full inline-flex items-center justify-center gap-2 bg-brand-lime hover:bg-brand-limeHover text-brand-charcoal font-heading font-bold text-xs uppercase tracking-wider py-3.5 px-6 rounded-xl transition shadow-lg active:scale-95 cursor-pointer"
+                className="w-full inline-flex items-center justify-center gap-2 bg-brand-gold hover:bg-brand-gold-hover text-black font-extrabold text-xs uppercase tracking-wider py-3.5 px-6 rounded-xl transition shadow-lg active:scale-95 cursor-pointer"
               >
                 <Calculator className="w-4 h-4" />
                 <span>Открыть калькулятор</span>

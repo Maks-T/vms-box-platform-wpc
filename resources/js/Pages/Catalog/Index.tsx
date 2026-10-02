@@ -2,7 +2,6 @@ import React from 'react';
 import { Head } from '@inertiajs/react';
 
 import MainLayout from '@/layouts/MainLayout';
-import SectionLayout from '@/shared/components/layouts/SectionLayout';
 import { CatalogFilters } from '@/features/catalog/components/CatalogFilters';
 import { CatalogSearchInput } from '@/features/catalog/components/CatalogSearchInput';
 import { useCatalogParams } from '@/features/catalog/hooks/useCatalogParams';
@@ -58,23 +57,22 @@ export default function CatalogIndex() {
 
   return (
     <MainLayout headerOverlaps={false}>
-      <Head title={`${activeFamilyName || 'Каталог'} — GreenDECKS Казахстан`} />
+      <Head title="Каталог террасной доски ДПК и МПК — OliverDeck" />
 
-      <CatalogHeroBlock />
-
-      {/* Секция каталога с фильтрами */}
-      <SectionLayout id="catalog" containerVariant="content" className="pt-8 pb-16">
-        <CatalogNavigationBlock
-          familiesList={familiesList}
-          activeFamily={family}
-          setFamily={setFamily}
-          typesSchema={typesForActiveFamily}
-          productType={productType}
-          setProductType={setProductType}
-        />
+      {/* Основной белый контейнер каталога на фоне #eceef1 */}
+      <main className="flex-1 max-w-[1360px] w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        <div className="bg-white border border-stone-200/90 rounded-2xl p-6 sm:p-8 shadow-xs">
+          <CatalogNavigationBlock
+            familiesList={familiesList}
+            activeFamily={family}
+            setFamily={setFamily}
+            typesSchema={typesForActiveFamily}
+            productType={productType}
+            setProductType={setProductType}
+          />
 
         {/* Строка поиска */}
-        <div className="mb-6 w-full flex justify-start">
+          <div className="relative mb-8">
           <CatalogSearchInput
             value={search}
             onChange={setSearch}
@@ -82,24 +80,23 @@ export default function CatalogIndex() {
           />
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
-          <aside className="hidden lg:block lg:w-[260px] xl:w-[280px] shrink-0">
-            <div className="sticky top-28 max-h-[calc(100vh-140px)] overflow-y-auto pr-4 custom-scrollbar">
-              {hasActiveFilters && (
-                <button
-                  type="button"
-                  onClick={clearFilters}
-                  className="mb-6 text-[11px] font-bold text-muted-foreground hover:text-primary uppercase tracking-widest border-b border-border hover:border-primary pb-1 transition-colors cursor-pointer"
-                >
-                  Сбросить фильтры
-                </button>
-              )}
-              <CatalogFilters filters={filtersSchema} activeFilters={activeFilters} onToggle={toggleFilter} />
-            </div>
-          </aside>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <aside className="lg:col-span-3 space-y-7 border-r border-stone-100 pr-0 lg:pr-6">
+              <div className="sticky top-20 max-h-[calc(100vh-100px)] overflow-y-auto pr-2 custom-scrollbar">
+                {hasActiveFilters && (
+                  <button
+                    type="button"
+                    onClick={clearFilters}
+                    className="mb-4 text-[11px] font-bold text-stone-500 hover:text-black uppercase tracking-wider border-b border-stone-200 pb-0.5 transition-colors cursor-pointer"
+                  >
+                    Сбросить фильтры
+                  </button>
+                )}
+                <CatalogFilters filters={filtersSchema} activeFilters={activeFilters} onToggle={toggleFilter} />
+              </div>
+            </aside>
 
-          <div className="lg:col-span-9 flex-1 relative flex flex-col">
-            <div className="relative flex-1 mb-12">
+            <section className="lg:col-span-9">
               <ProductGridBlock
                 isLoading={isLoading}
                 products={products}
@@ -108,7 +105,7 @@ export default function CatalogIndex() {
                 clearFilters={clearFilters}
                 bootstrapConfig={bootstrapConfig}
               />
-            </div>
+            </section>
 
             {!isLoading && isDev && (
               <div className="mt-8 border-t border-border pt-10 pb-6">
@@ -118,7 +115,7 @@ export default function CatalogIndex() {
             )}
           </div>
         </div>
-      </SectionLayout>
+      </main>
 
       {/* Ценности и возможности */}
       <ValuesBlock />

@@ -17,19 +17,19 @@ interface Props {
 export function ProductGridBlock({ isLoading, products, meta, setPage, clearFilters, bootstrapConfig }: Props) {
   return (
     <div className="relative min-h-[500px] flex flex-col">
-      <div className="flex items-center justify-between mb-6 border-b border-border pb-4">
-        <h2 className="text-2xl font-semibold text-foreground tracking-tight">Результаты</h2>
-        <span className="text-sm font-medium text-muted-foreground bg-muted px-3 py-1 rounded-full">
+      <div className="flex items-center justify-between pb-5 mb-5 border-b border-stone-100">
+        <h2 className="text-base font-bold text-stone-900">Террасная доска и лаги (в наличии)</h2>
+        <span className="text-xs text-stone-400">
           {meta?.total || products.length} товаров
         </span>
       </div>
 
       <div className="relative flex-1">
         {isLoading && (
-          <div className="absolute inset-0 z-30 flex flex-col items-center justify-start pt-32 bg-white/60 transition-all duration-300">
-            <div className="flex flex-col items-center gap-4">
-              <Loader2 className="w-12 h-12 text-sky-500 animate-spin stroke-[2.5px]" />
-              <span className="text-sky-600/60 text-xs font-bold uppercase tracking-[0.2em] animate-pulse">
+          <div className="absolute inset-0 z-30 flex flex-col items-center justify-start pt-32 bg-white/70 backdrop-blur-2xs transition-all duration-300">
+            <div className="flex flex-col items-center gap-3">
+              <Loader2 className="w-10 h-10 text-brand-gold animate-spin stroke-[2.5px]" />
+              <span className="text-stone-700 text-xs font-bold uppercase tracking-[0.2em] animate-pulse">
                  Загрузка...
                </span>
             </div>
@@ -42,7 +42,7 @@ export function ProductGridBlock({ isLoading, products, meta, setPage, clearFilt
         )}>
           {products.length > 0 ? (
             <>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 md:gap-x-6 md:gap-y-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {products.map((product) => (
                   <ProductCard
                     key={product.id}
@@ -54,12 +54,19 @@ export function ProductGridBlock({ isLoading, products, meta, setPage, clearFilt
               <BasePagination meta={meta} onPageChange={setPage} />
             </>
           ) : !isLoading && (
-            <div className="py-24 flex flex-col items-center justify-center bg-muted/30 rounded-3xl border border-dashed border-border shadow-sm">
-              <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-4">
-                <Layers className="w-8 h-8 text-muted-foreground" />
+            <div className="py-16 sm:py-20 flex flex-col items-center justify-center bg-stone-50/70 rounded-2xl border border-dashed border-stone-200 text-center p-6">
+              <div className="w-14 h-14 bg-[#fffceb] border border-[#f5e18c] rounded-2xl flex items-center justify-center mb-4 shadow-2xs">
+                <Layers className="w-6 h-6 text-brand-gold" />
               </div>
-              <p className="text-lg text-foreground font-medium mb-2">Ничего не найдено</p>
-              <button onClick={clearFilters} className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-2.5 rounded-lg text-sm font-medium transition-colors">
+              <h3 className="text-base font-bold text-stone-900 mb-1">Ничего не найдено</h3>
+              <p className="text-xs text-stone-500 max-w-sm mb-6 leading-relaxed">
+                По выбранным параметрам фильтрации не найдено подходящих позиций. Попробуйте сбросить фильтры.
+              </p>
+              <button
+                type="button"
+                onClick={clearFilters}
+                className="px-6 py-2.5 bg-brand-gold hover:bg-brand-gold-hover text-black font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all shadow-xs cursor-pointer active:scale-95"
+              >
                 Сбросить фильтры
               </button>
             </div>

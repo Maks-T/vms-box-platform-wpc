@@ -11,7 +11,7 @@ export function ValuesBlock() {
     {
       icon: Sun,
       title: 'Стойкость',
-      description: 'Материалы адаптированы к климату Казахстана: от -50°C в Астане до +50°C на солнце в Алматы.',
+      description: 'Материалы адаптированы к климату РФ: от зимних морозов до летнего солнца. Гарантия производителя до 25 лет.',
     },
     {
       icon: Leaf,
@@ -29,7 +29,7 @@ export function ValuesBlock() {
     {
       icon: Truck,
       title: 'Быстрая доставка',
-      desc: 'Отгрузка в день оплаты со складов в Астане (ул. Өндіріс) и Алматы',
+      desc: 'Отгрузка со склада в Москве и оперативная доставка по всем регионам РФ',
     },
     {
       icon: BadgePercent,
@@ -49,18 +49,18 @@ export function ValuesBlock() {
   ];
 
   return (
-    <section className="py-20 bg-white border-t border-gray-100 w-full">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+    <section className="py-16 sm:py-20 bg-white border-t border-stone-200/90 w-full">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6">
         
         {/* Заголовок */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-brand-forest font-bold text-xs uppercase tracking-wider block mb-2">
+          <span className="text-stone-500 font-bold text-xs uppercase tracking-wider block mb-2">
             Надежность и стандарты
           </span>
           <h2 className="font-heading font-extrabold text-2xl sm:text-4xl text-gray-900 uppercase tracking-tight">
-            Ценности Greendecks
+            Ценности OliverDeck
           </h2>
-          <div className="w-16 h-1 bg-brand-lime mx-auto mt-4 rounded-full" />
+          <div className="w-16 h-1 bg-brand-gold mx-auto mt-4 rounded-full" />
         </div>
 
         {/* Сетка 4 ценностей */}
@@ -68,8 +68,8 @@ export function ValuesBlock() {
           {values.map((v) => {
             const Icon = v.icon;
             return (
-              <div key={v.title} className="bg-[#f9fbf9] p-6 rounded-2xl border-b-4 border-brand-lime text-center shadow-xs hover:shadow-md transition">
-                <div className="w-12 h-12 mx-auto rounded-full bg-brand-forest/10 flex items-center justify-center text-brand-forest mb-4">
+              <div key={v.title} className="bg-[#f8f9fa] p-6 rounded-2xl border-b-4 border-brand-gold text-center shadow-xs hover:shadow-md transition">
+                <div className="w-12 h-12 mx-auto rounded-full bg-brand-gold/15 flex items-center justify-center text-stone-900 mb-4">
                   <Icon className="w-6 h-6" />
                 </div>
                 <h3 className="font-heading font-bold text-lg text-gray-900 mb-2">{v.title}</h3>
@@ -80,10 +80,10 @@ export function ValuesBlock() {
         </div>
 
         {/* 4 преимущества поставки */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-12 border-t border-gray-100">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-12 border-t border-stone-100">
           {perks.map((p) => (
             <div key={p.title} className="flex items-start gap-4">
-              <p.icon className="w-6 h-6 text-brand-forest shrink-0 mt-1" />
+              <p.icon className="w-6 h-6 text-brand-gold shrink-0 mt-1" />
               <div>
                 <h4 className="font-heading font-bold text-sm text-gray-900 mb-1">{p.title}</h4>
                 <p className="text-xs text-gray-500 leading-relaxed">{p.desc}</p>

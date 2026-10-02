@@ -17,26 +17,32 @@ export interface SocialItem {
 
 export const siteConfig = {
   company: {
-    name: "GreenDECKS",
-    subName: "Composite WPC",
-    status: "Склад в Астане",
-    warehouse: "г. Астана, ул. Өндіріс, 12/2",
-    schedule: "Пн-Сб: 09:00 - 18:00",
-    bin: "240440006864",
-    copyright: `© 2014–${new Date().getFullYear()} GREENDECKS. Все права защищены.`,
+    name: "OliverDeck",
+    subName: "ДПК и МПК покрытия",
+    legalName: "ООО «Оливердек»",
+    status: "Шоурум открыт",
+    showroom: "ул. Космонавта Волкова, 20",
+    warehouse: "г. Москва, ул. Космонавта Волкова, 20",
+    schedule: "ПН-ПТ: 10:00–19:00, СБ-ВС: 10:00–14:00",
+    scheduleWeekdays: "ПН-ПТ: 10:00–19:00",
+    scheduleWeekend: "СБ-ВС: 10:00–14:00",
+    inn: "7716936058",
+    ogrn: "1197746290521",
+    copyright: `© 2017–${new Date().getFullYear()} Продажа террасной доски и изделий из ДПК`,
   },
 
   contacts: {
-    phone: { label: "+7 775 172 07 63", href: "tel:+77751720763" },
-    email: { label: "info@greendecks.kz", href: "mailto:info@greendecks.kz" },
-    whatsapp: { label: "+7 775 172 07 63", href: "https://wa.me/77751720763" },
+    phone: { label: "+7 495 255-13-70", href: "tel:+74952551370" },
+    email: { label: "info@oliverdeck.ru", href: "mailto:info@oliverdeck.ru" },
+    whatsapp: { label: "+7 985 331-14-64", href: "https://wa.me/79853311464" },
+    telegram: { label: "@oliverdeck_company", href: "https://t.me/oliverdeck_company" },
   },
 
   socials: [
-    { id: 'instagram', href: "https://www.instagram.com/greendecks_kz/", label: "Instagram" },
-    { id: 'youtube', href: "https://www.youtube.com/@greendeckS_kz", label: "YouTube" },
-    { id: 'tiktok', href: "https://tiktok.com", label: "TikTok" },
-    { id: 'telegram', href: "https://t.me/greendecksKZ", label: "Telegram" },
+    { id: 'whatsapp', href: "https://wa.me/79853311464", label: "WhatsApp" },
+    { id: 'telegram', href: "https://t.me/oliverdeck_company", label: "Telegram" },
+    { id: 'youtube', href: "https://www.youtube.com/channel/UCXrTLdoPRG3PXq9ptrkaa6A", label: "YouTube" },
+    { id: 'vk', href: "https://vk.com/oliverdeck", label: "ВКонтакте" },
   ] as SocialItem[],
 
   headerNav: [

@@ -40,14 +40,13 @@ export default function ProductShow({product, familyCode}: Props) {
 
   return (
     <MainLayout headerOverlaps={false}>
-      <Head title={`${product.name} - VMS-NC`}/>
+      <Head title={`${product.name} — OliverDeck`}/>
 
-      <ProductHeader/>
-
-      <div className="flex-1 py-8 md:py-12">
-        <BaseContainer containerVariant="content">
-          <GlassPanel variant="light" className="mb-8 p-6 md:p-10 lg:p-12 bg-card border-border">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+      <main className="flex-1 max-w-[1360px] w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        <ProductHeader/>
+        
+        <div className="bg-white border border-stone-200/90 rounded-2xl p-6 sm:p-8 shadow-xs">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
               <div className="lg:col-span-5">
                 <ProductImagePreview
                   image={product.preview_picture}
@@ -72,14 +71,13 @@ export default function ProductShow({product, familyCode}: Props) {
                 />
               </div>
             </div>
-          </GlassPanel>
+        </div>
 
           {}
           {isDev && (
             <ApiInspector requests={apiRequests}/>
           )}
-        </BaseContainer>
-      </div>
+      </main>
     </MainLayout>
   );
 }

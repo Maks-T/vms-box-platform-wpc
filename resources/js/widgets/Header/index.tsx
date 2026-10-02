@@ -37,8 +37,8 @@ export default function Header() {
 
   return (
     <>
-      <header className="w-full">
-        {/* Светлый контактный топ-бар */}
+      <header role="banner" className="w-full">
+        {/* Темный контактный топ-бар OliverDeck */}
         <TopBar
           locale={locale}
           onLanguageChange={handleLanguageChange}
@@ -46,20 +46,20 @@ export default function Header() {
           isEmployee={isEmployee}
         />
 
-        {/* Темно-оливковая навигационная полоса */}
-        <div className="bg-[#273007] text-white sticky top-0 z-40 shadow-md">
-          <div className="mx-auto flex h-14 max-w-[1400px] items-center justify-between px-4 md:px-8">
+        {/* Навигационная полоса в фирменном стиле */}
+        <div className="bg-brand-nav border-t border-brand-border/70 sticky top-0 z-40 shadow-md">
+          <div className="mx-auto flex max-w-[1360px] items-center justify-between px-4 sm:px-6">
             <NavBar items={visibleNavItems} />
 
-            <div className="flex items-center gap-3 ml-6">
+            <div className="flex items-center gap-2.5 ml-4">
               {(isDev || isEmployee) && (
                 <a
                   href="/admin"
                   target="_blank"
                   rel="noreferrer"
-                  className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-semibold tracking-wide transition-all"
+                  className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded bg-brand-surface hover:bg-brand-border border border-brand-border text-white text-xs font-semibold tracking-wide transition-all"
                 >
-                  <ShieldCheck className="size-3.5 text-brand-lime" />
+                  <ShieldCheck className="size-3.5 text-brand-gold" />
                   <span>Админ</span>
                 </a>
               )}
@@ -69,11 +69,11 @@ export default function Header() {
                 type="button"
                 onClick={() => setIsOpen(true)}
                 aria-label="Избранное"
-                className="relative size-9 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all cursor-pointer active:scale-95"
+                className="relative size-8 rounded bg-brand-surface hover:bg-brand-border border border-brand-border text-white flex items-center justify-center transition-all cursor-pointer active:scale-95"
               >
                 <Heart className="size-4 stroke-[2]" />
                 {items.length > 0 && (
-                  <span className="pointer-events-none absolute -top-1 -right-1 size-4 rounded-full bg-red-500 text-white text-[9px] font-bold flex items-center justify-center shadow-sm">
+                  <span className="pointer-events-none absolute -top-1 -right-1 size-4 rounded-full bg-brand-gold text-black text-[9px] font-black flex items-center justify-center shadow-sm">
                     {items.length}
                   </span>
                 )}
@@ -82,7 +82,7 @@ export default function Header() {
               {/* Мобильный бургер */}
               <button
                 type="button"
-                className="lg:hidden size-9 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center cursor-pointer"
+                className="lg:hidden size-8 rounded bg-brand-surface hover:bg-brand-border border border-brand-border text-white flex items-center justify-center cursor-pointer"
                 onClick={() => setIsMobileMenuOpen(true)}
               >
                 <Menu className="size-5" />

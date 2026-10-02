@@ -1,12 +1,12 @@
 {{-- resources/views/partials/seo.blade.php --}}
 @php
-  $title = $seo['title'] ?? config('app.name', 'Vistegra');
-  $description = $seo['description'] ?? 'Разработка кастомного ПО и автоматизация процессов для B2B.';
-  $keywords = $seo['keywords'] ?? 'автоматизация, разработка по, b2b, vistegra, сложные расчеты';
+  $title = $seo['title'] ?? 'Каталог террасной доски ДПК и МПК — OliverDeck';
+  $description = $seo['description'] ?? 'Продажа террасной доски из ДПК и МПК, фасадных панелей и комплектующих от производителя по первым ценам в Москве и МО.';
+  $keywords = $seo['keywords'] ?? 'террасная доска, дпк, мпк, ступени, монтаж террасы, оливердек, oliverdeck, москва';
 
   $image = $seo['og_image'] ?? asset('images/og-default.webp');
   $url = url()->current();
-  $siteName = 'Vistegra';
+  $siteName = 'OliverDeck';
 @endphp
 
   <!-- Базовые SEO теги -->

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Head, usePage } from '@inertiajs/react';
 import MainLayout from '@/layouts/MainLayout';
-import SectionLayout from '@/shared/components/layouts/SectionLayout';
 import CalculatorPreloader from './components/CalculatorPreloader';
 
 interface Props {
@@ -137,7 +136,7 @@ export default function CalculatorShow({ assets, initialData, currentType }: Pro
     };
   }, [assets.js, assets.css, initialDataStr, currentType, auth?.user]);
 
-  const seoTitle = 'Онлайн-калькулятор террасы из ДПК';
+  const seoTitle = 'Онлайн-калькулятор террасы из ДПК — OliverDeck';
 
   return (
     <MainLayout headerOverlaps={false}>
@@ -146,9 +145,8 @@ export default function CalculatorShow({ assets, initialData, currentType }: Pro
         <meta name="description" content="Рассчитайте точное количество материалов и стоимость террасы из ДПК за 2 минуты." />
       </Head>
 
-      <SectionLayout containerVariant="page" className="pt-4 md:pt-6 pb-8 md:pb-12 bg-gray-50 relative z-30">
-
-        <div className="w-full bg-white rounded-2xl border border-border p-2 sm:p-4 md:p-6 shadow-sm">
+      <div className="w-full max-w-[1360px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        <div className="w-full bg-white rounded-2xl border border-stone-200/90 p-4 sm:p-6 md:p-8 shadow-xs">
           <div className="relative w-full">
             {!isWidgetReady && (
               <div className="absolute inset-0 z-10 bg-white flex items-center justify-center rounded-2xl min-h-[500px]">
@@ -158,7 +156,7 @@ export default function CalculatorShow({ assets, initialData, currentType }: Pro
             <div id={ROOT_CONTAINER_ID} className="w-full h-auto" />
           </div>
         </div>
-      </SectionLayout>
+      </div>
     </MainLayout>
   );
 }

@@ -11,8 +11,8 @@ interface MainLayoutProps extends PropsWithChildren {
 
 export default function MainLayout({ children, headerOverlaps = false }: MainLayoutProps) {
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50 font-sans text-foreground selection:bg-brand-lime selection:text-brand-charcoal">
-      {/* Шапка GreenDECKS */}
+    <div className="flex flex-col min-h-screen bg-[#eceef1] font-sans text-stone-900 selection:bg-brand-gold selection:text-black">
+      {/* Шапка OliverDeck */}
       <div className={cn(
         "w-full z-20 transition-colors duration-300",
         headerOverlaps ? "absolute top-0 left-0 bg-transparent" : "relative"
@@ -20,12 +20,12 @@ export default function MainLayout({ children, headerOverlaps = false }: MainLay
         <Header />
       </div>
 
-      {/* Светлая контентная область */}
-      <main className="flex-1 w-full flex flex-col bg-slate-50">
+      {/* Контентная область */}
+      <main className="flex-1 w-full flex flex-col bg-[#eceef1]">
         {children}
       </main>
 
-      {/* Темный футер */}
+      {/* Футер OliverDeck */}
       <Footer />
 
       <FavoritesDrawer />

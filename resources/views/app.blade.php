@@ -9,10 +9,10 @@
 
     @include('partials.seo', ['seo' => $seo ?? []])
 
-    <!-- Подключение Google Fonts: Montserrat & Open Sans -->
+    <!-- Подключение Google Fonts: Roboto & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400..900;1,400..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     @routes
 
@@ -20,7 +20,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.tsx'])
     @inertiaHead
 </head>
-<body class="font-sans antialiased bg-background text-foreground overflow-x-hidden">
+<body class="font-sans antialiased bg-[#eceef1] text-stone-900 overflow-x-hidden">
 @inertia
 <div class="dummy-calc-anchor">dummy-calc-anchor</div>
 </body>

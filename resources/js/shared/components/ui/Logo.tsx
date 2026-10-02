@@ -20,23 +20,20 @@ export function Logo({
                        href = route('catalog'),
                        onClick
                      }: LogoProps) {
-  const isLight = variant === 'light-solid' || variant === 'dark-outline';
-
   return (
     <Link
       href={href}
       onClick={onClick}
       className={cn(
-        "shrink-0 flex items-center group active:scale-[0.98] transition-transform cursor-pointer py-1 select-none",
+        "shrink-0 flex items-center group active:scale-[0.98] transition-transform cursor-pointer select-none",
         className
       )}
     >
       <img
-        src="/images/logo_black.png"
-        alt="GreenDECKS"
+        src="https://oliverdeck.ru/thumb/2/LCcef9rDO6nWj2bcKBs__w/300c84/d/logox80-svg.svg"
+        alt="OliverDeck"
         className={cn(
-          "h-10 sm:h-11 md:h-12 lg:h-[50px] w-auto object-contain transition-all",
-          !isLight && "brightness-0 invert opacity-95",
+          "h-9 sm:h-11 w-auto object-contain transition-all",
           imgClassName
         )}
       />

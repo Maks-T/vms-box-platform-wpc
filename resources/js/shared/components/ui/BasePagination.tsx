@@ -25,8 +25,8 @@ interface BasePaginationProps {
 export function BasePagination({
                                  meta,
                                  onPageChange,
-                                 prevLabel = '‹ Назад',
-                                 nextLabel = 'Вперед ›',
+                                 prevLabel = '< Назад',
+                                 nextLabel = 'Вперед >',
                                  className = ''
                                }: BasePaginationProps) {
   if (!meta || !meta.last_page || meta.last_page <= 1) {
@@ -35,16 +35,25 @@ export function BasePagination({
 
   return (
     <div
-      className={cn("mt-12 flex flex-wrap items-center justify-center gap-1 md:gap-2 text-[14px] font-medium", className)}>
+      className={cn("flex items-center justify-center gap-2 pt-10 mt-8 border-t border-stone-100 text-xs select-none", className)}>
       {meta.links.map((link, idx) => {
         let label = link.label;
 
         if (label.includes('&laquo;')) label = prevLabel;
         if (label.includes('&raquo;')) label = nextLabel;
 
+        const isNav = label === prevLabel || label === nextLabel;
+
         if (!link.url) {
           return (
-            <span key={idx} className="px-3 py-2 text-slate-300">
+            <span
+              key={idx}
+              className={cn(
+                isNav
+                  ? "px-3 py-1.5 text-stone-300 cursor-not-allowed select-none"
+                  : "w-8 h-8 flex items-center justify-center text-stone-400 select-none"
+              )}
+            >
               {label}
             </span>
           );
@@ -56,12 +65,18 @@ export function BasePagination({
         return (
           <button
             key={idx}
+            type="button"
             onClick={() => onPageChange(pageNum)}
             className={cn(
-              "px-3.5 py-2 rounded-lg transition-colors",
-              link.active
-                ? "bg-sky-50 text-sky-700 font-bold cursor-default pointer-events-none"
-                : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+              "transition-colors",
+              isNav
+                ? "px-3 py-1.5 text-stone-500 hover:text-stone-900 cursor-pointer"
+                : cn(
+                    "w-8 h-8 rounded flex items-center justify-center cursor-pointer",
+                    link.active
+                      ? "bg-brand-gold text-black font-bold cursor-default pointer-events-none"
+                      : "hover:bg-stone-100 text-stone-700"
+                  )
             )}
           >
             {label}
