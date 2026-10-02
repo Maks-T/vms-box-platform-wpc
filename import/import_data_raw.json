@@ -255,6 +255,10 @@
           "is_variant_only": false
         },
         {
+          "code": "thickness_mm",
+          "is_variant_only": false
+        },
+        {
           "code": "source_url",
           "is_variant_only": false
         },
@@ -295,6 +299,10 @@
         },
         {
           "code": "thickness_mm",
+          "is_variant_only": false
+        },
+        {
+          "code": "height_mm",
           "is_variant_only": false
         }
       ]
@@ -364,6 +372,22 @@
           "is_variant_only": false
         },
         {
+          "code": "profile_width_mm",
+          "is_variant_only": false
+        },
+        {
+          "code": "profile_height_mm",
+          "is_variant_only": false
+        },
+        {
+          "code": "wall_thickness_mm",
+          "is_variant_only": false
+        },
+        {
+          "code": "material",
+          "is_variant_only": false
+        },
+        {
           "code": "source_url",
           "is_variant_only": false
         }
@@ -383,18 +407,26 @@
           "is_variant_only": false
         },
         {
+          "code": "diameter_mm",
+          "is_variant_only": false
+        },
+        {
           "code": "width_mm",
           "is_variant_only": false
         },
         {
           "code": "length_mm",
           "is_variant_only": false
+        },
+        {
+          "code": "material",
+          "is_variant_only": false
         }
       ]
     },
     {
       "external_code": "type_screw_pile",
-      "family_external_code": "fam_hardware_accessories",
+      "family_external_code": "fam_decking_systems",
       "code": "screw_pile",
       "name": {
         "ru": "Винтовые сваи",
@@ -406,11 +438,27 @@
           "is_variant_only": false
         },
         {
-          "code": "width_mm",
+          "code": "diameter_mm",
           "is_variant_only": false
         },
         {
           "code": "length_mm",
+          "is_variant_only": false
+        },
+        {
+          "code": "blade_diameter_mm",
+          "is_variant_only": false
+        },
+        {
+          "code": "wall_thickness_mm",
+          "is_variant_only": false
+        },
+        {
+          "code": "has_head",
+          "is_variant_only": false
+        },
+        {
+          "code": "material",
           "is_variant_only": false
         }
       ]
@@ -638,6 +686,83 @@
       "options": []
     },
     {
+      "external_code": "attr_diameter_mm",
+      "code": "diameter_mm",
+      "type": "numeric",
+      "name": {
+        "ru": "Диаметр, мм",
+        "en": "Diameter, mm"
+      },
+      "is_multiple": false,
+      "options": []
+    },
+    {
+      "external_code": "attr_blade_diameter_mm",
+      "code": "blade_diameter_mm",
+      "type": "numeric",
+      "name": {
+        "ru": "Диаметр лопасти, мм",
+        "en": "Blade Diameter, mm"
+      },
+      "is_multiple": false,
+      "options": []
+    },
+    {
+      "external_code": "attr_wall_thickness_mm",
+      "code": "wall_thickness_mm",
+      "type": "numeric",
+      "name": {
+        "ru": "Толщина стенки, мм",
+        "en": "Wall Thickness, mm"
+      },
+      "is_multiple": false,
+      "options": []
+    },
+    {
+      "external_code": "attr_profile_width_mm",
+      "code": "profile_width_mm",
+      "type": "numeric",
+      "name": {
+        "ru": "Ширина профиля, мм",
+        "en": "Profile Width, mm"
+      },
+      "is_multiple": false,
+      "options": []
+    },
+    {
+      "external_code": "attr_profile_height_mm",
+      "code": "profile_height_mm",
+      "type": "numeric",
+      "name": {
+        "ru": "Высота профиля, мм",
+        "en": "Profile Height, mm"
+      },
+      "is_multiple": false,
+      "options": []
+    },
+    {
+      "external_code": "attr_has_head",
+      "code": "has_head",
+      "type": "boolean",
+      "name": {
+        "ru": "Наличие оголовка",
+        "en": "Has Head"
+      },
+      "is_multiple": false,
+      "options": []
+    },
+    {
+      "external_code": "attr_material",
+      "code": "material",
+      "type": "string",
+      "name": {
+        "ru": "Материал",
+        "en": "Material"
+      },
+      "is_multiple": false,
+      "options": []
+    },
+    {
       "external_code": "0ae4e30b-a75c-11f0-0a80-15e400210259",
       "code": "product_calc_category",
       "type": "dictionary",
@@ -659,6 +784,18 @@
       "is_multiple": false,
       "options": [
         {
+          "external_code": "opt_wenge",
+          "slug": "wenge",
+          "value": {
+            "ru": "Венге",
+            "en": "Wenge"
+          },
+          "param": "wenge",
+          "meta": {
+            "hex": "#3B2219"
+          }
+        },
+        {
           "external_code": "opt_venge",
           "slug": "wenge",
           "value": {
@@ -668,6 +805,18 @@
           "param": "wenge",
           "meta": {
             "hex": "#3B2219"
+          }
+        },
+        {
+          "external_code": "opt_oak",
+          "slug": "oak",
+          "value": {
+            "ru": "Дуб",
+            "en": "Oak"
+          },
+          "param": "oak",
+          "meta": {
+            "hex": "#C4A77D"
           }
         },
         {
@@ -683,6 +832,18 @@
           }
         },
         {
+          "external_code": "opt_grey",
+          "slug": "grey",
+          "value": {
+            "ru": "Серый",
+            "en": "Grey"
+          },
+          "param": "grey",
+          "meta": {
+            "hex": "#808080"
+          }
+        },
+        {
           "external_code": "opt_seryi",
           "slug": "grey",
           "value": {
@@ -692,6 +853,18 @@
           "param": "grey",
           "meta": {
             "hex": "#808080"
+          }
+        },
+        {
+          "external_code": "opt_graphite",
+          "slug": "graphite",
+          "value": {
+            "ru": "Графит",
+            "en": "Graphite"
+          },
+          "param": "graphite",
+          "meta": {
+            "hex": "#4A5568"
           }
         },
         {
@@ -707,6 +880,18 @@
           }
         },
         {
+          "external_code": "opt_black_wood",
+          "slug": "black_wood",
+          "value": {
+            "ru": "Черное дерево",
+            "en": "Black Wood"
+          },
+          "param": "black_wood",
+          "meta": {
+            "hex": "#1A1A1A"
+          }
+        },
+        {
           "external_code": "opt_antracit",
           "slug": "black_wood",
           "value": {
@@ -716,6 +901,18 @@
           "param": "black_wood",
           "meta": {
             "hex": "#1A1A1A"
+          }
+        },
+        {
+          "external_code": "opt_brown",
+          "slug": "brown",
+          "value": {
+            "ru": "Коричневый",
+            "en": "Brown"
+          },
+          "param": "brown",
+          "meta": {
+            "hex": "#654321"
           }
         },
         {
@@ -731,6 +928,18 @@
           }
         },
         {
+          "external_code": "opt_dark_brown",
+          "slug": "dark_brown",
+          "value": {
+            "ru": "Темно-коричневый",
+            "en": "Dark Brown"
+          },
+          "param": "dark_brown",
+          "meta": {
+            "hex": "#3B2219"
+          }
+        },
+        {
           "external_code": "opt_temno-koricnevyi",
           "slug": "dark_brown",
           "value": {
@@ -740,6 +949,18 @@
           "param": "dark_brown",
           "meta": {
             "hex": "#3B2219"
+          }
+        },
+        {
+          "external_code": "opt_natural",
+          "slug": "natural",
+          "value": {
+            "ru": "Натураль",
+            "en": "Natural"
+          },
+          "param": "natural",
+          "meta": {
+            "hex": "#C4A77D"
           }
         },
         {
@@ -755,6 +976,18 @@
           }
         },
         {
+          "external_code": "opt_silver",
+          "slug": "silver",
+          "value": {
+            "ru": "Серебристый",
+            "en": "Silver"
+          },
+          "param": "silver",
+          "meta": {
+            "hex": "#C0C0C0"
+          }
+        },
+        {
           "external_code": "opt_gdk_serebristyy",
           "slug": "silver",
           "value": {
@@ -764,6 +997,18 @@
           "param": "silver",
           "meta": {
             "hex": "#C0C0C0"
+          }
+        },
+        {
+          "external_code": "opt_white",
+          "slug": "white",
+          "value": {
+            "ru": "Белый",
+            "en": "White"
+          },
+          "param": "white",
+          "meta": {
+            "hex": "#F0EBE0"
           }
         },
         {
@@ -6546,6 +6791,251 @@
           },
           "sort_order": 18,
           "is_active": true
+        },
+        {
+          "external_code": "rec_calc_setting_pedestalMaxStep",
+          "slug": "pedestalMaxStep",
+          "name": {
+            "ru": "pedestalMaxStep",
+            "en": "pedestalMaxStep"
+          },
+          "meta": {
+            "value": 500
+          },
+          "sort_order": 19,
+          "is_active": true
+        },
+        {
+          "external_code": "rec_calc_setting_pedestalEdgeOffset",
+          "slug": "pedestalEdgeOffset",
+          "name": {
+            "ru": "pedestalEdgeOffset",
+            "en": "pedestalEdgeOffset"
+          },
+          "meta": {
+            "value": 80
+          },
+          "sort_order": 20,
+          "is_active": true
+        },
+        {
+          "external_code": "rec_calc_setting_rebarMaxStep",
+          "slug": "rebarMaxStep",
+          "name": {
+            "ru": "rebarMaxStep",
+            "en": "rebarMaxStep"
+          },
+          "meta": {
+            "value": 800
+          },
+          "sort_order": 21,
+          "is_active": true
+        },
+        {
+          "external_code": "rec_calc_setting_rebarEdgeOffset",
+          "slug": "rebarEdgeOffset",
+          "name": {
+            "ru": "rebarEdgeOffset",
+            "en": "rebarEdgeOffset"
+          },
+          "meta": {
+            "value": 80
+          },
+          "sort_order": 22,
+          "is_active": true
+        },
+        {
+          "external_code": "rec_calc_setting_rebarEmbedDepth",
+          "slug": "rebarEmbedDepth",
+          "name": {
+            "ru": "rebarEmbedDepth",
+            "en": "rebarEmbedDepth"
+          },
+          "meta": {
+            "value": 150
+          },
+          "sort_order": 23,
+          "is_active": true
+        },
+        {
+          "external_code": "rec_calc_setting_rebarCutMargin",
+          "slug": "rebarCutMargin",
+          "name": {
+            "ru": "rebarCutMargin",
+            "en": "rebarCutMargin"
+          },
+          "meta": {
+            "value": 100
+          },
+          "sort_order": 24,
+          "is_active": true
+        },
+        {
+          "external_code": "rec_calc_setting_pileEdgeOffset",
+          "slug": "pileEdgeOffset",
+          "name": {
+            "ru": "pileEdgeOffset",
+            "en": "pileEdgeOffset"
+          },
+          "meta": {
+            "value": 200
+          },
+          "sort_order": 25,
+          "is_active": true
+        },
+        {
+          "external_code": "rec_calc_setting_minTerraceHeightPile",
+          "slug": "minTerraceHeightPile",
+          "name": {
+            "ru": "minTerraceHeightPile",
+            "en": "minTerraceHeightPile"
+          },
+          "meta": {
+            "value": 250
+          },
+          "sort_order": 26,
+          "is_active": true
+        }
+      ]
+    },
+    {
+      "external_code": "dict_foundation_spans",
+      "code": "foundation_spans",
+      "name": {
+        "ru": "Калькулятор: Матрица пролетов основания",
+        "en": "Calculator: Foundation Spans Matrix"
+      },
+      "meta_schema": [
+        {
+          "key": "profile_type",
+          "type": "text",
+          "label": {
+            "ru": "Тип профиля (beam/joist)",
+            "en": "Profile Type (beam/joist)"
+          }
+        },
+        {
+          "key": "max_span_mm",
+          "type": "number",
+          "label": {
+            "ru": "Макс. пролет опор, мм",
+            "en": "Max Support Span, mm"
+          }
+        },
+        {
+          "key": "max_overhang_mm",
+          "type": "number",
+          "label": {
+            "ru": "Макс. консольный свес, мм",
+            "en": "Max Overhang, mm"
+          }
+        },
+        {
+          "key": "step_mm",
+          "type": "number",
+          "label": {
+            "ru": "Рекомендуемый шаг укладки, мм",
+            "en": "Recommended Step, mm"
+          }
+        }
+      ],
+      "is_active": true,
+      "records": [
+        {
+          "external_code": "rec_span_tube_80_80_3",
+          "slug": "tube_80_80_3",
+          "name": {
+            "ru": "Труба профильная 80х80х3",
+            "en": "Труба профильная 80х80х3"
+          },
+          "meta": {
+            "profile_type": "beam",
+            "max_span_mm": 2500,
+            "max_overhang_mm": 400,
+            "step_mm": 1500
+          },
+          "sort_order": 10,
+          "is_active": true
+        },
+        {
+          "external_code": "rec_span_tube_60_40_2",
+          "slug": "tube_60_40_2",
+          "name": {
+            "ru": "Труба профильная 60х40х2",
+            "en": "Труба профильная 60х40х2"
+          },
+          "meta": {
+            "profile_type": "beam",
+            "max_span_mm": 1800,
+            "max_overhang_mm": 300,
+            "step_mm": 1200
+          },
+          "sort_order": 20,
+          "is_active": true
+        },
+        {
+          "external_code": "rec_span_tube_40_40_2",
+          "slug": "tube_40_40_2",
+          "name": {
+            "ru": "Труба профильная 40х40х2",
+            "en": "Труба профильная 40х40х2"
+          },
+          "meta": {
+            "profile_type": "beam",
+            "max_span_mm": 1500,
+            "max_overhang_mm": 250,
+            "step_mm": 1000
+          },
+          "sort_order": 30,
+          "is_active": true
+        },
+        {
+          "external_code": "rec_span_tube_40_20_2",
+          "slug": "tube_40_20_2",
+          "name": {
+            "ru": "Труба профильная 40х20х2",
+            "en": "Труба профильная 40х20х2"
+          },
+          "meta": {
+            "profile_type": "beam",
+            "max_span_mm": 1000,
+            "max_overhang_mm": 200,
+            "step_mm": 800
+          },
+          "sort_order": 40,
+          "is_active": true
+        },
+        {
+          "external_code": "rec_span_joist_alu_nesushchaya",
+          "slug": "joist_alu_nesushchaya",
+          "name": {
+            "ru": "Лага алюминиевая несущая",
+            "en": "Лага алюминиевая несущая"
+          },
+          "meta": {
+            "profile_type": "joist",
+            "max_span_mm": 1000,
+            "max_overhang_mm": 150,
+            "step_mm": 400
+          },
+          "sort_order": 50,
+          "is_active": true
+        },
+        {
+          "external_code": "rec_span_joist_dpk_standart",
+          "slug": "joist_dpk_standart",
+          "name": {
+            "ru": "Лага ДПК стандартная",
+            "en": "Лага ДПК стандартная"
+          },
+          "meta": {
+            "profile_type": "joist",
+            "max_span_mm": 400,
+            "max_overhang_mm": 50,
+            "step_mm": 350
+          },
+          "sort_order": 60,
+          "is_active": true
         }
       ]
     }
@@ -7613,8 +8103,8 @@
           "is_active": true
         },
         {
-          "external_code": "odk_kronex_krepezh_promezhutochnyj_kronex_serebristyy",
-          "sku": "odk_kronex_krepezh_promezhutochnyj_kronex_serebristyy",
+          "external_code": "odk_kronex_krepezh_promezhutochnyj_kronex_serebristyy_no7",
+          "sku": "odk_kronex_krepezh_promezhutochnyj_kronex_serebristyy_no7",
           "name": {
             "ru": "Крепеж промежуточный KRONEX №7 для каркаса из металлопрофиля и лаги ДПК (Серебристый)",
             "en": "Крепеж промежуточный KRONEX №7 для каркаса из металлопрофиля и лаги ДПК (Серебристый)"
@@ -7701,8 +8191,8 @@
           "is_active": true
         },
         {
-          "external_code": "odk_oliverdeck_krepezh_startovyj_no7_dlya_kar_22_19_krepezh_startov",
-          "sku": "odk_oliverdeck_krepezh_startovyj_no7_dlya_kar_22_19_krepezh_startov",
+          "external_code": "odk_oliverdeck_krepezh_startovyj_no7_dlya_kar_22_19_krepezh_startov_2",
+          "sku": "odk_oliverdeck_krepezh_startovyj_no7_dlya_kar_22_19_krepezh_startov_2",
           "name": {
             "ru": "Крепеж стартовый №7 для каркаса из металлопрофиля и лаги ДПК (упак/10 шт)",
             "en": "Крепеж стартовый №7 для каркаса из металлопрофиля и лаги ДПК (упак/10 шт)"
@@ -8157,6 +8647,9 @@
         "width_mm": 50,
         "thickness_mm": 45,
         "height_mm": 45,
+        "profile_width_mm": 50,
+        "profile_height_mm": 45,
+        "wall_thickness_mm": 2,
         "source_url": "https://oliverdeck.ru/magazin/product/prof_truba_40x20x2/"
       },
       "variants": [
@@ -8204,6 +8697,9 @@
         "width_mm": 40,
         "thickness_mm": 30,
         "height_mm": 30,
+        "profile_width_mm": 40,
+        "profile_height_mm": 30,
+        "wall_thickness_mm": 2,
         "source_url": "https://oliverdeck.ru/magazin/product/profilnaya-truba-40h40h2/"
       },
       "variants": [
@@ -8251,6 +8747,9 @@
         "width_mm": 53,
         "thickness_mm": 53,
         "height_mm": 53,
+        "profile_width_mm": 53,
+        "profile_height_mm": 53,
+        "wall_thickness_mm": 2,
         "source_url": "https://oliverdeck.ru/magazin/product/profilnaya-truba-60h40h2/"
       },
       "variants": [
@@ -8298,6 +8797,9 @@
         "width_mm": 50,
         "thickness_mm": 45,
         "height_mm": 45,
+        "profile_width_mm": 50,
+        "profile_height_mm": 45,
+        "wall_thickness_mm": 3,
         "source_url": "https://oliverdeck.ru/magazin/product/profilnaya-truba-80h80h3/"
       },
       "variants": [
@@ -8345,6 +8847,9 @@
         "width_mm": 40,
         "thickness_mm": 30,
         "height_mm": 30,
+        "profile_width_mm": 40,
+        "profile_height_mm": 30,
+        "wall_thickness_mm": 2,
         "source_url": "https://oliverdeck.ru/magazin/product/profilnaya-truba-metall/"
       },
       "variants": [
@@ -8427,8 +8932,12 @@
       "eav": {
         "brand": "opt_brand_oliverdeck",
         "material": "Сталь",
+        "diameter_mm": 89,
         "width_mm": 89,
-        "length_mm": 2000
+        "length_mm": 2000,
+        "blade_diameter_mm": 250,
+        "wall_thickness_mm": 3.5,
+        "has_head": false
       },
       "variants": [
         {
@@ -8548,6 +9057,7 @@
       "eav": {
         "brand": "opt_brand_oliverdeck",
         "material": "Сталь",
+        "diameter_mm": 10,
         "width_mm": 10,
         "thickness_mm": 10,
         "length_mm": 6000
@@ -8708,18 +9218,78 @@
   "binding_rules": [
     {
       "pipeline_external_code": "pl_joist",
-      "external_code": "rule_fixing_odk_kronex_laga_alyuminievaya_kronex_kons_80_40_serebristyy_124",
+      "external_code": "rule_fixing_odk_kronex_laga_alyuminievaya_kronex_kons_80_40_serebristyy_00124",
       "name": "Крепление лаги (саморез): odk_kronex_laga_alyuminievaya_kronex_kons_80_40_serebristyy",
       "role": "fixing",
       "parent_type_key": "product_variant",
       "parent_external_code": "odk_kronex_laga_alyuminievaya_kronex_kons_80_40_serebristyy",
       "child_type_key": "product_variant",
-      "child_external_code": "124",
+      "child_external_code": "00124",
       "conditions": null,
       "static_meta": null,
       "quantity_formula": "1",
       "is_required": true,
       "sort_order": 10
+    },
+    {
+      "pipeline_external_code": "pl_joist",
+      "external_code": "rule_fixing_odk_kronex_laga_alyuminievaya_kronex_nesu_50_25_serebristyy_00124",
+      "name": "Крепление лаги (саморез): odk_kronex_laga_alyuminievaya_kronex_nesu_50_25_serebristyy",
+      "role": "fixing",
+      "parent_type_key": "product_variant",
+      "parent_external_code": "odk_kronex_laga_alyuminievaya_kronex_nesu_50_25_serebristyy",
+      "child_type_key": "product_variant",
+      "child_external_code": "00124",
+      "conditions": null,
+      "static_meta": null,
+      "quantity_formula": "1",
+      "is_required": true,
+      "sort_order": 10
+    },
+    {
+      "pipeline_external_code": "pl_joist",
+      "external_code": "rule_fixing_odk_kronex_laga_alyuminievaya_kronex_opor_40_20_serebristyy_00124",
+      "name": "Крепление лаги (саморез): odk_kronex_laga_alyuminievaya_kronex_opor_40_20_serebristyy",
+      "role": "fixing",
+      "parent_type_key": "product_variant",
+      "parent_external_code": "odk_kronex_laga_alyuminievaya_kronex_opor_40_20_serebristyy",
+      "child_type_key": "product_variant",
+      "child_external_code": "00124",
+      "conditions": null,
+      "static_meta": null,
+      "quantity_formula": "1",
+      "is_required": true,
+      "sort_order": 10
+    },
+    {
+      "pipeline_external_code": "pl_joist",
+      "external_code": "rule_fixing_odk_kronex_laga_alyuminievaya_kronex_opor_40_15_serebristyy_00124",
+      "name": "Крепление лаги (саморез): odk_kronex_laga_alyuminievaya_kronex_opor_40_15_serebristyy",
+      "role": "fixing",
+      "parent_type_key": "product_variant",
+      "parent_external_code": "odk_kronex_laga_alyuminievaya_kronex_opor_40_15_serebristyy",
+      "child_type_key": "product_variant",
+      "child_external_code": "00124",
+      "conditions": null,
+      "static_meta": null,
+      "quantity_formula": "1",
+      "is_required": true,
+      "sort_order": 10
+    },
+    {
+      "pipeline_external_code": "pl_joist",
+      "external_code": "rule_pile_head_CBO_89_2000_OG_150_150",
+      "name": "Оголовок для сваи СВС-89 (150х150)",
+      "role": "pile_head",
+      "parent_type_key": "product_variant",
+      "parent_external_code": "CBO-89-2000",
+      "child_type_key": "product_variant",
+      "child_external_code": "OG-150-150",
+      "conditions": null,
+      "static_meta": null,
+      "quantity_formula": "1",
+      "is_required": false,
+      "sort_order": 20
     },
     {
       "pipeline_external_code": "pl_terrace",
@@ -8817,13 +9387,13 @@
     },
     {
       "pipeline_external_code": "pl_terrace",
-      "external_code": "rule_fixing_odk_oliverdeck_oliverdeck_zabornayadoskampk_145_11_chocolate_124",
+      "external_code": "rule_fixing_odk_oliverdeck_oliverdeck_zabornayadoskampk_145_11_chocolate_00124",
       "name": "Связь Крепление доски (саморез): odk_oliverdeck_oliverdeck_zabornayadoskampk_145_11_chocolate",
       "role": "fixing",
       "parent_type_key": "product_variant",
       "parent_external_code": "odk_oliverdeck_oliverdeck_zabornayadoskampk_145_11_chocolate",
       "child_type_key": "product_variant",
-      "child_external_code": "124",
+      "child_external_code": "00124",
       "conditions": null,
       "static_meta": null,
       "quantity_formula": "1",
@@ -8924,13 +9494,13 @@
     },
     {
       "pipeline_external_code": "pl_terrace",
-      "external_code": "rule_fixing_odk_oliverdeck_oliverdeck_zabornayadoskampk_145_11_teak_124",
+      "external_code": "rule_fixing_odk_oliverdeck_oliverdeck_zabornayadoskampk_145_11_teak_00124",
       "name": "Связь Крепление доски (саморез): odk_oliverdeck_oliverdeck_zabornayadoskampk_145_11_teak",
       "role": "fixing",
       "parent_type_key": "product_variant",
       "parent_external_code": "odk_oliverdeck_oliverdeck_zabornayadoskampk_145_11_teak",
       "child_type_key": "product_variant",
-      "child_external_code": "124",
+      "child_external_code": "00124",
       "conditions": null,
       "static_meta": null,
       "quantity_formula": "1",
@@ -9031,13 +9601,13 @@
     },
     {
       "pipeline_external_code": "pl_terrace",
-      "external_code": "rule_fixing_odk_oliverdeck_oliverdeck_zabornayadoskampk_145_11_grey_124",
+      "external_code": "rule_fixing_odk_oliverdeck_oliverdeck_zabornayadoskampk_145_11_grey_00124",
       "name": "Связь Крепление доски (саморез): odk_oliverdeck_oliverdeck_zabornayadoskampk_145_11_grey",
       "role": "fixing",
       "parent_type_key": "product_variant",
       "parent_external_code": "odk_oliverdeck_oliverdeck_zabornayadoskampk_145_11_grey",
       "child_type_key": "product_variant",
-      "child_external_code": "124",
+      "child_external_code": "00124",
       "conditions": null,
       "static_meta": null,
       "quantity_formula": "1",
@@ -9138,13 +9708,13 @@
     },
     {
       "pipeline_external_code": "pl_terrace",
-      "external_code": "rule_fixing_odk_oliverdeck_oliverdeck_zabornayadoskampk_145_11_brown_124",
+      "external_code": "rule_fixing_odk_oliverdeck_oliverdeck_zabornayadoskampk_145_11_brown_00124",
       "name": "Связь Крепление доски (саморез): odk_oliverdeck_oliverdeck_zabornayadoskampk_145_11_brown",
       "role": "fixing",
       "parent_type_key": "product_variant",
       "parent_external_code": "odk_oliverdeck_oliverdeck_zabornayadoskampk_145_11_brown",
       "child_type_key": "product_variant",
-      "child_external_code": "124",
+      "child_external_code": "00124",
       "conditions": null,
       "static_meta": null,
       "quantity_formula": "1",
@@ -9562,13 +10132,13 @@
     },
     {
       "pipeline_external_code": "pl_terrace",
-      "external_code": "rule_fixing_odk_oliverdeck_oliverdeck_zabornayadoskampk_145_11_anthracite_124",
+      "external_code": "rule_fixing_odk_oliverdeck_oliverdeck_zabornayadoskampk_145_11_anthracite_00124",
       "name": "Связь Крепление доски (саморез): odk_oliverdeck_oliverdeck_zabornayadoskampk_145_11_anthracite",
       "role": "fixing",
       "parent_type_key": "product_variant",
       "parent_external_code": "odk_oliverdeck_oliverdeck_zabornayadoskampk_145_11_anthracite",
       "child_type_key": "product_variant",
-      "child_external_code": "124",
+      "child_external_code": "00124",
       "conditions": null,
       "static_meta": null,
       "quantity_formula": "1",
