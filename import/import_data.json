@@ -796,31 +796,7 @@
           }
         },
         {
-          "external_code": "opt_venge",
-          "slug": "wenge",
-          "value": {
-            "ru": "Венге",
-            "en": "Wenge"
-          },
-          "param": "wenge",
-          "meta": {
-            "hex": "#3B2219"
-          }
-        },
-        {
           "external_code": "opt_oak",
-          "slug": "oak",
-          "value": {
-            "ru": "Дуб",
-            "en": "Oak"
-          },
-          "param": "oak",
-          "meta": {
-            "hex": "#C4A77D"
-          }
-        },
-        {
-          "external_code": "opt_dub",
           "slug": "oak",
           "value": {
             "ru": "Дуб",
@@ -844,31 +820,7 @@
           }
         },
         {
-          "external_code": "opt_seryi",
-          "slug": "grey",
-          "value": {
-            "ru": "Серый",
-            "en": "Grey"
-          },
-          "param": "grey",
-          "meta": {
-            "hex": "#808080"
-          }
-        },
-        {
           "external_code": "opt_graphite",
-          "slug": "graphite",
-          "value": {
-            "ru": "Графит",
-            "en": "Graphite"
-          },
-          "param": "graphite",
-          "meta": {
-            "hex": "#4A5568"
-          }
-        },
-        {
-          "external_code": "opt_grafit",
           "slug": "graphite",
           "value": {
             "ru": "Графит",
@@ -892,31 +844,7 @@
           }
         },
         {
-          "external_code": "opt_antracit",
-          "slug": "black_wood",
-          "value": {
-            "ru": "Черное дерево",
-            "en": "Black Wood"
-          },
-          "param": "black_wood",
-          "meta": {
-            "hex": "#1A1A1A"
-          }
-        },
-        {
           "external_code": "opt_brown",
-          "slug": "brown",
-          "value": {
-            "ru": "Коричневый",
-            "en": "Brown"
-          },
-          "param": "brown",
-          "meta": {
-            "hex": "#654321"
-          }
-        },
-        {
-          "external_code": "opt_koricnevyi",
           "slug": "brown",
           "value": {
             "ru": "Коричневый",
@@ -940,31 +868,7 @@
           }
         },
         {
-          "external_code": "opt_temno-koricnevyi",
-          "slug": "dark_brown",
-          "value": {
-            "ru": "Темно-коричневый",
-            "en": "Dark Brown"
-          },
-          "param": "dark_brown",
-          "meta": {
-            "hex": "#3B2219"
-          }
-        },
-        {
           "external_code": "opt_natural",
-          "slug": "natural",
-          "value": {
-            "ru": "Натураль",
-            "en": "Natural"
-          },
-          "param": "natural",
-          "meta": {
-            "hex": "#C4A77D"
-          }
-        },
-        {
-          "external_code": "opt_gdk_natural",
           "slug": "natural",
           "value": {
             "ru": "Натураль",
@@ -988,31 +892,7 @@
           }
         },
         {
-          "external_code": "opt_gdk_serebristyy",
-          "slug": "silver",
-          "value": {
-            "ru": "Серебристый",
-            "en": "Silver"
-          },
-          "param": "silver",
-          "meta": {
-            "hex": "#C0C0C0"
-          }
-        },
-        {
           "external_code": "opt_white",
-          "slug": "white",
-          "value": {
-            "ru": "Белый",
-            "en": "White"
-          },
-          "param": "white",
-          "meta": {
-            "hex": "#F0EBE0"
-          }
-        },
-        {
-          "external_code": "opt_belyi",
           "slug": "white",
           "value": {
             "ru": "Белый",
