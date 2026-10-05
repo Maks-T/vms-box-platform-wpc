@@ -366,11 +366,11 @@ class WpcPdfDataHelper
   }
 
   /**
-   * Кодирование логотипа (logo.png для темной темы, logo_black.png для светлой)
+   * Кодирование логотипа
    */
   public static function resolveLogo(bool $isDark = false): ?string
   {
-    $fileName = $isDark ? 'logo.png' : 'logo_black.png';
+    $fileName = $isDark ? 'logo-oliverdeck.svg' : 'logo-oliverdeck.svg';
     $path = public_path('images/pdf/' . $fileName);
 
     if (file_exists($path)) {
