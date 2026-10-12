@@ -1,0 +1,7 @@
+{
+  "calculator-app": {
+    "repo": "git@github.com:kapitulin24/oliver-deck.git",
+    "target": "public/calculator-app",
+    "branch": "deploy/build"
+  }
+}
