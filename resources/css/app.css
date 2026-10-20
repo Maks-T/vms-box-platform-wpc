@@ -25,12 +25,12 @@
     }
 }
 
-
 /** ИНТЕГРАЦИЯ С TAILWIND V4 */
 @theme {
-    --font-sans: "DM Sans", sans-serif;
+    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-heading: var(--font-sans);
 
-    /* Базовые цвета shadcn */
+    /* Базовые цвета shadcn / oliver-deck */
     --color-background: var(--background);
     --color-foreground: var(--foreground);
     --color-card: var(--card);
@@ -51,7 +51,17 @@
     --color-input: var(--input);
     --color-ring: var(--ring);
 
-    /* Кастомные цвета Vistegra */
+    /* Sidebar цвета */
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+
+    /* Кастомные цвета Vistegra (для обратной совместимости) */
     --color-heading: var(--heading);
     --color-nav: var(--nav);
     --color-meta: var(--meta);
@@ -60,14 +70,16 @@
     --color-dark: var(--dark);
     --color-primary-light: #3D98FF;
 
-    /* Радиусы скруглений */
-    --radius-sm: calc(var(--radius) - 4px);
-    --radius-md: calc(var(--radius) - 2px);
+    /* Радиусы скруглений дизайн-системы виджета */
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
     --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) + 10px);
-    --radius-2xl: calc(var(--radius) + 20px);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
 
-    /* Тени Vistegra */
+    /* Тени Vistegra и карточек */
     --shadow-subtle: 0 0 1px 0 rgba(0, 0, 0, 0.15);
     --shadow-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
     --shadow-card: inset 0 0 14px 0 rgba(144, 198, 221, 0.2);
@@ -75,42 +87,111 @@
     --shadow-deep: inset 0 1px 8px 0 rgba(175, 203, 234, 0.5);
     --shadow-cta: 0 5px 12px 0 rgba(0, 103, 216, 0.55);
 
-    /* тени для стекла */
+    /* Тени для стекла */
     --shadow-glass-inset: inset 0 0 14px 0 rgba(144, 198, 221, 0.20);
     --shadow-glass-panel: 0 0 6px 0 rgba(0, 0, 0, 0.25), inset 0 0 14px 0 rgba(144, 198, 221, 0.20);
     --blur-glass: 2.5px;
 }
 
-/** ПЕРЕМЕННЫЕ SHADCN */
+/** ПЕРЕМЕННЫЕ ДИЗАЙН-СИСТЕМЫ (OKLCH TOKENS) - СВЕТЛАЯ ТЕМА */
 :root {
-    --radius: 0.625rem;
-    --background: #FFFFFF;
-    --foreground: #222222;
-    --card: #FFFFFF;
-    --card-foreground: #222222;
-    --popover: #FFFFFF;
-    --popover-foreground: #222222;
-    --primary: #005ECA;
-    --primary-foreground: #FFFFFF;
-    --secondary: #F5F5F5;
-    --secondary-foreground: #222222;
-    --muted: #EFF1F4;
-    --muted-foreground: #728499;
-    --accent: #E4F1FF;
-    --accent-foreground: #003F87;
-    --destructive: #DD2C2C;
-    --destructive-foreground: #FFFFFF;
-    --border: #E8EBEF;
-    --input: #DAE3EE;
-    --ring: #005ECA;
-    --heading: #16191B;
-    --nav: #ABBCCF;
-    --meta: #6B86A5;
-    --success: #229E35;
-    --warning: #FDBC30;
-    --dark: #16191B;
+    --radius: 0.375rem;
+
+    /* Базовые цвета shadcn (Light Theme) */
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: oklch(0.985 0 0);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+
+    /* Sidebar токены */
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+
+    /* Графики и диаграммы */
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+
+    /* Токены холста и интерактивных элементов */
+    --canvas-background: oklch(0.97 0 0);
+    --canvas-decking-fill: oklch(76.723% 0.12116 68.101);
+    --canvas-decking-foreground: oklch(0.145 0 0);
+    --canvas-decorative-corner-fill: oklch(0.709 0.159 293.5);
+    --canvas-decorative-corner-foreground: oklch(0.145 0 0);
+    --canvas-step-board-fill: oklch(0.75 0.12 55);
+    --canvas-step-board-foreground: oklch(0.145 0 0);
+
+    /* Семантические переменные хоста (Vistegra Aliases) */
+    --heading: oklch(0.145 0 0);
+    --nav: oklch(0.556 0 0);
+    --meta: oklch(0.556 0 0);
+    --success: oklch(0.627 0.194 149.214);
+    --warning: oklch(0.795 0.184 86.047);
+    --dark: oklch(0.145 0 0);
 }
 
+/** ПЕРЕМЕННЫЕ ДИЗАЙН-СИСТЕМЫ (OKLCH TOKENS) - ТЕМНАЯ ТЕМА */
+.dark,
+html.dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.922 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --destructive-foreground: oklch(0.985 0 0);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.556 0 0);
+
+    /* Sidebar токены */
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
+
+    /* Семантические переменные хоста (Dark Aliases) */
+    --heading: oklch(0.985 0 0);
+    --nav: oklch(0.708 0 0);
+    --meta: oklch(0.708 0 0);
+    --dark: oklch(0.985 0 0);
+}
 
 /** БАЗОВЫЕ СТИЛИ (BASE) */
 @layer base {
@@ -118,12 +199,8 @@
         @apply border-border outline-ring/50;
     }
 
-    html {
-
-    }
-
     body {
-        @apply selection:bg-primary selection:text-white;
+        @apply selection:bg-primary selection:text-primary-foreground bg-background text-foreground;
         touch-action: manipulation;
     }
 
@@ -132,7 +209,7 @@
         user-select: none !important;
     }
 
-    /**     СТИЛИ АВТОЗАПОЛНЕНИЯ (AUTOFILL) */
+    /** СТИЛИ АВТОЗАПОЛНЕНИЯ (AUTOFILL) */
     /* Базовый сброс для всех типов автозаполнения */
     input:-webkit-autofill,
     input:-webkit-autofill:hover,
@@ -142,7 +219,7 @@
     textarea:-webkit-autofill:focus {
         font-family: var(--font-sans), sans-serif !important;
         transition: background-color 5000s ease-in-out 0s !important;
-        caret-color: white;
+        caret-color: currentColor;
     }
 
     /* Вариант DARK (Модалки) */
@@ -156,7 +233,7 @@
         border-color: var(--color-primary) !important;
     }
 
-    /*  Вариант BLUE (Синие баннеры) */
+    /* Вариант BLUE (Синие баннеры) */
     .autofill-blue:-webkit-autofill {
         -webkit-text-fill-color: #FFFFFF !important;
         box-shadow: 0 0 0 1000px #005ECA inset !important;
@@ -178,7 +255,6 @@
     .autofill-white:-webkit-autofill:focus {
         border-color: var(--color-primary) !important;
     }
-
 
     /* Хак для iOS Zoom */
     @media screen and (max-width: 768px) {
@@ -243,7 +319,6 @@
 }
 
 /** КАСТОМНЫЙ СКРОЛЛБАР */
-
 .custom-scrollbar::-webkit-scrollbar {
     width: 6px;
 }
@@ -285,12 +360,12 @@
 [data-sonner-toast] {
     background-color: rgba(255, 255, 255, 0.85) !important;
     backdrop-filter: blur(16px) saturate(150%);
-    border-radius: 14px !important;
+    border-radius: var(--radius-2xl, 14px) !important;
     font-family: var(--font-sans), sans-serif !important;
     padding: 14px 18px !important;
-    color: #16191B !important;
+    color: var(--foreground) !important;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12) !important;
-    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid var(--border) !important;
 }
 
 /* Успешное уведомление */
@@ -316,18 +391,18 @@
 /* Заголовок сообщения */
 [data-sonner-toast] [data-title] {
     font-weight: 600 !important;
-    color: #16191B !important;
+    color: var(--foreground) !important;
 }
 
 /* Описание сообщения */
 [data-sonner-toast] [data-description] {
-    color: rgba(22, 25, 27, 0.7) !important;
+    color: var(--muted-foreground) !important;
     font-size: 13px !important;
 }
 
 /* Кнопка закрытия (если есть) */
 [data-sonner-toast] [data-close-button] {
-    background: rgba(0, 0, 0, 0.05) !important;
-    border-color: rgba(0, 0, 0, 0.1) !important;
-    color: #16191B !important;
+    background: var(--muted) !important;
+    border-color: var(--border) !important;
+    color: var(--foreground) !important;
 }

@@ -5,7 +5,7 @@ import {IconBox} from '@/shared/components/ui/IconBox';
 import StatusBadge from '@/shared/components/ui/StatusBadge';
 import GlassPanel from '@/shared/components/ui/GlassPanel';
 import {ProductVariant, BootstrapConfig} from '@/types/catalog';
-import Badge from "@/shared/components/ui/Badge";
+import { Badge } from "@/shared/ui/badge";
 
 interface Props {
   variants: ProductVariant[];
