@@ -29,6 +29,12 @@ class WpcPipelineRole implements PipelineRoleInterface
   public const string LATH_FASTENER = 'lathFastener';
   public const string HOLES = 'holes';
 
+  // Роли для Лестниц (Stairs)
+  public const string RISER_BOARD = 'riserBoard';
+  public const string FRAME_TUBE = 'frameTube';
+  public const string STAIR_CLIP = 'stairClip';
+  public const string CLIP_FASTENER = 'clipFastener';
+
   public static function label(string $value): string
   {
     return match ($value) {
@@ -48,6 +54,10 @@ class WpcPipelineRole implements PipelineRoleInterface
       self::LATH => __('Lath'),
       self::LATH_FASTENER => __('Lath Screw'),
       self::HOLES => __('Holes'),
+      self::RISER_BOARD => __('Riser Board'),
+      self::FRAME_TUBE => __('Frame Tube'),
+      self::STAIR_CLIP => __('Stair Clip'),
+      self::CLIP_FASTENER => __('Stair Screw'),
       default => $value,
     };
   }
@@ -62,7 +72,7 @@ class WpcPipelineRole implements PipelineRoleInterface
   {
     return match ($value) {
       // Слоты товаров каталога (ProductType)
-      self::START_CLIP, self::BASE_CLIP, self::BRACKET => [
+      self::START_CLIP, self::BASE_CLIP, self::BRACKET, self::STAIR_CLIP => [
         'target_type' => ET::PRODUCT_TYPE,
         'target_code' => 'brackets',
       ],
@@ -78,7 +88,7 @@ class WpcPipelineRole implements PipelineRoleInterface
         'target_type' => ET::PRODUCT_TYPE,
         'target_code' => 'stepBoard',
       ],
-      self::FIXING, self::BRACKET_FASTENER, self::LATH_FASTENER => [
+      self::FIXING, self::BRACKET_FASTENER, self::LATH_FASTENER, self::CLIP_FASTENER => [
         'target_type' => ET::PRODUCT_TYPE,
         'target_code' => 'fasteners',
       ],
@@ -101,6 +111,14 @@ class WpcPipelineRole implements PipelineRoleInterface
       self::LATH => [
         'target_type' => ET::PRODUCT_TYPE,
         'target_code' => 'lath',
+      ],
+      self::RISER_BOARD => [
+        'target_type' => ET::PRODUCT_TYPE,
+        'target_code' => 'board',
+      ],
+      self::FRAME_TUBE => [
+        'target_type' => ET::PRODUCT_TYPE,
+        'target_code' => 'foundation_beam',
       ],
 
       // Скалярные параметры (числа / размеры)
@@ -141,6 +159,10 @@ class WpcPipelineRole implements PipelineRoleInterface
       self::LATH,
       self::LATH_FASTENER,
       self::HOLES,
+      self::RISER_BOARD,
+      self::FRAME_TUBE,
+      self::STAIR_CLIP,
+      self::CLIP_FASTENER,
     ];
   }
 }
