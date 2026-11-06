@@ -145,16 +145,15 @@ export default function CalculatorShow({ assets, initialData, currentType }: Pro
         <meta name="description" content="Рассчитайте точное количество материалов и стоимость террасы из ДПК за 2 минуты." />
       </Head>
 
-      <div className="w-full max-w-[1360px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
-        <div className="w-full bg-white rounded-2xl border border-stone-200/90 p-4 sm:p-6 md:p-8 shadow-xs">
-          <div className="relative w-full">
-            {!isWidgetReady && (
-              <div className="absolute inset-0 z-10 bg-white flex items-center justify-center rounded-2xl min-h-[500px]">
-                <CalculatorPreloader currentType="terrace" />
-              </div>
-            )}
-            <div id={ROOT_CONTAINER_ID} className="w-full h-auto" />
-          </div>
+      <div className="w-full flex-1 flex flex-col min-h-[calc(100vh-140px)]">
+        <div className="relative w-full flex-1 flex flex-col bg-white">
+          {!isWidgetReady && (
+            <div className="absolute inset-0 z-10 bg-white flex items-center justify-center min-h-[500px]">
+              <CalculatorPreloader currentType="terrace" />
+            </div>
+          )}
+
+          <div id={ROOT_CONTAINER_ID} className="w-full flex-1 h-full" />
         </div>
       </div>
     </MainLayout>
